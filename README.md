@@ -1,2 +1,1 @@
-# Sales
-Hızlı Satış Ekranı 
+Raporlama Ekranı
