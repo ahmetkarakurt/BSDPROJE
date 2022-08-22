@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Cek Senet Banka Raporu " />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from ZZZ_CEKSEN_SONISLEM where YEAR(VADETRH)=YEAR(GETDATE())</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="ID" Type="Guid" />
+            <Field Name="SC_NO" Type="String" />
+            <Field Name="VADETRH" Type="DateTime" />
+            <Field Name="SC_GIRTRH" Type="DateTime" />
+            <Field Name="SC_CIKTRH" Type="DateTime" />
+            <Field Name="VERILEN_CARI" Type="String" />
+            <Field Name="VERILEN_CARI_ISIM" Type="String" />
+            <Field Name="VEREN_CARI" Type="String" />
+            <Field Name="VEREN_CARI_ISIM" Type="String" />
+            <Field Name="TUTAR" Type="Decimal" />
+            <Field Name="KURISIM" Type="String" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="BANKA_YER" Type="String" />
+            <Field Name="DURUM" Type="String" />
+            <Field Name="YERI" Type="String" />
+            <Field Name="TIPI" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Verilen-Durumu" Expression="[VERILEN_CARI_ISIM] +' Dumrumu : '+ [DURUM] " DataMember="CustomSqlQuery" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Çek Senet Durumları" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="TUTAR" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="VADETRH" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Dimension DataMember="VADETRH" DateTimeGroupInterval="Day" DefaultId="DataItem2" />
+        <Dimension DataMember="BANKA_YER" DefaultId="DataItem3" />
+        <Dimension DataMember="Verilen-Durumu" DefaultId="DataItem4" />
+        <Dimension DataMember="DURUM" DefaultId="DataItem5" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem5" />
+      </HiddenDimensions>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Tipi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="TIPI" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <ComboBox ComponentName="comboBoxDashboardItem2" Name="Ödeme Tipi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="KURISIM" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <ComboBox ComponentName="comboBoxDashboardItem3" Name="Durumu" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="DURUM" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <ListBox ComponentName="listBoxDashboardItem1" Name="Tarih" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="VADETRH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ListBox>
+    <ComboBox ComponentName="comboBoxDashboardItem4" Name="Cari Adı" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="VERILEN_CARI_ISIM" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutGroup Weight="0.21513881428061374">
+          <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="1.0915708866398419" />
+          <LayoutItem DashboardItem="comboBoxDashboardItem2" Weight="0.9084291133601583" />
+          <LayoutItem DashboardItem="comboBoxDashboardItem3" Weight="1.7848611857193863" />
+          <LayoutItem DashboardItem="comboBoxDashboardItem4" Weight="2.9958406066889314" />
+        </LayoutGroup>
+        <LayoutGroup Weight="1.7848611857193863">
+          <LayoutItem DashboardItem="listBoxDashboardItem1" Weight="0.57388176474984154" />
+          <LayoutItem DashboardItem="pivotDashboardItem1" Weight="2.9958406066889314" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

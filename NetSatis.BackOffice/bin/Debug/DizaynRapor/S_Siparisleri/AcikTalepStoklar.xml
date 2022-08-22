@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM BSD_TEKLIF_STOK</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_GCMIK2" Type="Decimal" />
+            <Field Name="CEVRIM" Type="Decimal" />
+            <Field Name="STHAR_GCKOD" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_IAF" Type="Decimal" />
+            <Field Name="STHAR_KDV" Type="Decimal" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="STHAR_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_SATISK" Type="Decimal" />
+            <Field Name="STHAR_MALFISK" Type="Decimal" />
+            <Field Name="STHAR_FTIRSIP" Type="String" />
+            <Field Name="STHAR_SATISK2" Type="Decimal" />
+            <Field Name="LISTE_FIAT" Type="Byte" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="PROMASYON_KODU" Type="Byte" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_ODEGUN" Type="Int16" />
+            <Field Name="STRA_SATISK3" Type="Decimal" />
+            <Field Name="STRA_SATISK4" Type="Decimal" />
+            <Field Name="STRA_SATISK5" Type="Decimal" />
+            <Field Name="STRA_SATISK6" Type="Decimal" />
+            <Field Name="STHAR_BGTIP" Type="String" />
+            <Field Name="STHAR_KOD1" Type="String" />
+            <Field Name="STHAR_KOD2" Type="String" />
+            <Field Name="STHAR_SIPNUM" Type="String" />
+            <Field Name="STHAR_CARIKOD" Type="String" />
+            <Field Name="STHAR_SIP_TURU" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="EKALAN_NEDEN" Type="String" />
+            <Field Name="EKALAN" Type="String" />
+            <Field Name="EKALAN1" Type="String" />
+            <Field Name="REDMIK" Type="Decimal" />
+            <Field Name="REDNEDEN" Type="Byte" />
+            <Field Name="SIRA" Type="Int16" />
+            <Field Name="STRA_SIPKONT" Type="Int16" />
+            <Field Name="AMBAR_KABULNO" Type="String" />
+            <Field Name="FIRMA_DOVTIP" Type="Byte" />
+            <Field Name="FIRMA_DOVTUT" Type="Decimal" />
+            <Field Name="FIRMA_DOVMAL" Type="Decimal" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="IRSALIYE_NO" Type="String" />
+            <Field Name="IRSALIYE_TARIH" Type="DateTime" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="ECZA_FAT_TIP" Type="Byte" />
+            <Field Name="STHAR_TESTAR" Type="DateTime" />
+            <Field Name="OLCUBR" Type="Byte" />
+            <Field Name="INCKEYNO" Type="Int32" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="LISTE_NO" Type="String" />
+            <Field Name="BAGLANTI_NO" Type="Int32" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="MUH_KODU" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="F_YEDEK5" Type="Decimal" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="FIYATTARIHI" Type="DateTime" />
+            <Field Name="KOSULTARIHI" Type="DateTime" />
+            <Field Name="SATISK1TIP" Type="Int16" />
+            <Field Name="SATISK2TIP" Type="Int16" />
+            <Field Name="SATISK3TIP" Type="Int16" />
+            <Field Name="SATISK4TIP" Type="Int16" />
+            <Field Name="SATISK5TIP" Type="Int16" />
+            <Field Name="SATISK6TIP" Type="Int16" />
+            <Field Name="EXPORTTYPE" Type="Byte" />
+            <Field Name="EXPORTMIK" Type="Decimal" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="KKMALF" Type="Decimal" />
+            <Field Name="STRA_IRSKONT" Type="Int16" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="MAMYAPKOD" Type="String" />
+            <Field Name="OTVFIYAT" Type="Decimal" />
+            <Field Name="IRS_INCKEYNO" Type="Int32" />
+            <Field Name="YEDEK11" Type="String" />
+            <Field Name="YEDEK12" Type="String" />
+            <Field Name="YEDEK13" Type="Int32" />
+            <Field Name="YEDEK14" Type="Int32" />
+            <Field Name="YEDEK15" Type="Double" />
+            <Field Name="YEDEK16" Type="Double" />
+            <Field Name="YEDEK17" Type="DateTime" />
+            <Field Name="YEDEK18" Type="DateTime" />
+            <Field Name="YEDEK19" Type="String" />
+            <Field Name="YEDEK20" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Hesaplanan alan 1" Expression="[STOK_KODU] +' - '+[STOK_ADI]" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="H" />
+  </Parameters>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="AÇIK TALEPLER" ParentContainer="dashboardTabPage1" DataSource="dashboardSqlDataSource1" DataMember="Query" FilterString="[DataItem4] = 'H'">
+      <DataItems>
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem1" />
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="FISNO" DefaultId="DataItem3" />
+        <Dimension DataMember="STHAR_HTUR" DefaultId="DataItem4" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem5" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem4" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Name="TALEP NO" Weight="32.25255972696246">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="STOK KODU" Weight="31.228668941979521">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="STOK ADI" Weight="95.73378839590444">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="TALEP MİKTARI" Weight="140.78498293515358">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="TALEP EDEN KİŞİ">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" ColumnWidthMode="Manual" />
+    </Grid>
+    <TabContainer ComponentName="tabContainerDashboardItem1" Name="Tab Container 1">
+      <Pages>
+        <Page ComponentName="dashboardTabPage1" Name="Sayfa 1" />
+        <Page ComponentName="dashboardTabPage2" Name="TALEP EDİLEN STOKLAR ">
+          <InteractivityOptions IgnoreMasterFilters="true" IsMasterFilter="false" />
+        </Page>
+      </Pages>
+    </TabContainer>
+    <Pivot ComponentName="pivotDashboardItem1" Name="EN ÇO KTALEP EDİLEN 100 ÜRÜN" ParentContainer="dashboardTabPage2" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="Hesaplanan alan 1" TopNEnabled="true" TopNShowOthers="true" TopNCount="100" TopNMeasure="DataItem2" DefaultId="DataItem0" />
+        <Measure DataMember="STHAR_GCMIK" Name="TOPLAM MİKTAR" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STOK_KODU" Name="TALEP ADETİ" SummaryType="Count" DefaultId="DataItem2" />
+        <Dimension DataMember="STHAR_TARIH" SortOrder="Descending" DateTimeGroupInterval="DayMonthYear" SortByMeasure="DataItem2" DefaultId="DataItem3" />
+        <Dimension DataMember="CARI_ISIM" SortOrder="Descending" SortByMeasure="DataItem2" DefaultId="DataItem4" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem0" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem2" />
+      </Values>
+      <AutoExpandColumnGroups>true</AutoExpandColumnGroups>
+      <ValuesPosition>Rows</ValuesPosition>
+      <RowTotalsPosition>Top</RowTotalsPosition>
+      <LayoutType>Tabular</LayoutType>
+    </Pivot>
+    <Pie ComponentName="pieDashboardItem1" Name="GRUPLARA GÖRE TALEP YÜZDESİ" ParentContainer="dashboardTabPage2" DataSource="dashboardSqlDataSource1" DataMember="Query" LabelContentType="ArgumentValueAndPercent" TooltipContentType="ArgumentAndPercent">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="STOK_KODU" Name="TALEP ADETİ" SummaryType="Count" DefaultId="DataItem0" />
+        <Dimension DataMember="GRUP_KODU" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="Hesaplanan alan 1" ColoringMode="Hue" TopNEnabled="true" TopNShowOthers="true" TopNCount="20" TopNMeasure="DataItem0" DefaultId="DataItem2" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="STOK KODU - STOK ADI" ParentContainer="dashboardTabPage2" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="Hesaplanan alan 1" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutTabContainer DashboardItem="tabContainerDashboardItem1" Weight="100">
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage1" Weight="100">
+          <LayoutItem DashboardItem="gridDashboardItem1" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage DashboardItem="dashboardTabPage2" Weight="100">
+          <LayoutGroup Orientation="Vertical" Weight="49.832102081934181">
+            <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="8.0103359173126609" />
+            <LayoutItem DashboardItem="pivotDashboardItem1" Weight="91.989664082687341" />
+          </LayoutGroup>
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="50.167897918065819" />
+        </LayoutTabPage>
+      </LayoutTabContainer>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

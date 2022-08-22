@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Visible="false" Text="Grup Kodlu Satış" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT        dbo.TBLCAHAR.SUBE_KODU, dbo.TBLCAHAR.CARI_KOD, dbo.TBLCAHAR.TARIH, dbo.TBLCAHAR.VADE_TARIHI, dbo.TBLCAHAR.BELGE_NO, REPLACE(REPLACE(REPLACE(dbo.TBLCAHAR.ACIKLAMA, 'Ý', 'İ'), 'Ð', 
+                         'Ğ'), 'Þ', 'Ş') AS ACIKLAMA, dbo.TBLCAHAR.HKA, dbo.TBLCAHAR.BORC, dbo.TBLCAHAR.ALACAK, dbo.TBLCAHAR.BAKIYE, dbo.TBLCAHAR.DOVIZ_TURU, dbo.TBLCAHAR.DOVIZ_TUTAR, 
+                         dbo.TBLCAHAR.RAPOR_KODU, dbo.TBLCAHAR.F9SC, dbo.TBLCAHAR.HAREKET_TURU, dbo.TBLCAHAR.MIKTAR, dbo.TBLCAHAR.ILAVE_RAPOR_KODU, dbo.TBLCAHAR.UPDATE_KODU, 
+                         dbo.TBLCAHAR.KAPATILMIS_TUTAR, dbo.TBLCAHAR.ODEME_GUNU, dbo.TBLCAHAR.FIRMA_DOVIZ_TIPI, dbo.TBLCAHAR.FIRMA_DOVIZ_TUTARI, dbo.TBLCAHAR.PLASIYER_KODU, 
+                         dbo.TBLCAHAR.ENT_REF_KEY, dbo.TBLCAHAR.INC_KEY_NUMBER, dbo.TBLCAHAR.RAPOR_KODU2, dbo.TBLCAHAR.DUZELTMETARIHI, dbo.TBLCAHAR.S_YEDEK1, dbo.TBLCAHAR.S_YEDEK2, 
+                         dbo.TBLCAHAR.F_YEDEK1, dbo.TBLCAHAR.F_YEDEK2, dbo.TBLCAHAR.C_YEDEK1, dbo.TBLCAHAR.C_YEDEK2, dbo.TBLCAHAR.B_YEDEK1, dbo.TBLCAHAR.I_YEDEK1, dbo.TBLCAHAR.L_YEDEK1, 
+                         dbo.TBLCAHAR.D_YEDEK1, dbo.TBLCAHAR.PROJE_KODU, dbo.TBLCAHAR.ONAYTIPI, dbo.TBLCAHAR.ONAYNUM, dbo.TBLCAHAR.BAGLANTI_NO, dbo.TBLCASABIT.SUBE_KODU AS Expr1, 
+                         dbo.TBLCASABIT.ISLETME_KODU, dbo.TBLCASABIT.CARI_KOD AS Expr2, dbo.TBLCASABIT.CARI_TEL,  REPLACE(REPLACE(REPLACE(dbo.TBLCASABIT.CARI_IL, 'Ý', 'İ'), 'Ð', 'Ğ'), 'Þ', 'Ş') AS  CARI_IL, dbo.TBLCASABIT.ULKE_KODU, 
+                         REPLACE(REPLACE(REPLACE(dbo.TBLCASABIT.CARI_ISIM, 'Ý', 'İ'), 'Ð', 'Ğ'), 'Þ', 'Ş') AS CARI_ISIM, dbo.TBLCASABIT.CARI_TIP, dbo.TBLCASABIT.GRUP_KODU, dbo.TBLCASABIT.RAPOR_KODU1, 
+                         dbo.TBLCASABIT.RAPOR_KODU2 AS Expr3, dbo.TBLCASABIT.RAPOR_KODU3, dbo.TBLCASABIT.RAPOR_KODU4, dbo.TBLCASABIT.RAPOR_KODU5, dbo.TBLCASABIT.CARI_ADRES, dbo.TBLCASABIT.CARI_ILCE, 
+                         dbo.TBLCASABIT.VERGI_DAIRESI, dbo.TBLCASABIT.VERGI_NUMARASI, dbo.TBLCASABIT.FAX, dbo.TBLCASABIT.POSTAKODU, dbo.TBLCASABIT.DETAY_KODU, dbo.TBLCASABIT.NAKLIYE_KATSAYISI, 
+                         dbo.TBLCASABIT.RISK_SINIRI, dbo.TBLCASABIT.TEMINATI, dbo.TBLCASABIT.CARISK, dbo.TBLCASABIT.CCRISK, dbo.TBLCASABIT.SARISK, dbo.TBLCASABIT.SCRISK, dbo.TBLCASABIT.CM_BORCT, 
+                         dbo.TBLCASABIT.CM_ALACT, dbo.TBLCASABIT.CM_RAP_TARIH, dbo.TBLCASABIT.KOSULKODU, dbo.TBLCASABIT.ISKONTO_ORANI, dbo.TBLCASABIT.VADE_GUNU, dbo.TBLCASABIT.LISTE_FIATI, 
+                         dbo.TBLCASABIT.ACIK1, dbo.TBLCASABIT.ACIK2, dbo.TBLCASABIT.ACIK3, dbo.TBLCASABIT.M_KOD, dbo.TBLCASABIT.DOVIZ_TIPI, dbo.TBLCASABIT.DOVIZ_TURU AS Expr4, dbo.TBLCASABIT.HESAPTUTMASEKLI, 
+                         dbo.TBLCASABIT.DOVIZLIMI, dbo.TBLCASABIT.UPDATE_KODU AS Expr5, dbo.TBLCASABIT.PLASIYER_KODU AS Expr6, dbo.TBLCASABIT.LOKALDEPO, dbo.TBLCASABIT.EMAIL, dbo.TBLCASABIT.WEB, 
+                         dbo.TBLCASABIT.KURFARKIBORC, dbo.TBLCASABIT.KURFARKIALAC, dbo.TBLCASABIT.S_YEDEK1 AS Expr7, dbo.TBLCASABIT.S_YEDEK2 AS Expr8, dbo.TBLCASABIT.F_YEDEK1 AS Expr9, 
+                         dbo.TBLCASABIT.F_YEDEK2 AS Expr10, dbo.TBLCASABIT.C_YEDEK1 AS Expr11, dbo.TBLCASABIT.C_YEDEK2 AS Expr12, dbo.TBLCASABIT.B_YEDEK1 AS Expr13, dbo.TBLCASABIT.I_YEDEK1 AS Expr14, 
+                         dbo.TBLCASABIT.L_YEDEK1 AS Expr15, dbo.TBLCASABIT.FIYATGRUBU, dbo.TBLCASABIT.KAYITYAPANKUL, dbo.TBLCASABIT.KAYITTARIHI, dbo.TBLCASABIT.DUZELTMEYAPANKUL, 
+                         dbo.TBLCASABIT.DUZELTMETARIHI AS Expr16, dbo.TBLCASABIT.ODEMETIPI, dbo.TBLCASABIT.ONAYTIPI AS Expr17, dbo.TBLCASABIT.ONAYNUM AS Expr18, dbo.TBLCASABIT.MUSTERIBAZIKDV, 
+                         dbo.TBLCASABIT.AGIRLIK_ISK, dbo.TBLCASABIT.CARI_TEL2, dbo.TBLCASABIT.CARI_TEL3, dbo.TBLCASABIT.FAX2, dbo.TBLCASABIT.GSM1, dbo.TBLCASABIT.GSM2, dbo.TBLCASABIT.GEKAPHESAPLANMASIN, 
+                         dbo.TBLCASABIT.ONCEKI_KOD, dbo.TBLCASABIT.SONRAKI_KOD, dbo.TBLCASABIT.SONCARIKODU, dbo.TBLCASABIT.TESLIMCARIBAGLIMI, dbo.TBLCASABIT.BAGLICARIKOD, 
+                         REPLACE(REPLACE(REPLACE(dbo.TBLCARIPLASIYER.PLASIYER_ACIKLAMA, 'Ý', 'İ'), 'Ð', 'Ğ'), 'Þ', 'Ş') AS PLASIYER_ACIKLAMA, 
+
+                         CASE WHEN dbo.TBLCAHAR.HAREKET_TURU = 'A' THEN 'DEVIR' 
+						 WHEN dbo.TBLCAHAR.HAREKET_TURU = 'B' THEN 'FATURA'
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'C' THEN 'IADE FATURASI' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'D' THEN 'KASA' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'E' THEN 'MUSTERI SENETI' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'F' THEN 'BORC SENETI' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'G' THEN 'MUSTERI CEKI'
+                          WHEN dbo.TBLCAHAR.HAREKET_TURU = 'H' THEN 'BORC CEKI' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'I' THEN 'PROTESTOLU SENET' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'J' THEN 'KARSILIKSIZ CEK' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'K' THEN 'DEKONT' 
+						  WHEN dbo.TBLCAHAR.HAREKET_TURU = 'L' THEN 'MUHTELIF' 
+						  ELSE 'DIGER' END AS HARAKETTURU, 
+						  dbo.TBLFATUIRS.TIPI,
+						 ISNULL(dbo.TBLFATUIRS.TIPI,99),
+						  CASE 
+						  WHEN   dbo.TBLFATUIRS.TIPI = '1' THEN 'KAPALI FATURA'
+						  WHEN   dbo.TBLFATUIRS.TIPI = '2' THEN 'ACIK FATURA' 
+						  WHEN   dbo.TBLFATUIRS.TIPI = '3' THEN 'MUHTELIF FATURA' 
+						  WHEN   dbo.TBLFATUIRS.TIPI = '4' THEN 'IADE FATURA' 
+						  WHEN   dbo.TBLFATUIRS.TIPI = '5' THEN 'ZAYI IADE' 
+						  WHEN   dbo.TBLFATUIRS.TIPI = '6' THEN 'ITHALET/IHRACAT'
+						  ELSE 'DIGER' END AS FATURA_TIPI, 
+
+						  dbo.TBLFATUIRS.FTIRSIP, 
+						   CASE 
+						  WHEN   dbo.TBLFATUIRS.FTIRSIP = '1' THEN 'SATIS FATURASI'
+						  WHEN   dbo.TBLFATUIRS.FTIRSIP = '2' THEN 'ALIS FATURASI' 
+						  WHEN   dbo.TBLFATUIRS.FTIRSIP = '3' THEN 'SATIS IRSALIYESI' 
+						  WHEN   dbo.TBLFATUIRS.FTIRSIP = '4' THEN 'ALIS IRSALIYESI' 
+						  WHEN   dbo.TBLFATUIRS.FTIRSIP = '6' THEN 'MUSTERI SIP' 
+						  WHEN   dbo.TBLFATUIRS.FTIRSIP = '7' THEN 'SATICI SIP'
+                          WHEN   dbo.TBLFATUIRS.FTIRSIP = '8' THEN 'DAT GIR' 
+						  WHEN   dbo.TBLFATUIRS.FTIRSIP = '9' THEN 'DAT CIK' 
+						  ELSE 'DIGER' END AS FATURA_TURU, 
+
+                         dbo.TBLFATUIRS.GENELTOPLAM
+FROM            dbo.TBLFATUIRS RIGHT OUTER JOIN
+                         dbo.TBLCAHAR ON dbo.TBLFATUIRS.CARI_KODU = dbo.TBLCAHAR.CARI_KOD AND dbo.TBLFATUIRS.FATIRS_NO = dbo.TBLCAHAR.BELGE_NO RIGHT OUTER JOIN
+                         dbo.TBLCASABIT LEFT OUTER JOIN
+                         dbo.TBLCARIPLASIYER ON dbo.TBLCASABIT.PLASIYER_KODU = dbo.TBLCARIPLASIYER.PLASIYER_KODU ON dbo.TBLCAHAR.CARI_KOD = dbo.TBLCASABIT.CARI_KOD
+</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="BELGE_NO" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="HKA" Type="String" />
+            <Field Name="BORC" Type="Decimal" />
+            <Field Name="ALACAK" Type="Decimal" />
+            <Field Name="BAKIYE" Type="Decimal" />
+            <Field Name="DOVIZ_TURU" Type="Byte" />
+            <Field Name="DOVIZ_TUTAR" Type="Decimal" />
+            <Field Name="RAPOR_KODU" Type="String" />
+            <Field Name="F9SC" Type="String" />
+            <Field Name="HAREKET_TURU" Type="String" />
+            <Field Name="MIKTAR" Type="Decimal" />
+            <Field Name="ILAVE_RAPOR_KODU" Type="String" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="KAPATILMIS_TUTAR" Type="Decimal" />
+            <Field Name="ODEME_GUNU" Type="Int16" />
+            <Field Name="FIRMA_DOVIZ_TIPI" Type="Byte" />
+            <Field Name="FIRMA_DOVIZ_TUTARI" Type="Decimal" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="ENT_REF_KEY" Type="String" />
+            <Field Name="INC_KEY_NUMBER" Type="Int32" />
+            <Field Name="RAPOR_KODU2" Type="String" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK1" Type="Decimal" />
+            <Field Name="F_YEDEK2" Type="Decimal" />
+            <Field Name="C_YEDEK1" Type="String" />
+            <Field Name="C_YEDEK2" Type="String" />
+            <Field Name="B_YEDEK1" Type="Byte" />
+            <Field Name="I_YEDEK1" Type="Int16" />
+            <Field Name="L_YEDEK1" Type="Int32" />
+            <Field Name="D_YEDEK1" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="BAGLANTI_NO" Type="Int32" />
+            <Field Name="Expr1" Type="Int16" />
+            <Field Name="ISLETME_KODU" Type="Int16" />
+            <Field Name="Expr2" Type="String" />
+            <Field Name="CARI_TEL" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="ULKE_KODU" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_TIP" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="RAPOR_KODU1" Type="String" />
+            <Field Name="Expr3" Type="String" />
+            <Field Name="RAPOR_KODU3" Type="String" />
+            <Field Name="RAPOR_KODU4" Type="String" />
+            <Field Name="RAPOR_KODU5" Type="String" />
+            <Field Name="CARI_ADRES" Type="String" />
+            <Field Name="CARI_ILCE" Type="String" />
+            <Field Name="VERGI_DAIRESI" Type="String" />
+            <Field Name="VERGI_NUMARASI" Type="String" />
+            <Field Name="FAX" Type="String" />
+            <Field Name="POSTAKODU" Type="String" />
+            <Field Name="DETAY_KODU" Type="Int16" />
+            <Field Name="NAKLIYE_KATSAYISI" Type="Decimal" />
+            <Field Name="RISK_SINIRI" Type="Decimal" />
+            <Field Name="TEMINATI" Type="Decimal" />
+            <Field Name="CARISK" Type="Decimal" />
+            <Field Name="CCRISK" Type="Decimal" />
+            <Field Name="SARISK" Type="Decimal" />
+            <Field Name="SCRISK" Type="Decimal" />
+            <Field Name="CM_BORCT" Type="Decimal" />
+            <Field Name="CM_ALACT" Type="Decimal" />
+            <Field Name="CM_RAP_TARIH" Type="DateTime" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="ISKONTO_ORANI" Type="Decimal" />
+            <Field Name="VADE_GUNU" Type="Int16" />
+            <Field Name="LISTE_FIATI" Type="Byte" />
+            <Field Name="ACIK1" Type="String" />
+            <Field Name="ACIK2" Type="String" />
+            <Field Name="ACIK3" Type="String" />
+            <Field Name="M_KOD" Type="String" />
+            <Field Name="DOVIZ_TIPI" Type="Byte" />
+            <Field Name="Expr4" Type="Byte" />
+            <Field Name="HESAPTUTMASEKLI" Type="String" />
+            <Field Name="DOVIZLIMI" Type="String" />
+            <Field Name="Expr5" Type="String" />
+            <Field Name="Expr6" Type="String" />
+            <Field Name="LOKALDEPO" Type="Int16" />
+            <Field Name="EMAIL" Type="String" />
+            <Field Name="WEB" Type="String" />
+            <Field Name="KURFARKIBORC" Type="String" />
+            <Field Name="KURFARKIALAC" Type="String" />
+            <Field Name="Expr7" Type="String" />
+            <Field Name="Expr8" Type="String" />
+            <Field Name="Expr9" Type="Decimal" />
+            <Field Name="Expr10" Type="Decimal" />
+            <Field Name="Expr11" Type="String" />
+            <Field Name="Expr12" Type="String" />
+            <Field Name="Expr13" Type="Byte" />
+            <Field Name="Expr14" Type="Int16" />
+            <Field Name="Expr15" Type="Int32" />
+            <Field Name="FIYATGRUBU" Type="String" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="Expr16" Type="DateTime" />
+            <Field Name="ODEMETIPI" Type="Byte" />
+            <Field Name="Expr17" Type="String" />
+            <Field Name="Expr18" Type="Int32" />
+            <Field Name="MUSTERIBAZIKDV" Type="String" />
+            <Field Name="AGIRLIK_ISK" Type="Decimal" />
+            <Field Name="CARI_TEL2" Type="String" />
+            <Field Name="CARI_TEL3" Type="String" />
+            <Field Name="FAX2" Type="String" />
+            <Field Name="GSM1" Type="String" />
+            <Field Name="GSM2" Type="String" />
+            <Field Name="GEKAPHESAPLANMASIN" Type="String" />
+            <Field Name="ONCEKI_KOD" Type="String" />
+            <Field Name="SONRAKI_KOD" Type="String" />
+            <Field Name="SONCARIKODU" Type="String" />
+            <Field Name="TESLIMCARIBAGLIMI" Type="String" />
+            <Field Name="BAGLICARIKOD" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="HARAKETTURU" Type="String" />
+            <Field Name="TIPI" Type="Byte" />
+            <Field Name="Column1" Type="Byte" />
+            <Field Name="FATURA_TIPI" Type="String" />
+            <Field Name="FTIRSIP" Type="String" />
+            <Field Name="FATURA_TURU" Type="String" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Ortalama" Expression="Sum([GENELTOPLAM]) / Sum([STHAR_GCMIK])&#xD;&#xA;" DataType="Decimal" DataMember="CustomSqlQuery" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Plasiyer" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Plasiyer Listesi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <InteractivityOptions IgnoreMasterFilters="true" />
+      <DataItems>
+        <Dimension DataMember="CARI_IL" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Measure DataMember="Expr2" SummaryType="Count" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <ComboBox ComponentName="comboBoxDashboardItem2" Name="Aylar" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Plasiyer ListesiPlasiyer İlleri" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem5] &lt;&gt; '2' And [DataItem6] &lt;&gt; 4 And [DataItem6] &lt;&gt; 6 And [DataItem5] &lt;&gt; 'A'">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_IL" SortByMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="Expr2" Name="Cari Syısı" SummaryType="CountDistinct" DefaultId="DataItem2" />
+        <Measure DataMember="GENELTOPLAM" Name="Ortalama" SummaryType="Average" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortByMeasure="DataItem1" DefaultId="DataItem3" />
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem5" />
+        <Dimension DataMember="TIPI" DefaultId="DataItem6" />
+        <Dimension DataMember="BELGE_NO" SortByMeasure="DataItem1" DefaultId="DataItem7" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem5" />
+        <Dimension DefaultId="DataItem6" />
+      </HiddenDimensions>
+      <Rows>
+        <Row DefaultId="DataItem0" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem7" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem4" />
+      </Values>
+    </Pivot>
+    <Pivot ComponentName="pivotDashboardItem3" Name="Plasiyer İade" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem5] = '2' And [DataItem6] = 4 And [DataItem6] &lt;&gt; 6 And [DataItem5] &lt;&gt; 'A'">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_IL" SortByMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="Expr2" Name="Cari Sayısı" SummaryType="Count" DefaultId="DataItem2" />
+        <Measure DataMember="GENELTOPLAM" Name="Ortalama" SummaryType="Average" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortByMeasure="DataItem1" DefaultId="DataItem3" />
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem5" />
+        <Dimension DataMember="TIPI" DefaultId="DataItem6" />
+        <Dimension DataMember="FATURA_TIPI" DefaultId="DataItem8" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem5" />
+        <Dimension DefaultId="DataItem6" />
+      </HiddenDimensions>
+      <Rows>
+        <Row DefaultId="DataItem0" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem8" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem4" />
+      </Values>
+    </Pivot>
+    <Grid ComponentName="gridDashboardItem1" Name="Satış Görmüş Cari Listesi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem0] &lt;&gt; '2' And [DataItem1] &lt;&gt; 4 And [DataItem1] &lt;&gt; 6 And [DataItem0] &lt;&gt; 'A'">
+      <DataItems>
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem0" />
+        <Dimension DataMember="TIPI" DefaultId="DataItem1" />
+        <Dimension DataMember="CARI_ISIM" SortByMeasure="DataItem3" DefaultId="DataItem2" />
+        <Measure DataMember="GENELTOPLAM" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_IL" SortByMeasure="DataItem3" DefaultId="DataItem4" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Name="Cari" Weight="129.25531914893614">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Tutar" Weight="43.768996960486312">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="İl" Weight="51.9756838905775">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" ColumnWidthMode="Manual" />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutGroup Orientation="Vertical" Weight="29.177718832891248">
+        <LayoutItem DashboardItem="comboBoxDashboardItem2" Weight="6.1342592592592595" />
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="6.1342592592592595" />
+        <LayoutItem DashboardItem="pivotDashboardItem1" Weight="55.208333333333336" />
+        <LayoutItem DashboardItem="pivotDashboardItem3" Weight="32.523148148148145" />
+      </LayoutGroup>
+      <LayoutGroup Weight="70.822281167108756">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="35.299625468164791" />
+        <LayoutItem DashboardItem="pivotDashboardItem2" Weight="64.700374531835209" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

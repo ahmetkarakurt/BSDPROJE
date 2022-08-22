@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Ay Hafta Bazlı Satış Raporu" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from [ZZZ_FATURASB]</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="CARI_KODU" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="KDV" Type="Decimal" />
+            <Field Name="FTIRSIP" Type="String" />
+            <Field Name="TIPI" Type="Byte" />
+            <Field Name="ODEMETARIHI" Type="DateTime" />
+            <Field Name="DOVIZTIP" Type="Byte" />
+            <Field Name="DOVIZTUT" Type="Decimal" />
+            <Field Name="BRUTTUTAR" Type="Decimal" />
+            <Field Name="FATIRS_NO" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+            <Field Name="KURISIM" Type="String" />
+            <Field Name="DAT" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="BELGE_TURU" Type="String" />
+            <Field Name="GENEL_ISKONTO" Type="Decimal" />
+            <Field Name="SAT_ISKT" Type="Decimal" />
+            <Field Name="ID" Type="Guid" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Alış Raporu" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem11] = '2' And [DataItem9] &lt;&gt; 4">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" Name="Ay" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Measure DataMember="BRUTTUTAR" Name="Bürüt Tutar" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" Name="Hafta Sayısı" DateTimeGroupInterval="WeekOfMonth" DefaultId="DataItem3" />
+        <Dimension DataMember="TARIH" Name="Satış Günü" DateTimeGroupInterval="Day" DefaultId="DataItem4" />
+        <Dimension DataMember="CARI_ISIM" Name="Cari İsmi" DefaultId="DataItem5" />
+        <Measure DataMember="GENEL_ISKONTO" Name="İskonto" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SAT_ISKT" Name="Satır İSkontosu" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KDV" Name="KDV" DefaultId="DataItem8">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TIPI" DefaultId="DataItem9" />
+        <Dimension DataMember="FATIRS_NO" Name="Fatura No" DefaultId="DataItem10" />
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem11" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem9" />
+        <Dimension DefaultId="DataItem11" />
+      </HiddenDimensions>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+        <Row DefaultId="DataItem5" />
+        <Row DefaultId="DataItem10" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem8" />
+        <Value DefaultId="DataItem6" />
+        <Value DefaultId="DataItem7" />
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" />
+    <Pie ComponentName="pieDashboardItem2" Name="Pies 2" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="BELGE_TURU" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="CARI_ISIM" TopNEnabled="true" TopNCount="20" TopNMeasure="DataItem0" DefaultId="DataItem2" />
+        <Dimension DataMember="FATIRS_NO" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem3" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+        <Argument DefaultId="DataItem2" />
+        <Argument DefaultId="DataItem3" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Satış Raporu " DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem11] = '1' And [DataItem9] &lt;&gt; 4">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" Name="Ay" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Measure DataMember="BRUTTUTAR" Name="Bürüt Tutar" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" Name="Hafta Sayısı" DateTimeGroupInterval="WeekOfMonth" DefaultId="DataItem3" />
+        <Dimension DataMember="TARIH" Name="Satış Günü" DateTimeGroupInterval="Day" DefaultId="DataItem4" />
+        <Dimension DataMember="CARI_ISIM" Name="Cari İsmi" DefaultId="DataItem5" />
+        <Measure DataMember="GENEL_ISKONTO" Name="İskonto" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SAT_ISKT" Name="Satır İSkontosu" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KDV" Name="KDV" DefaultId="DataItem8">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TIPI" DefaultId="DataItem9" />
+        <Dimension DataMember="FATIRS_NO" Name="Fatura No" DefaultId="DataItem10" />
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem11" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem9" />
+        <Dimension DefaultId="DataItem11" />
+      </HiddenDimensions>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+        <Row DefaultId="DataItem5" />
+        <Row DefaultId="DataItem10" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem8" />
+        <Value DefaultId="DataItem6" />
+        <Value DefaultId="DataItem7" />
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" FilterString="[DataItem3] = '1'" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Measure DataMember="GENELTOPLAM" FilterString="[DataItem3] = '2'" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KDV" FilterString="[DataItem3] = '2'" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KDV" FilterString="[DataItem3] = '1'" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem3" />
+        <Dimension DataMember="TIPI" DefaultId="DataItem6" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem3" />
+        <Dimension DefaultId="DataItem6" />
+      </HiddenDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple Name="Satış">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+            <Simple Name="Alış" PlotOnSecondaryAxis="true">
+              <Value DefaultId="DataItem2" />
+            </Simple>
+          </Series>
+        </Pane>
+        <Pane Name="Pane 2">
+          <Series>
+            <Simple Name="Satış KDV">
+              <Value DefaultId="DataItem5" />
+            </Simple>
+            <Simple Name="Alış KDV">
+              <Value DefaultId="DataItem4" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutGroup Orientation="Vertical" Weight="55.172413793103445">
+        <LayoutItem DashboardItem="pivotDashboardItem2" Weight="41.963190184049083" />
+        <LayoutItem DashboardItem="pivotDashboardItem1" Weight="58.036809815950917" />
+      </LayoutGroup>
+      <LayoutGroup Orientation="Vertical" Weight="44.827586206896555">
+        <LayoutItem DashboardItem="pieDashboardItem2" Weight="41.963190184049083" />
+        <LayoutGroup Weight="58.036809815950917">
+          <LayoutItem DashboardItem="chartDashboardItem1" Weight="55.473372781065088" />
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="44.526627218934912" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

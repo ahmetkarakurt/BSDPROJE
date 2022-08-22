@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Visible="false" Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_HIKMETOGLU2022_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="BASODASRVARSV" />
+          <Parameter Name="database" Value="HIKMETOGLU2022" />
+          <Parameter Name="useIntegratedSecurity" Value="True" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM BSD_SATIS_TEKLIF</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="FTIRSIP" Type="String" />
+            <Field Name="FATIRS_NO" Type="String" />
+            <Field Name="CARI_KODU" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="TIPI" Type="Byte" />
+            <Field Name="BRUTTUTAR" Type="Decimal" />
+            <Field Name="SAT_ISKT" Type="Decimal" />
+            <Field Name="MFAZ_ISKT" Type="Decimal" />
+            <Field Name="SIPARIS_TEST" Type="DateTime" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+            <Field Name="PLA_KODU" Type="String" />
+            <Field Name="DOVIZTIP" Type="Byte" />
+            <Field Name="DOVIZTUT" Type="Decimal" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="T_STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_GCKOD" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_IAF" Type="Decimal" />
+            <Field Name="STHAR_KDV" Type="Decimal" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_ODEGUN" Type="Int16" />
+            <Field Name="EKALAN" Type="String" />
+            <Field Name="STHAR_TESTAR" Type="DateTime" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="S_D_YEDEK10" Type="DateTime" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="S_STOK_KODU" Type="String" />
+            <Field Name="IRSALIYE_NO" Type="String" />
+            <Field Name="S_STHAR_GCMIK" Type="Decimal" />
+            <Field Name="S_STHAR_GCKOD" Type="String" />
+            <Field Name="S_STHAR_TARIH" Type="DateTime" />
+            <Field Name="S_STHAR_NF" Type="Decimal" />
+            <Field Name="S_STHAR_BF" Type="Decimal" />
+            <Field Name="S_STHAR_IAF" Type="Decimal" />
+            <Field Name="Expr8" Type="Decimal" />
+            <Field Name="S_DEPO_KODU" Type="Int16" />
+            <Field Name="S_STHAR_DOVTIP" Type="Byte" />
+            <Field Name="S_STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="S_STHAR_ODEGUN" Type="Int16" />
+            <Field Name="S_EKALAN" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="IRS_INCKEYNO" Type="Int32" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Calculated Field 1" Expression="[STOK_ADI]+ ' - '+ [EKALAN]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Calculated Field 2" Expression="[STOK_ADI] +' - '+ [EKALAN]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Hesaplanan alan 1" Expression="sum([T_STHAR_GCMIK]) - Sum([S_STHAR_GCMIK])" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" ShowCaption="false" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="STHAR_TARIH" Name="TEKLIF TARIHI" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+        <Dimension DataMember="FATIRS_NO" Name="TEKLIF NO" DefaultId="DataItem5" />
+        <Dimension DataMember="IRSALIYE_NO" Name="SİPARİŞ NO" DefaultId="DataItem1" />
+        <Dimension DataMember="EKALAN" Name="EK ÖZELLİK" DefaultId="DataItem4" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem3" />
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem2" />
+        <Dimension DataMember="S_STHAR_TARIH" Name="SİPARİŞ TARİHİ" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem6" />
+        <Measure DataMember="T_STHAR_GCMIK" Name="TEKLİF ADETİ" DefaultId="DataItem7">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="S_STHAR_GCMIK" Name="SİPARİŞ ADETİ" DefaultId="DataItem8">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem9" />
+        <Measure DataMember="S_STHAR_DOVTIP" Name="SİP DOVİZ TİPİ" DefaultId="DataItem10" />
+        <Measure DataMember="S_STHAR_DOVFIAT" Name="SİP DÖVİZ FİYATI" DefaultId="DataItem11">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_DOVFIAT" Name="DÖV FİYATI" DefaultId="DataItem12">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_DOVTIP" Name="DÖV TİPİ" DefaultId="DataItem13" />
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem14" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Weight="68.343957323400176">
+          <Dimension DefaultId="DataItem14" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="96.535839719302757" FixedWidth="13.489024747581027">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="157.59291963127541" FixedWidth="18.151897499831257" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="229.01888921976976" FixedWidth="32.307046926305176" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem9" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="74.529471354344551" FixedWidth="14.987805275090029" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="157.33999508139405" FixedWidth="31.640922247412284" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="124.72772211520531">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="41.890797378173367" FixedWidth="12.989431238411358" WidthType="FixedWidth">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="27.927198252115577" FixedWidth="8.659620825607572" WidthType="FixedWidth">
+          <Measure DefaultId="DataItem13" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="59.800962657975155">
+          <Measure DefaultId="DataItem12" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Weight="58.002642523624658" FixedWidth="17.985366330108036" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="45.455992410859558" FixedWidth="12.156775389795246" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="50.403668526007628">
+          <Measure DefaultId="DataItem8" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="35.026278128242588">
+          <Measure DefaultId="DataItem10" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="46.986470659837622">
+          <Measure DefaultId="DataItem11" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <RangeFilter ComponentName="rangeFilterDashboardItem1" Name="Range Filter 1" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+        <Measure DataMember="FATIRS_NO" SummaryType="Count" DefaultId="DataItem1" />
+      </DataItems>
+      <Argument DefaultId="DataItem0" />
+      <Series>
+        <Simple SeriesType="Line">
+          <Value DefaultId="DataItem1" />
+        </Simple>
+      </Series>
+    </RangeFilter>
+    <Card ComponentName="cardDashboardItem1" Name="Kartlar 1" ShowCaption="false" DataSource="dashboardSqlDataSource1" DataMember="Query" IsMasterFilterCrossDataSource="true" ContentArrangementMode="FixedRowCount" ContentLineCount="1">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Measure DataMember="T_STHAR_GCMIK" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="PLASIYER_ACIKLAMA" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem2" />
+        <Measure DataMember="Hesaplanan alan 1" DefaultId="DataItem3" />
+      </DataItems>
+      <FormatRules>
+        <CardItemDeltaFormatRule Name="FormatRule 1" DeltaValueType="ActualValue" CardId="DataItem0">
+          <FormatConditionRangeSet ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <AppearanceSettings AppearanceType="Red" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="10" />
+                  <AppearanceSettings AppearanceType="Orange" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="20" />
+                  <AppearanceSettings AppearanceType="Yellow" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="30" />
+                  <AppearanceSettings AppearanceType="Green" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="40" />
+                  <AppearanceSettings AppearanceType="Blue" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="50" />
+                  <AppearanceSettings AppearanceType="Purple" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="60" />
+                  <AppearanceSettings AppearanceType="Cyan" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="70" />
+                  <AppearanceSettings AppearanceType="Orange" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="80" />
+                  <AppearanceSettings AppearanceType="Gray" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="90" />
+                  <AppearanceSettings AppearanceType="PaleGray" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+          </FormatConditionRangeSet>
+          <CardFormatRuleLayoutElement />
+        </CardItemDeltaFormatRule>
+      </FormatRules>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem0" />
+        <TargetValue DefaultId="DataItem3" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="125" MaxWidth="150" Type="Compact">
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <BottomSubValue1 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <BottomSubValue2 Visible="false" ValueType="PercentVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="false" />
+          <Sparkline Visible="false" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="rangeFilterDashboardItem1" Weight="10.994152046783626" />
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="57.543859649122808" />
+      <LayoutItem DashboardItem="cardDashboardItem1" Weight="31.461988304093566" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

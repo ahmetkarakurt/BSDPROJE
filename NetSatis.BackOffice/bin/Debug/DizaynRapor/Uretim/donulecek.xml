@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="localhost_HIKMETOGLU2022_Connection" ProviderKey="MSSqlServer">
+        <Parameters>
+          <Parameter Name="server" Value="88.248.15.60,1433" />
+          <Parameter Name="database" Value="HIKMETOGLU2022" />
+          <Parameter Name="useIntegratedSecurity" Value="False" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+          <Parameter Name="userid" Value="" />
+          <Parameter Name="password" Value="" />
+        </Parameters>
+      </Connection>
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT        dbo.TBLSTHAR.STOK_KODU, dbo.TBLSTHAR.FISNO, dbo.TBLSTHAR.STHAR_GCMIK, dbo.TBLSTHAR.STHAR_GCMIK2, dbo.TBLSTHAR.CEVRIM, dbo.TBLSTHAR.STHAR_GCKOD, dbo.TBLSTHAR.STHAR_TARIH, 
+                         dbo.TBLSTHAR.STHAR_NF, dbo.TBLSTHAR.STHAR_BF, dbo.TBLSTHAR.STHAR_IAF, dbo.TBLSTHAR.STHAR_KDV, dbo.TBLSTHAR.DEPO_KODU, dbo.TBLSTHAR.STHAR_ACIKLAMA, dbo.TBLSTHAR.STHAR_SATISK, 
+                         dbo.TBLSTHAR.STHAR_MALFISK, dbo.TBLSTHAR.STHAR_FTIRSIP, dbo.TBLSTHAR.STHAR_SATISK2, dbo.TBLSTHAR.LISTE_FIAT, dbo.TBLSTHAR.STHAR_HTUR, dbo.TBLSTHAR.STHAR_DOVTIP, 
+                         dbo.TBLSTHAR.PROMASYON_KODU, dbo.TBLSTHAR.STHAR_DOVFIAT, dbo.TBLSTHAR.STHAR_ODEGUN, dbo.TBLSTHAR.STRA_SATISK3, dbo.TBLSTHAR.STRA_SATISK4, dbo.TBLSTHAR.STRA_SATISK5, 
+                         dbo.TBLSTHAR.STRA_SATISK6, dbo.TBLSTHAR.STHAR_BGTIP, dbo.TBLSTHAR.STHAR_KOD1, dbo.TBLSTHAR.STHAR_KOD2, dbo.TBLSTHAR.STHAR_SIPNUM, dbo.TBLSTHAR.STHAR_CARIKOD, 
+                         dbo.TBLSTHAR.STHAR_SIP_TURU, dbo.TBLSTHAR.PLASIYER_KODU, dbo.TBLSTHAR.EKALAN_NEDEN, dbo.TBLSTHAR.EKALAN, dbo.TBLSTHAR.EKALAN1, dbo.TBLSTHAR.REDMIK, dbo.TBLSTHAR.REDNEDEN, 
+                         dbo.TBLSTHAR.SIRA, dbo.TBLSTHAR.STRA_SIPKONT, dbo.TBLSTHAR.AMBAR_KABULNO, dbo.TBLSTHAR.FIRMA_DOVTIP, dbo.TBLSTHAR.FIRMA_DOVTUT, dbo.TBLSTHAR.FIRMA_DOVMAL, dbo.TBLSTHAR.UPDATE_KODU, 
+                         dbo.TBLSTHAR.IRSALIYE_NO, dbo.TBLSTHAR.IRSALIYE_TARIH, dbo.TBLSTHAR.KOSULKODU, dbo.TBLSTHAR.ECZA_FAT_TIP, dbo.TBLSTHAR.STHAR_TESTAR, dbo.TBLSTHAR.OLCUBR, dbo.TBLSTHAR.INCKEYNO, 
+                         dbo.TBLSTHAR.VADE_TARIHI, dbo.TBLSTHAR.LISTE_NO, dbo.TBLSTHAR.BAGLANTI_NO, dbo.TBLSTHAR.SUBE_KODU, dbo.TBLSTHAR.MUH_KODU, dbo.TBLSTHAR.S_YEDEK1, dbo.TBLSTHAR.S_YEDEK2, 
+                         dbo.TBLSTHAR.F_YEDEK3, dbo.TBLSTHAR.F_YEDEK4, dbo.TBLSTHAR.F_YEDEK5, dbo.TBLSTHAR.C_YEDEK6, dbo.TBLSTHAR.B_YEDEK7, dbo.TBLSTHAR.I_YEDEK8, dbo.TBLSTHAR.L_YEDEK9, dbo.TBLSTHAR.D_YEDEK10, 
+                         dbo.TBLSTHAR.PROJE_KODU, dbo.TBLSTHAR.FIYATTARIHI, dbo.TBLSTHAR.KOSULTARIHI, dbo.TBLSTHAR.SATISK1TIP, dbo.TBLSTHAR.SATISK2TIP, dbo.TBLSTHAR.SATISK3TIP, dbo.TBLSTHAR.SATISK4TIP, 
+                         dbo.TBLSTHAR.SATISK5TIP, dbo.TBLSTHAR.SATISK6TIP, dbo.TBLSTHAR.EXPORTTYPE, dbo.TBLSTHAR.EXPORTMIK, dbo.TBLSTHAR.DUZELTMETARIHI, dbo.TBLSTHAR.ONAYTIPI, dbo.TBLSTHAR.ONAYNUM, 
+                         dbo.TBLSTHAR.KKMALF, dbo.TBLSTHAR.STRA_IRSKONT, dbo.TBLSTHAR.YAPKOD, dbo.TBLSTHAR.MAMYAPKOD, dbo.TBLSTHAR.OTVFIYAT, dbo.TBLSTHAR.IRS_INCKEYNO, dbo.TBLSTHAR.YEDEK11, 
+                         dbo.TBLSTHAR.YEDEK12, dbo.TBLSTHAR.YEDEK13, dbo.TBLSTHAR.YEDEK14, dbo.TBLSTHAR.YEDEK15, dbo.TBLSTHAR.YEDEK16, dbo.TBLSTHAR.YEDEK17, dbo.TBLSTHAR.YEDEK18, dbo.TBLSTHAR.YEDEK19, 
+                         dbo.TBLSTHAR.YEDEK20, dbo.TBLCASABIT.SUBE_KODU AS Expr1, dbo.TBLCASABIT.ISLETME_KODU, dbo.TBLCASABIT.CARI_KOD, dbo.TBLCASABIT.CARI_TEL, dbo.TBLCASABIT.CARI_IL, dbo.TBLCASABIT.ULKE_KODU, 
+                         dbo.TBLCASABIT.CARI_ISIM, dbo.TBLCASABIT.CARI_TIP, dbo.TBLCASABIT.GRUP_KODU, dbo.TBLCASABIT.RAPOR_KODU1, dbo.TBLCASABIT.RAPOR_KODU2, dbo.TBLCASABIT.RAPOR_KODU3, dbo.TBLCASABIT.RAPOR_KODU4,
+                          dbo.TBLCASABIT.RAPOR_KODU5, dbo.TBLCASABIT.CARI_ADRES, dbo.TBLCASABIT.CARI_ILCE, dbo.TBLCASABIT.VERGI_DAIRESI, dbo.TBLCASABIT.VERGI_NUMARASI, dbo.TBLCASABIT.FAX, dbo.TBLCASABIT.POSTAKODU, 
+                         dbo.TBLCASABIT.DETAY_KODU, dbo.TBLCASABIT.NAKLIYE_KATSAYISI, dbo.TBLCASABIT.RISK_SINIRI, dbo.TBLCASABIT.TEMINATI, dbo.TBLCASABIT.CARISK, dbo.TBLCASABIT.CCRISK, dbo.TBLCASABIT.SARISK, 
+                         dbo.TBLCASABIT.SCRISK, dbo.TBLCASABIT.CM_BORCT, dbo.TBLCASABIT.CM_ALACT, dbo.TBLCASABIT.CM_RAP_TARIH, dbo.TBLCASABIT.KOSULKODU AS Expr2, dbo.TBLCASABIT.ISKONTO_ORANI, 
+                         dbo.TBLCASABIT.VADE_GUNU, dbo.TBLCASABIT.LISTE_FIATI, dbo.TBLCASABIT.ACIK1, dbo.TBLCASABIT.ACIK2, dbo.TBLCASABIT.ACIK3, dbo.TBLCASABIT.M_KOD, dbo.TBLCASABIT.DOVIZ_TIPI, dbo.TBLCASABIT.DOVIZ_TURU, 
+                         dbo.TBLCASABIT.HESAPTUTMASEKLI, dbo.TBLCASABIT.DOVIZLIMI, dbo.TBLCASABIT.UPDATE_KODU AS Expr3, dbo.TBLCASABIT.PLASIYER_KODU AS Expr4, dbo.TBLCASABIT.LOKALDEPO, dbo.TBLCASABIT.EMAIL, 
+                         dbo.TBLCASABIT.WEB, dbo.TBLCASABIT.KURFARKIBORC, dbo.TBLCASABIT.KURFARKIALAC, dbo.TBLCASABIT.S_YEDEK1 AS Expr5, dbo.TBLCASABIT.S_YEDEK2 AS Expr6, dbo.TBLCASABIT.F_YEDEK1, 
+                         dbo.TBLCASABIT.F_YEDEK2, dbo.TBLCASABIT.C_YEDEK1, dbo.TBLCASABIT.C_YEDEK2, dbo.TBLCASABIT.B_YEDEK1, dbo.TBLCASABIT.I_YEDEK1, dbo.TBLCASABIT.L_YEDEK1, dbo.TBLCASABIT.FIYATGRUBU, 
+                         dbo.TBLCASABIT.KAYITYAPANKUL, dbo.TBLCASABIT.KAYITTARIHI, dbo.TBLCASABIT.DUZELTMEYAPANKUL, dbo.TBLCASABIT.DUZELTMETARIHI AS Expr7, dbo.TBLCASABIT.ODEMETIPI, dbo.TBLCASABIT.ONAYTIPI AS Expr8, 
+                         dbo.TBLCASABIT.ONAYNUM AS Expr9, dbo.TBLCASABIT.MUSTERIBAZIKDV, dbo.TBLCASABIT.AGIRLIK_ISK, dbo.TBLCASABIT.CARI_TEL2, dbo.TBLCASABIT.CARI_TEL3, dbo.TBLCASABIT.FAX2, dbo.TBLCASABIT.GSM1, 
+                         dbo.TBLCASABIT.GSM2, dbo.TBLCASABIT.GEKAPHESAPLANMASIN, dbo.TBLCASABIT.ONCEKI_KOD, dbo.TBLCASABIT.SONRAKI_KOD, dbo.TBLCASABIT.SONCARIKODU, dbo.TBLCASABIT.TESLIMCARIBAGLIMI, 
+                         dbo.TBLCASABIT.BAGLICARIKOD, dbo.TBLCASABIT.FABRIKA_KODU, dbo.TBLSTSABIT.STOK_ADI, QW.ULKEADI, QW.YEDEK9
+FROM            NETSIS.dbo.ULKESABIT AS QW RIGHT OUTER JOIN
+                         dbo.TBLCASABIT ON QW.ULKEKODU = dbo.TBLCASABIT.ULKE_KODU RIGHT OUTER JOIN
+                         dbo.TBLSTHAR LEFT OUTER JOIN
+                         dbo.TBLSTSABIT ON dbo.TBLSTHAR.STOK_KODU = dbo.TBLSTSABIT.STOK_KODU ON dbo.TBLCASABIT.CARI_KOD = dbo.TBLSTHAR.STHAR_ACIKLAMA
+WHERE        (dbo.TBLSTHAR.STHAR_GCKOD = 'C') AND (YEAR(dbo.TBLSTHAR.STHAR_TARIH) = YEAR(GETDATE()))</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_GCMIK2" Type="Decimal" />
+            <Field Name="CEVRIM" Type="Decimal" />
+            <Field Name="STHAR_GCKOD" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_IAF" Type="Decimal" />
+            <Field Name="STHAR_KDV" Type="Decimal" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="STHAR_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_SATISK" Type="Decimal" />
+            <Field Name="STHAR_MALFISK" Type="Decimal" />
+            <Field Name="STHAR_FTIRSIP" Type="String" />
+            <Field Name="STHAR_SATISK2" Type="Decimal" />
+            <Field Name="LISTE_FIAT" Type="Byte" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="PROMASYON_KODU" Type="Byte" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_ODEGUN" Type="Int16" />
+            <Field Name="STRA_SATISK3" Type="Decimal" />
+            <Field Name="STRA_SATISK4" Type="Decimal" />
+            <Field Name="STRA_SATISK5" Type="Decimal" />
+            <Field Name="STRA_SATISK6" Type="Decimal" />
+            <Field Name="STHAR_BGTIP" Type="String" />
+            <Field Name="STHAR_KOD1" Type="String" />
+            <Field Name="STHAR_KOD2" Type="String" />
+            <Field Name="STHAR_SIPNUM" Type="String" />
+            <Field Name="STHAR_CARIKOD" Type="String" />
+            <Field Name="STHAR_SIP_TURU" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="EKALAN_NEDEN" Type="String" />
+            <Field Name="EKALAN" Type="String" />
+            <Field Name="EKALAN1" Type="String" />
+            <Field Name="REDMIK" Type="Decimal" />
+            <Field Name="REDNEDEN" Type="Byte" />
+            <Field Name="SIRA" Type="Int16" />
+            <Field Name="STRA_SIPKONT" Type="Int16" />
+            <Field Name="AMBAR_KABULNO" Type="String" />
+            <Field Name="FIRMA_DOVTIP" Type="Byte" />
+            <Field Name="FIRMA_DOVTUT" Type="Decimal" />
+            <Field Name="FIRMA_DOVMAL" Type="Decimal" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="IRSALIYE_NO" Type="String" />
+            <Field Name="IRSALIYE_TARIH" Type="DateTime" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="ECZA_FAT_TIP" Type="Byte" />
+            <Field Name="STHAR_TESTAR" Type="DateTime" />
+            <Field Name="OLCUBR" Type="Byte" />
+            <Field Name="INCKEYNO" Type="Int32" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="LISTE_NO" Type="String" />
+            <Field Name="BAGLANTI_NO" Type="Int32" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="MUH_KODU" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="F_YEDEK5" Type="Decimal" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="FIYATTARIHI" Type="DateTime" />
+            <Field Name="KOSULTARIHI" Type="DateTime" />
+            <Field Name="SATISK1TIP" Type="Int16" />
+            <Field Name="SATISK2TIP" Type="Int16" />
+            <Field Name="SATISK3TIP" Type="Int16" />
+            <Field Name="SATISK4TIP" Type="Int16" />
+            <Field Name="SATISK5TIP" Type="Int16" />
+            <Field Name="SATISK6TIP" Type="Int16" />
+            <Field Name="EXPORTTYPE" Type="Byte" />
+            <Field Name="EXPORTMIK" Type="Decimal" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="KKMALF" Type="Decimal" />
+            <Field Name="STRA_IRSKONT" Type="Int16" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="MAMYAPKOD" Type="String" />
+            <Field Name="OTVFIYAT" Type="Decimal" />
+            <Field Name="IRS_INCKEYNO" Type="Int32" />
+            <Field Name="YEDEK11" Type="String" />
+            <Field Name="YEDEK12" Type="String" />
+            <Field Name="YEDEK13" Type="Int32" />
+            <Field Name="YEDEK14" Type="Int32" />
+            <Field Name="YEDEK15" Type="Double" />
+            <Field Name="YEDEK16" Type="Double" />
+            <Field Name="YEDEK17" Type="DateTime" />
+            <Field Name="YEDEK18" Type="DateTime" />
+            <Field Name="YEDEK19" Type="String" />
+            <Field Name="YEDEK20" Type="String" />
+            <Field Name="Expr1" Type="Int16" />
+            <Field Name="ISLETME_KODU" Type="Int16" />
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="CARI_TEL" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="ULKE_KODU" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_TIP" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="RAPOR_KODU1" Type="String" />
+            <Field Name="RAPOR_KODU2" Type="String" />
+            <Field Name="RAPOR_KODU3" Type="String" />
+            <Field Name="RAPOR_KODU4" Type="String" />
+            <Field Name="RAPOR_KODU5" Type="String" />
+            <Field Name="CARI_ADRES" Type="String" />
+            <Field Name="CARI_ILCE" Type="String" />
+            <Field Name="VERGI_DAIRESI" Type="String" />
+            <Field Name="VERGI_NUMARASI" Type="String" />
+            <Field Name="FAX" Type="String" />
+            <Field Name="POSTAKODU" Type="String" />
+            <Field Name="DETAY_KODU" Type="Int16" />
+            <Field Name="NAKLIYE_KATSAYISI" Type="Decimal" />
+            <Field Name="RISK_SINIRI" Type="Decimal" />
+            <Field Name="TEMINATI" Type="Decimal" />
+            <Field Name="CARISK" Type="Decimal" />
+            <Field Name="CCRISK" Type="Decimal" />
+            <Field Name="SARISK" Type="Decimal" />
+            <Field Name="SCRISK" Type="Decimal" />
+            <Field Name="CM_BORCT" Type="Decimal" />
+            <Field Name="CM_ALACT" Type="Decimal" />
+            <Field Name="CM_RAP_TARIH" Type="DateTime" />
+            <Field Name="Expr2" Type="String" />
+            <Field Name="ISKONTO_ORANI" Type="Decimal" />
+            <Field Name="VADE_GUNU" Type="Int16" />
+            <Field Name="LISTE_FIATI" Type="Byte" />
+            <Field Name="ACIK1" Type="String" />
+            <Field Name="ACIK2" Type="String" />
+            <Field Name="ACIK3" Type="String" />
+            <Field Name="M_KOD" Type="String" />
+            <Field Name="DOVIZ_TIPI" Type="Byte" />
+            <Field Name="DOVIZ_TURU" Type="Byte" />
+            <Field Name="HESAPTUTMASEKLI" Type="String" />
+            <Field Name="DOVIZLIMI" Type="String" />
+            <Field Name="Expr3" Type="String" />
+            <Field Name="Expr4" Type="String" />
+            <Field Name="LOKALDEPO" Type="Int16" />
+            <Field Name="EMAIL" Type="String" />
+            <Field Name="WEB" Type="String" />
+            <Field Name="KURFARKIBORC" Type="String" />
+            <Field Name="KURFARKIALAC" Type="String" />
+            <Field Name="Expr5" Type="String" />
+            <Field Name="Expr6" Type="String" />
+            <Field Name="F_YEDEK1" Type="Decimal" />
+            <Field Name="F_YEDEK2" Type="Decimal" />
+            <Field Name="C_YEDEK1" Type="String" />
+            <Field Name="C_YEDEK2" Type="String" />
+            <Field Name="B_YEDEK1" Type="Byte" />
+            <Field Name="I_YEDEK1" Type="Int16" />
+            <Field Name="L_YEDEK1" Type="Int32" />
+            <Field Name="FIYATGRUBU" Type="String" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="Expr7" Type="DateTime" />
+            <Field Name="ODEMETIPI" Type="Byte" />
+            <Field Name="Expr8" Type="String" />
+            <Field Name="Expr9" Type="Int32" />
+            <Field Name="MUSTERIBAZIKDV" Type="String" />
+            <Field Name="AGIRLIK_ISK" Type="Decimal" />
+            <Field Name="CARI_TEL2" Type="String" />
+            <Field Name="CARI_TEL3" Type="String" />
+            <Field Name="FAX2" Type="String" />
+            <Field Name="GSM1" Type="String" />
+            <Field Name="GSM2" Type="String" />
+            <Field Name="GEKAPHESAPLANMASIN" Type="String" />
+            <Field Name="ONCEKI_KOD" Type="String" />
+            <Field Name="SONRAKI_KOD" Type="String" />
+            <Field Name="SONCARIKODU" Type="String" />
+            <Field Name="TESLIMCARIBAGLIMI" Type="String" />
+            <Field Name="BAGLICARIKOD" Type="String" />
+            <Field Name="FABRIKA_KODU" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="ULKEADI" Type="String" />
+            <Field Name="YEDEK9" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ChoroplethMap ComponentName="choroplethMapDashboardItem1" Name="Satış Hareketleri" ParentContainer="dashboardTabPage1" DataSource="dashboardSqlDataSource1" DataMember="Query" ShapeTitleAttributeName="ADMIN" AttributeName="NAME" IncludeSummaryValueToShapeTitle="true">
+      <DataItems>
+        <Dimension DataMember="ULKEADI" DefaultId="DataItem0" />
+        <Measure DataMember="STHAR_GCMIK" Name="Satış Adeti" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <ViewArea TopLatitude="55.855199128777514" BottomLatitude="31.285477207874617" LeftLongitude="-9.1032035909306774" RightLongitude="44.597968284069324" CenterPointLatitude="44.861613720299793" CenterPointLongitude="17.747382346569324" CreateViewerPaddings="false" />
+      <MapLegend Visible="true" Position="BottomRight" Orientation="Horizontal" />
+      <WeightedLegend />
+      <AttributeDimension DefaultId="DataItem0" />
+      <Maps>
+        <ValueMap>
+          <Value DefaultId="DataItem1" />
+          <UniformScale />
+        </ValueMap>
+      </Maps>
+    </ChoroplethMap>
+    <Card ComponentName="cardDashboardItem1" Name="Kartlar 1" ShowCaption="false" ParentContainer="dashboardTabPage1" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="STHAR_GCMIK" Name="Toplam Satış Adeti" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Card>
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="100" MaxWidth="150" Type="Lightweight">
+          <MainValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <DeltaIndicator Visible="false" />
+          <Sparkline Visible="false" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <Card ComponentName="cardDashboardItem2" Name="Kartlar 2" ParentContainer="dashboardTabPage1" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Dimension DataMember="ULKEADI" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="CARI_KOD" SummaryType="CountDistinct" DefaultId="DataItem1" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem2" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem1" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <TabContainer ComponentName="tabContainerDashboardItem1" Name="Tab Container 1">
+      <Pages>
+        <Page ComponentName="dashboardTabPage1" Name="Sayfa 1" />
+        <Page ComponentName="dashboardTabPage2" Name="Sayfa 2" />
+      </Pages>
+    </TabContainer>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" ParentContainer="dashboardTabPage2" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="ULKEADI" DefaultId="DataItem0" />
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem2" />
+        <Dimension DataMember="FISNO" DefaultId="DataItem3" />
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem4" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem0" />
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutTabContainer DashboardItem="tabContainerDashboardItem1" Weight="100">
+        <LayoutTabPage DashboardItem="dashboardTabPage1" Weight="100">
+          <LayoutItem DashboardItem="choroplethMapDashboardItem1" Weight="83.870967741935488" />
+          <LayoutGroup Orientation="Vertical" Weight="16.129032258064516">
+            <LayoutItem DashboardItem="cardDashboardItem1" Weight="18.93644617380026" />
+            <LayoutItem DashboardItem="cardDashboardItem2" Weight="81.063553826199737" />
+          </LayoutGroup>
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage2" Weight="100">
+          <LayoutItem DashboardItem="pivotDashboardItem1" Weight="100" />
+        </LayoutTabPage>
+      </LayoutTabContainer>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

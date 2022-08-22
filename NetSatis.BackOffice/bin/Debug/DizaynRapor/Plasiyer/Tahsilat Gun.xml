@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Cari Tahsilat" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Parameter Name="Parametre1" Type="DevExpress.DataAccess.Expression">(System.Int32)(?Gun)</Parameter>
+        <Sql>SELECT        dbo.TBLCAHAR.CARI_KOD,  REPLACE(REPLACE(REPLACE(dbo.TBLCASABIT.CARI_ISIM,'Ý','İ'),'Ð','Ğ'),'Þ','Ş') as CARI_ISIM, dbo.TBLCASABIT.CARI_TEL, dbo.TBLCASABIT.CARI_IL, dbo.TBLCASABIT.CARI_ADRES, dbo.TBLCASABIT.CARI_ILCE, dbo.TBLCASABIT.VADE_GUNU, 
+                         dbo.TBLCASABIT.PLASIYER_KODU, dbo.TBLCASABIT.CM_BORCT, dbo.TBLCASABIT.CM_ALACT, 
+                         CASE WHEN dbo.TBLCASABIT.CM_BORCT - dbo.TBLCASABIT.CM_ALACT &gt; 0 THEN dbo.TBLCASABIT.CM_BORCT - dbo.TBLCASABIT.CM_ALACT ELSE 0 END AS BORCBAK, 
+                         CASE WHEN dbo.TBLCASABIT.CM_BORCT - dbo.TBLCASABIT.CM_ALACT &lt; 0 THEN dbo.TBLCASABIT.CM_BORCT - dbo.TBLCASABIT.CM_ALACT ELSE 0 END AS ALACAKBAK, 
+                         REPLACE(REPLACE(REPLACE(dbo.TBLCARIPLASIYER.PLASIYER_ACIKLAMA,'Ý','İ'),'Ð','Ğ'),'Þ','Ş') AS PLASIYER_ACIKLAMA 
+FROM            dbo.TBLCAHAR INNER JOIN
+                         dbo.TBLCASABIT ON dbo.TBLCAHAR.CARI_KOD = dbo.TBLCASABIT.CARI_KOD LEFT OUTER JOIN
+                         dbo.TBLCARIPLASIYER ON dbo.TBLCASABIT.PLASIYER_KODU = dbo.TBLCARIPLASIYER.PLASIYER_KODU
+WHERE        (dbo.TBLCAHAR.CARI_KOD NOT IN
+                             (SELECT        TBLCASABIT_1.CARI_KOD
+                               FROM            dbo.TBLCAHAR AS TBLCAHAR_1 INNER JOIN
+                                                         dbo.TBLCASABIT AS TBLCASABIT_1 ON TBLCAHAR_1.CARI_KOD = TBLCASABIT_1.CARI_KOD
+                               WHERE        (TBLCAHAR_1.TARIH &gt;= DATEADD(day, - @Parametre1, GETDATE())) AND (TBLCAHAR_1.HAREKET_TURU NOT IN ('A', 'B', 'C'))))
+GROUP BY dbo.TBLCAHAR.CARI_KOD, dbo.TBLCASABIT.CARI_ISIM, dbo.TBLCASABIT.CARI_TEL, dbo.TBLCASABIT.CARI_IL, dbo.TBLCASABIT.CARI_ADRES, dbo.TBLCASABIT.CARI_ILCE, dbo.TBLCASABIT.VADE_GUNU, 
+                         dbo.TBLCASABIT.PLASIYER_KODU, dbo.TBLCASABIT.CM_BORCT, dbo.TBLCASABIT.CM_ALACT, dbo.TBLCARIPLASIYER.PLASIYER_ACIKLAMA</Sql>
+      </Query>
+      <Query Type="CustomSqlQuery" Name="CariHar">
+        <Sql>SELECT        dbo.TBLCAHAR.SUBE_KODU, dbo.TBLCAHAR.CARI_KOD, dbo.TBLCAHAR.TARIH, dbo.TBLCAHAR.VADE_TARIHI, dbo.TBLCAHAR.BELGE_NO,  REPLACE(REPLACE(REPLACE(dbo.TBLCAHAR.ACIKLAMA,'Ý','İ'),'Ð','Ğ'),'Þ','Ş') AS ACIKLAMA  , dbo.TBLCAHAR.HKA, dbo.TBLCAHAR.BORC, 
+                         dbo.TBLCAHAR.ALACAK, dbo.TBLCAHAR.BAKIYE, dbo.TBLCAHAR.DOVIZ_TURU, dbo.TBLCAHAR.DOVIZ_TUTAR, dbo.TBLCAHAR.RAPOR_KODU, dbo.TBLCAHAR.F9SC, dbo.TBLCAHAR.HAREKET_TURU, 
+                         dbo.TBLCAHAR.MIKTAR, dbo.TBLCAHAR.ILAVE_RAPOR_KODU, dbo.TBLCAHAR.UPDATE_KODU, dbo.TBLCAHAR.KAPATILMIS_TUTAR, dbo.TBLCAHAR.ODEME_GUNU, dbo.TBLCAHAR.FIRMA_DOVIZ_TIPI, 
+                         dbo.TBLCAHAR.FIRMA_DOVIZ_TUTARI, dbo.TBLCAHAR.PLASIYER_KODU, dbo.TBLCAHAR.ENT_REF_KEY, dbo.TBLCAHAR.INC_KEY_NUMBER, dbo.TBLCAHAR.RAPOR_KODU2, dbo.TBLCAHAR.DUZELTMETARIHI, 
+                         dbo.TBLCAHAR.S_YEDEK1, dbo.TBLCAHAR.S_YEDEK2, dbo.TBLCAHAR.F_YEDEK1, dbo.TBLCAHAR.F_YEDEK2, dbo.TBLCAHAR.C_YEDEK1, dbo.TBLCAHAR.C_YEDEK2, dbo.TBLCAHAR.B_YEDEK1, 
+                         dbo.TBLCAHAR.I_YEDEK1, dbo.TBLCAHAR.L_YEDEK1, dbo.TBLCAHAR.D_YEDEK1, dbo.TBLCAHAR.PROJE_KODU, dbo.TBLCAHAR.ONAYTIPI, dbo.TBLCAHAR.ONAYNUM, dbo.TBLCAHAR.BAGLANTI_NO, 
+                         dbo.TBLCASABIT.SUBE_KODU AS Expr1, dbo.TBLCASABIT.ISLETME_KODU, dbo.TBLCASABIT.CARI_KOD AS Expr2, dbo.TBLCASABIT.CARI_TEL, dbo.TBLCASABIT.CARI_IL, dbo.TBLCASABIT.ULKE_KODU, 
+                         REPLACE(REPLACE(REPLACE(dbo.TBLCASABIT.CARI_ISIM,'Ý','İ'),'Ð','Ğ'),'Þ','Ş') as CARI_ISIM , dbo.TBLCASABIT.CARI_TIP, dbo.TBLCASABIT.GRUP_KODU, dbo.TBLCASABIT.RAPOR_KODU1, dbo.TBLCASABIT.RAPOR_KODU2 AS Expr3, dbo.TBLCASABIT.RAPOR_KODU3, 
+                         dbo.TBLCASABIT.RAPOR_KODU4, dbo.TBLCASABIT.RAPOR_KODU5, dbo.TBLCASABIT.CARI_ADRES, dbo.TBLCASABIT.CARI_ILCE, dbo.TBLCASABIT.VERGI_DAIRESI, dbo.TBLCASABIT.VERGI_NUMARASI, 
+                         dbo.TBLCASABIT.FAX, dbo.TBLCASABIT.POSTAKODU, dbo.TBLCASABIT.DETAY_KODU, dbo.TBLCASABIT.NAKLIYE_KATSAYISI, dbo.TBLCASABIT.RISK_SINIRI, dbo.TBLCASABIT.TEMINATI, 
+                         dbo.TBLCASABIT.CARISK, dbo.TBLCASABIT.CCRISK, dbo.TBLCASABIT.SARISK, dbo.TBLCASABIT.SCRISK, dbo.TBLCASABIT.CM_BORCT, dbo.TBLCASABIT.CM_ALACT, dbo.TBLCASABIT.CM_RAP_TARIH, 
+                         dbo.TBLCASABIT.KOSULKODU, dbo.TBLCASABIT.ISKONTO_ORANI, dbo.TBLCASABIT.VADE_GUNU, dbo.TBLCASABIT.LISTE_FIATI, dbo.TBLCASABIT.ACIK1, dbo.TBLCASABIT.ACIK2, dbo.TBLCASABIT.ACIK3, 
+                         dbo.TBLCASABIT.M_KOD, dbo.TBLCASABIT.DOVIZ_TIPI, dbo.TBLCASABIT.DOVIZ_TURU AS Expr4, dbo.TBLCASABIT.HESAPTUTMASEKLI, dbo.TBLCASABIT.DOVIZLIMI, dbo.TBLCASABIT.UPDATE_KODU AS Expr5, 
+                         dbo.TBLCASABIT.PLASIYER_KODU AS Expr6, dbo.TBLCASABIT.LOKALDEPO, dbo.TBLCASABIT.EMAIL, dbo.TBLCASABIT.WEB, dbo.TBLCASABIT.KURFARKIBORC, dbo.TBLCASABIT.KURFARKIALAC, 
+                         dbo.TBLCASABIT.S_YEDEK1 AS Expr7, dbo.TBLCASABIT.S_YEDEK2 AS Expr8, dbo.TBLCASABIT.F_YEDEK1 AS Expr9, dbo.TBLCASABIT.F_YEDEK2 AS Expr10, dbo.TBLCASABIT.C_YEDEK1 AS Expr11, 
+                         dbo.TBLCASABIT.C_YEDEK2 AS Expr12, dbo.TBLCASABIT.B_YEDEK1 AS Expr13, dbo.TBLCASABIT.I_YEDEK1 AS Expr14, dbo.TBLCASABIT.L_YEDEK1 AS Expr15, dbo.TBLCASABIT.FIYATGRUBU, 
+                         dbo.TBLCASABIT.KAYITYAPANKUL, dbo.TBLCASABIT.KAYITTARIHI, dbo.TBLCASABIT.DUZELTMEYAPANKUL, dbo.TBLCASABIT.DUZELTMETARIHI AS Expr16, dbo.TBLCASABIT.ODEMETIPI, 
+                         dbo.TBLCASABIT.ONAYTIPI AS Expr17, dbo.TBLCASABIT.ONAYNUM AS Expr18, dbo.TBLCASABIT.MUSTERIBAZIKDV, dbo.TBLCASABIT.AGIRLIK_ISK, dbo.TBLCASABIT.CARI_TEL2, dbo.TBLCASABIT.CARI_TEL3, 
+                         dbo.TBLCASABIT.FAX2, dbo.TBLCASABIT.GSM1, dbo.TBLCASABIT.GSM2, dbo.TBLCASABIT.GEKAPHESAPLANMASIN, dbo.TBLCASABIT.ONCEKI_KOD, dbo.TBLCASABIT.SONRAKI_KOD, 
+                         dbo.TBLCASABIT.SONCARIKODU, dbo.TBLCASABIT.TESLIMCARIBAGLIMI, dbo.TBLCASABIT.BAGLICARIKOD, REPLACE(REPLACE(REPLACE(dbo.TBLCARIPLASIYER.PLASIYER_ACIKLAMA,'Ý','İ'),'Ð','Ğ'),'Þ','Ş') AS PLASIYER_ACIKLAMA ,
+						 						 CASE
+												     WHEN dbo.TBLCAHAR.HAREKET_TURU='A' THEN 'DEVIR'
+    WHEN dbo.TBLCAHAR.HAREKET_TURU='B' THEN 'FATURA'
+	 WHEN dbo.TBLCAHAR.HAREKET_TURU='C' THEN 'IADE FATURASI'
+	  WHEN dbo.TBLCAHAR.HAREKET_TURU='D' THEN 'KASA'
+	   WHEN dbo.TBLCAHAR.HAREKET_TURU='E' THEN 'MUSTERI SENETI'
+	    WHEN dbo.TBLCAHAR.HAREKET_TURU='F' THEN 'BORC SENETI'
+		 WHEN dbo.TBLCAHAR.HAREKET_TURU='G' THEN 'MUSTERI CEKI'
+		  WHEN dbo.TBLCAHAR.HAREKET_TURU='H' THEN 'BORC CEKI'
+		   WHEN dbo.TBLCAHAR.HAREKET_TURU='I' THEN 'PROTESTOLU SENET'
+		  WHEN dbo.TBLCAHAR.HAREKET_TURU='J' THEN 'KARSILIKSIZ CEK'
+		  WHEN dbo.TBLCAHAR.HAREKET_TURU='K' THEN 'DEKONT'
+		    WHEN dbo.TBLCAHAR.HAREKET_TURU='L' THEN 'MUHTELIF'
+
+
+    ELSE 'DIGER' END AS HARAKETTURU 
+FROM            dbo.TBLCASABIT LEFT OUTER JOIN
+                         dbo.TBLCARIPLASIYER ON dbo.TBLCASABIT.PLASIYER_KODU = dbo.TBLCARIPLASIYER.PLASIYER_KODU RIGHT OUTER JOIN
+                         dbo.TBLCAHAR ON dbo.TBLCASABIT.CARI_KOD = dbo.TBLCAHAR.CARI_KOD
+</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_TEL" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="CARI_ADRES" Type="String" />
+            <Field Name="CARI_ILCE" Type="String" />
+            <Field Name="VADE_GUNU" Type="Int16" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="CM_BORCT" Type="Decimal" />
+            <Field Name="CM_ALACT" Type="Decimal" />
+            <Field Name="BORCBAK" Type="Decimal" />
+            <Field Name="ALACAKBAK" Type="Decimal" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+          </View>
+          <View Name="CariHar">
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="BELGE_NO" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="HKA" Type="String" />
+            <Field Name="BORC" Type="Decimal" />
+            <Field Name="ALACAK" Type="Decimal" />
+            <Field Name="BAKIYE" Type="Decimal" />
+            <Field Name="DOVIZ_TURU" Type="Byte" />
+            <Field Name="DOVIZ_TUTAR" Type="Decimal" />
+            <Field Name="RAPOR_KODU" Type="String" />
+            <Field Name="F9SC" Type="String" />
+            <Field Name="HAREKET_TURU" Type="String" />
+            <Field Name="MIKTAR" Type="Decimal" />
+            <Field Name="ILAVE_RAPOR_KODU" Type="String" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="KAPATILMIS_TUTAR" Type="Decimal" />
+            <Field Name="ODEME_GUNU" Type="Int16" />
+            <Field Name="FIRMA_DOVIZ_TIPI" Type="Byte" />
+            <Field Name="FIRMA_DOVIZ_TUTARI" Type="Decimal" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="ENT_REF_KEY" Type="String" />
+            <Field Name="INC_KEY_NUMBER" Type="Int32" />
+            <Field Name="RAPOR_KODU2" Type="String" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK1" Type="Decimal" />
+            <Field Name="F_YEDEK2" Type="Decimal" />
+            <Field Name="C_YEDEK1" Type="String" />
+            <Field Name="C_YEDEK2" Type="String" />
+            <Field Name="B_YEDEK1" Type="Byte" />
+            <Field Name="I_YEDEK1" Type="Int16" />
+            <Field Name="L_YEDEK1" Type="Int32" />
+            <Field Name="D_YEDEK1" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="BAGLANTI_NO" Type="Int32" />
+            <Field Name="Expr1" Type="Int16" />
+            <Field Name="ISLETME_KODU" Type="Int16" />
+            <Field Name="Expr2" Type="String" />
+            <Field Name="CARI_TEL" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="ULKE_KODU" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_TIP" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="RAPOR_KODU1" Type="String" />
+            <Field Name="Expr3" Type="String" />
+            <Field Name="RAPOR_KODU3" Type="String" />
+            <Field Name="RAPOR_KODU4" Type="String" />
+            <Field Name="RAPOR_KODU5" Type="String" />
+            <Field Name="CARI_ADRES" Type="String" />
+            <Field Name="CARI_ILCE" Type="String" />
+            <Field Name="VERGI_DAIRESI" Type="String" />
+            <Field Name="VERGI_NUMARASI" Type="String" />
+            <Field Name="FAX" Type="String" />
+            <Field Name="POSTAKODU" Type="String" />
+            <Field Name="DETAY_KODU" Type="Int16" />
+            <Field Name="NAKLIYE_KATSAYISI" Type="Decimal" />
+            <Field Name="RISK_SINIRI" Type="Decimal" />
+            <Field Name="TEMINATI" Type="Decimal" />
+            <Field Name="CARISK" Type="Decimal" />
+            <Field Name="CCRISK" Type="Decimal" />
+            <Field Name="SARISK" Type="Decimal" />
+            <Field Name="SCRISK" Type="Decimal" />
+            <Field Name="CM_BORCT" Type="Decimal" />
+            <Field Name="CM_ALACT" Type="Decimal" />
+            <Field Name="CM_RAP_TARIH" Type="DateTime" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="ISKONTO_ORANI" Type="Decimal" />
+            <Field Name="VADE_GUNU" Type="Int16" />
+            <Field Name="LISTE_FIATI" Type="Byte" />
+            <Field Name="ACIK1" Type="String" />
+            <Field Name="ACIK2" Type="String" />
+            <Field Name="ACIK3" Type="String" />
+            <Field Name="M_KOD" Type="String" />
+            <Field Name="DOVIZ_TIPI" Type="Byte" />
+            <Field Name="Expr4" Type="Byte" />
+            <Field Name="HESAPTUTMASEKLI" Type="String" />
+            <Field Name="DOVIZLIMI" Type="String" />
+            <Field Name="Expr5" Type="String" />
+            <Field Name="Expr6" Type="String" />
+            <Field Name="LOKALDEPO" Type="Int16" />
+            <Field Name="EMAIL" Type="String" />
+            <Field Name="WEB" Type="String" />
+            <Field Name="KURFARKIBORC" Type="String" />
+            <Field Name="KURFARKIALAC" Type="String" />
+            <Field Name="Expr7" Type="String" />
+            <Field Name="Expr8" Type="String" />
+            <Field Name="Expr9" Type="Decimal" />
+            <Field Name="Expr10" Type="Decimal" />
+            <Field Name="Expr11" Type="String" />
+            <Field Name="Expr12" Type="String" />
+            <Field Name="Expr13" Type="Byte" />
+            <Field Name="Expr14" Type="Int16" />
+            <Field Name="Expr15" Type="Int32" />
+            <Field Name="FIYATGRUBU" Type="String" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="Expr16" Type="DateTime" />
+            <Field Name="ODEMETIPI" Type="Byte" />
+            <Field Name="Expr17" Type="String" />
+            <Field Name="Expr18" Type="Int32" />
+            <Field Name="MUSTERIBAZIKDV" Type="String" />
+            <Field Name="AGIRLIK_ISK" Type="Decimal" />
+            <Field Name="CARI_TEL2" Type="String" />
+            <Field Name="CARI_TEL3" Type="String" />
+            <Field Name="FAX2" Type="String" />
+            <Field Name="GSM1" Type="String" />
+            <Field Name="GSM2" Type="String" />
+            <Field Name="GEKAPHESAPLANMASIN" Type="String" />
+            <Field Name="ONCEKI_KOD" Type="String" />
+            <Field Name="SONRAKI_KOD" Type="String" />
+            <Field Name="SONCARIKODU" Type="String" />
+            <Field Name="TESLIMCARIBAGLIMI" Type="String" />
+            <Field Name="BAGLICARIKOD" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="HARAKETTURU" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Hesaplanan alan 1" Expression="[BORC]-[ALACAK]" DataType="Auto" DataMember="CariHar" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="Gun" Type="System.Int16" Value="30" />
+    <Parameter Name="Borc" Type="System.Decimal" Value="0.1" Description="Borç Bakiyesi Üstünde Olanlar" />
+  </Parameters>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Cariler" DataSource="dashboardSqlDataSource1" DataMember="Query" FilterString="[DataItem8] &gt; ?Borc" IsMasterFilterCrossDataSource="true">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Dimension DataMember="CARI_KOD" DefaultId="DataItem0" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem1" />
+        <Dimension DataMember="CARI_IL" DefaultId="DataItem2" />
+        <Dimension DataMember="CARI_ILCE" DefaultId="DataItem3" />
+        <Measure DataMember="ALACAKBAK" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="BORCBAK" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem6" />
+        <Measure DataMember="VADE_GUNU" DefaultId="DataItem7">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="BORCBAK" DefaultId="DataItem8" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem8" />
+      </HiddenDimensions>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" DataItem="DataItem4" DataItemApplyTo="DataItem4">
+          <FormatConditionRangeSet ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16711681" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="5" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16719361" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="15" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16724481" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="30" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16727041" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="40" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16732161" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="50" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16737281" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="60" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16742401" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="70" />
+                  <AppearanceSettings AppearanceType="Custom" BackColor="-16747521" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="80" />
+                  <AppearanceSettings AppearanceType="Blue" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="90" />
+                  <AppearanceSettings AppearanceType="Purple" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+          </FormatConditionRangeSet>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Name="Cari Kod" Weight="29.562654470744782">
+          <Dimension DefaultId="DataItem0" />
+          <Totals>
+            <Total />
+          </Totals>
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Cari İsim" Weight="57.062798164460858">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="İl" Weight="24.062625732001564">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="İlçe" Weight="28.531399082230429">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Vade Günü" Weight="12.031312866000782">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Borc Bak" Weight="47.093996075488782">
+          <Measure DefaultId="DataItem4" />
+          <Totals>
+            <Total Type="Sum" />
+          </Totals>
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Alacak Bak" Weight="22.000114954972858">
+          <Measure DefaultId="DataItem5" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="Plasiyer" Weight="38.156449375031052">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem2" Name="Cari Hareketleri" ShowCaption="false" DataSource="dashboardSqlDataSource1" DataMember="CariHar">
+      <DataItems>
+        <Dimension DataMember="CARI_KOD" DefaultId="DataItem0" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem1" />
+        <Dimension DataMember="VADE_TARIHI" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem2" />
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem3" />
+        <Dimension DataMember="BELGE_NO" DefaultId="DataItem4" />
+        <Dimension DataMember="ACIKLAMA" DefaultId="DataItem5" />
+        <Dimension DataMember="HARAKETTURU" DefaultId="DataItem6" />
+        <Measure DataMember="BORC" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="ALACAK" DefaultId="DataItem8">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="Hesaplanan alan 1" DefaultId="DataItem9">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+          <Calculation>
+            <RunningTotal />
+          </Calculation>
+          <WindowDefinition>
+            <GridWindowDefinition />
+          </WindowDefinition>
+        </Measure>
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </HiddenDimensions>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" DataItem="DataItem9" DataItemApplyTo="DataItem9">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="Custom" FontStyle="Bold" ForeColor="-1048576" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" DataItem="DataItem9" DataItemApplyTo="DataItem9">
+          <FormatConditionValue Condition="Less">
+            <AppearanceSettings AppearanceType="Custom" FontStyle="Bold" ForeColor="-16732080" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" DataItem="DataItem7" DataItemApplyTo="DataItem7">
+          <FormatConditionValue>
+            <IconSettings IconType="IndicatorGreenCheck" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Name="Tarih" Weight="66.390041493775939">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Vade Tarihi" Weight="85.477178423236509">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Hareket Türü" Weight="72.199170124481327">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Belge No" Weight="37.344398340248965">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Açılama" Weight="104.56431535269709">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Borç" Weight="82.987551867219921">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Alacak" Weight="73.029045643153523">
+          <Measure DefaultId="DataItem8" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Toplam Bakiye" Weight="78.008298755186729">
+          <Measure DefaultId="DataItem9" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="51.591511936339522" />
+      <LayoutItem DashboardItem="gridDashboardItem2" Weight="48.408488063660478" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

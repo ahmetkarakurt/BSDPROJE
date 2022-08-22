@@ -1,0 +1,86 @@
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\Autofac.6.4.0\lib\netstandard2.0\Autofac.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\Bogus.22.0.5\lib\net40\Bogus.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\BSD.RAPOR.Utiles.UI\bin\Release\BSD.RAPOR.Utiles.UI.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\NetSatis.Admin\bin\Release\BSDPROJE.Admin.exe
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\NetSatis.Backup\bin\Release\BSDPROJE.Backup.exe
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\NetSatis.Entities\bin\Release\BSDPROJE.Entities.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\NetSatis.Reports\bin\Release\BSDPROJE.Reports.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\NetSatis.Update\bin\Release\BSDPROJE.Update.exe
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.BonusSkins.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Charts.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.CodeParser.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Dashboard.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Dashboard.v21.1.Win.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Data.Desktop.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Data.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.DataAccess.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.DataAccess.v21.1.UI.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Images.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Map.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Office.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Pdf.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Pdf.v21.1.Drawing.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.PivotGrid.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Printing.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.RichEdit.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.RichEdit.v21.1.Export.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Sparkline.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.TreeMap.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Utils.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Utils.v21.1.UI.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.Xpo.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraBars.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraCharts.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraCharts.v21.1.Extensions.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraCharts.v21.1.UI.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraCharts.v21.1.Wizard.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraEditors.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraGauges.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraGauges.v21.1.Presets.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraGauges.v21.1.Win.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraGrid.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraLayout.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraMap.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraNavBar.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraPdfViewer.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraPivotGrid.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraPrinting.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraReports.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraReports.v21.1.Extensions.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraRichEdit.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraScheduler.v21.1.Core.Desktop.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraScheduler.v21.1.Core.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraScheduler.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraScheduler.v21.1.Extensions.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraScheduler.v21.1.Reporting.Extensions.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraTreeList.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraTreeMap.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraTreeMap.v21.1.UI.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraVerticalGrid.v21.1.dll
+C:\Program Files (x86)\DevExpress 21.1\Components\Bin\Framework\DevExpress.XtraWizard.v21.1.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\Microsoft.CSharp.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\MrAdvice.2.9.7\lib\net40-client\MrAdvice.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Configuration.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.DataSetExtensions.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.OracleClient.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Deployment.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Design.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Drawing.Design.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Drawing.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Printing.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Runtime.Serialization.dll
+C:\Users\BSD-YAZILIM\Desktop\NetSatis-master\NetSatis-master\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Windows.Forms.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.dll
+C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.Linq.dll

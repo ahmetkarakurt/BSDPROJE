@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Plasiyer Satış Karşılaştırma " />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT * FROM DBO.ZZZZ_PLASIYER_SATIS</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="FTGENELTOP" Type="Decimal" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Ortalama" Expression="Sum([GENELTOPLAM]) / Sum([STHAR_GCMIK])&#xD;&#xA;" DataType="Decimal" DataMember="CustomSqlQuery" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem1" Name="Plasiyer Karşılaştırma" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" SortOrder="Descending" SortByMeasure="DataItem4" DefaultId="DataItem2" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem4" DefaultId="DataItem1" />
+        <Measure DataMember="GENELTOPLAM" Name="Toplam" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="GRUP_KODU" SortByMeasure="DataItem4" DefaultId="DataItem0" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+        <Argument DefaultId="DataItem0" />
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem4" />
+      </Values>
+    </Pie>
+    <ListBox ComponentName="listBoxDashboardItem3" Name="Aylar" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ListBox>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Plasiyer Listesi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="STHAR_GCMIK" Name="Satış Mik" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem2" />
+        <Dimension DataMember="GRUP_KODU" DefaultId="DataItem3" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem4" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pivot>
+    <Pivot ComponentName="pivotDashboardItem3" Name="Aylık Satış" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genet Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <Chart ComponentName="chartDashboardItem1" Name="Aylık Satış" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+        <Measure DataMember="GENELTOPLAM" Name="Genet Toplam" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" SortByMeasure="DataItem1" DefaultId="DataItem2" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Bölme 1">
+          <Series>
+            <Simple>
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutGroup Orientation="Vertical" Weight="33.819628647214856">
+        <LayoutGroup Weight="65.048543689320383">
+          <LayoutItem DashboardItem="listBoxDashboardItem3" Weight="29.607843137254903" />
+          <LayoutGroup Orientation="Vertical" Weight="70.3921568627451">
+            <LayoutItem DashboardItem="pivotDashboardItem2" Weight="53.544776119402982" />
+            <LayoutItem DashboardItem="pivotDashboardItem3" Weight="46.455223880597018" />
+          </LayoutGroup>
+        </LayoutGroup>
+        <LayoutItem DashboardItem="chartDashboardItem1" Weight="34.95145631067961" />
+      </LayoutGroup>
+      <LayoutItem DashboardItem="pieDashboardItem1" Weight="66.180371352785144" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

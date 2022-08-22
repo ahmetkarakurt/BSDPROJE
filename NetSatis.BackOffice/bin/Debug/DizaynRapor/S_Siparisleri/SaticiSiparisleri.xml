@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM BSD_SIPARIS_TESLIM_STOK  WHERE  (FTIRSIP  = '7') AND TIPI &lt;&gt; 1</Sql>
+      </Query>
+      <Query Type="StoredProcQuery" Name="Query_1">
+        <ProcName>BSD_RAPOR_DEPO_SIPARIS_DURUM</ProcName>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="GRUPKODU" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="FTIRSIP" Type="String" />
+            <Field Name="FATIRS_NO" Type="String" />
+            <Field Name="CARI_KODU" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="TIPI" Type="Byte" />
+            <Field Name="BRUTTUTAR" Type="Decimal" />
+            <Field Name="ODEMEGUNU" Type="Int16" />
+            <Field Name="ODEMETARIHI" Type="DateTime" />
+            <Field Name="SIPARIS_TEST" Type="DateTime" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="URETICI_KODU" Type="String" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="TESLIM_MIK" Type="Decimal" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_SIPNUM" Type="String" />
+            <Field Name="TESLIM_TARIHI" Type="DateTime" />
+            <Field Name="INCKEYNO" Type="Int32" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="HAR_STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_HTUR" Type="String" />
+          </View>
+          <View Name="Query_1">
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="HAMMADDDE" Type="Decimal" />
+            <Field Name="URETIM" Type="Decimal" />
+            <Field Name="MAMÜL" Type="Decimal" />
+            <Field Name="ATIL" Type="Decimal" />
+            <Field Name="DIGER" Type="Decimal" />
+            <Field Name="GALVANIZ" Type="Decimal" />
+            <Field Name="SIP_MIKTARI" Type="Decimal" />
+            <Field Name="TESLIM_EDILEN_MIK" Type="Decimal" />
+            <Field Name="KALAN" Type="Decimal" />
+            <Field Name="SIP_FIYATI" Type="Decimal" />
+            <Field Name="IRS_FIYATI" Type="Decimal" />
+            <Field Name="DOV_FIYAT" Type="Decimal" />
+            <Field Name="DOV_ALIS_FIAT" Type="Decimal" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="BAKIYE_TL" Type="Decimal" />
+            <Field Name="BAKIYE_USD" Type="Decimal" />
+            <Field Name="BAKIYE_EUR" Type="Decimal" />
+            <Field Name="SIPARIS_TL" Type="Decimal" />
+            <Field Name="SIPARIS_USD" Type="Decimal" />
+            <Field Name="SIPARIS_EUR" Type="Decimal" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="KULL1N" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="STOK KODU ADI" Expression="[STOK_KODU]+' - '+ [STOK_ADI]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="GENELTOPLAM" Expression="[STHAR_GCMIK]*[STHAR_NF]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="CARI_KOD_ISIM" Expression="[CARI_KOD] + ' - '+ [CARI_ISIM]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="STOK_FIYAT_TOPLAM" Expression="[STHAR_GCMIK] * [STHAR_BF]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Hesaplanan alan 1" Expression="Iif([STHAR_DOVTIP]='1', 'DOLAR' ,[STHAR_DOVTIP]='0', 'TL',[STHAR_DOVTIP]='2', 'EURO' ,'DIGER' )" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="TALEP EDİLEN SİPARİŞLER" ShowCaption="false" ParentContainer="dashboardTabPage1" DataSource="dashboardSqlDataSource1" DataMember="Query" FilterString="[DataItem0] &lt;&gt; 1 And [DataItem10] = 'H'">
+      <DataItems>
+        <Dimension DataMember="TIPI" DefaultId="DataItem0" />
+        <Dimension DataMember="CARI_KOD_ISIM" DefaultId="DataItem1" />
+        <Dimension DataMember="FATIRS_NO" SortOrder="Descending" DefaultId="DataItem2" />
+        <Dimension DataMember="STOK KODU ADI" DefaultId="DataItem3" />
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="FISNO" DefaultId="DataItem5" />
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem6" />
+        <Dimension DataMember="TESLIM_TARIHI" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem7" />
+        <Measure DataMember="STOK_FIYAT_TOPLAM" DefaultId="DataItem8">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="HAR_STHAR_GCMIK" DefaultId="DataItem9">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STHAR_HTUR" DefaultId="DataItem10" />
+        <Measure DataMember="STHAR_BF" DefaultId="DataItem11">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="Hesaplanan alan 1" DefaultId="DataItem12" />
+        <Measure DataMember="STHAR_DOVFIAT" DefaultId="DataItem13">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem10" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Name="TARIH" Weight="49.64053566053326">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="TESLIM_TARIHI" Weight="59.438009804059561">
+          <Dimension DefaultId="DataItem7" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="SİPARİŞ NO" Weight="54.865855203747287">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="165.90389549704537">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="STOK KODU - İSMİ" Weight="242.32419381655055">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="SİPARİŞ MİK" Weight="51.60003048923852">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="FATURA" Weight="63.356999461470089">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="TESLIM MIKTARI" Weight="33.311412087989424">
+          <Measure DefaultId="DataItem9" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="BİRİM FİYATI" Weight="67.2759891188806">
+          <Measure DefaultId="DataItem11" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="DOVİZ FİYATI" Weight="55.519020146649041">
+          <Measure DefaultId="DataItem13" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="TOPLAM" Weight="59.438009804059561">
+          <Measure DefaultId="DataItem8" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="DÖVİZ TİP" Weight="48.987370717631507">
+          <Dimension DefaultId="DataItem12" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" ColumnWidthMode="Manual" />
+    </Grid>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="SİPARİŞ NO - CARİ ADI KODU - STOK ADI KODU" ParentContainer="dashboardTabPage1" DataSource="dashboardSqlDataSource1" DataMember="Query" EnableSearch="true" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="FATIRS_NO" DefaultId="DataItem0" />
+        <Dimension DataMember="CARI_KOD_ISIM" DefaultId="DataItem1" />
+        <Dimension DataMember="STOK KODU ADI" DefaultId="DataItem2" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+        <Dimension DefaultId="DataItem2" />
+      </FilterDimensions>
+    </ComboBox>
+    <TabContainer ComponentName="tabContainerDashboardItem1" Name="Tab Container 1">
+      <Pages>
+        <Page ComponentName="dashboardTabPage1" Name="AÇIK SATICI SİPARİŞLERİ" />
+        <Page ComponentName="dashboardTabPage2" Name="Sayfa 2" />
+        <Page ComponentName="dashboardTabPage3" Name="Sayfa 1" />
+        <Page ComponentName="dashboardTabPage4" Name="Sayfa 3" />
+      </Pages>
+    </TabContainer>
+    <Grid ComponentName="gridDashboardItem2" Name="DEPO DURUMU VE SİPARİŞ MİKTARLARI" ParentContainer="dashboardTabPage2" DataSource="dashboardSqlDataSource1" DataMember="Query_1">
+      <DataItems>
+        <Dimension DataMember="STOK_KODU" SortByMeasure="DataItem4" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" SortByMeasure="DataItem4" DefaultId="DataItem1" />
+        <Measure DataMember="MAMÜL" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="URETIM" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="HAMMADDDE" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="ATIL" DefaultId="DataItem5">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="DIGER" DefaultId="DataItem6">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SIP_MIKTARI" DefaultId="DataItem7">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SIP_FIYATI" DefaultId="DataItem8">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KALAN" DefaultId="DataItem9">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" ApplyToRow="true" DataItem="DataItem7" DataItemApplyTo="DataItem7">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleYellow" />
+            <Value1 Type="System.Decimal" Value="1" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItemApplyTo="DataItem0">
+          <FormatConditionExpression Expression="[DataItem7] &lt;&gt; [DataItem9]">
+            <AppearanceSettings AppearanceType="Yellow" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Weight="57.692307692307715">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="170.5241660993874">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="HAMMADDDE" Weight="56.160653505786271">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="MAMÜL " Weight="40.844111640571825">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="URETIM " Weight="90.878148400272309">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="ATIL " Weight="66.371681415929217">
+          <Measure DefaultId="DataItem5" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="DIGER" Weight="42.886317222600425">
+          <Measure DefaultId="DataItem6" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="SIP_MIKTARI " Weight="75.051055139550741">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="SIP_FIYATI" Weight="75.051055139550741">
+          <Measure DefaultId="DataItem8" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="SIP_KALANI" Weight="74.54050374404359">
+          <Measure DefaultId="DataItem9" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem3" Name="SİPARİŞ BAKİYELİ AÇIK SİPARİŞLER" ParentContainer="dashboardTabPage3" DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem2] Is Not Null">
+      <DataItems>
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem1" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem2" />
+        <Measure DataMember="SIP_FIYATI" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="IRS_FIYATI" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SIPARIS_EUR" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="de-DE" />
+        </Measure>
+        <Measure DataMember="SIPARIS_USD" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="en-US" />
+        </Measure>
+        <Measure DataMember="SIPARIS_TL" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="BAKIYE_EUR" DefaultId="DataItem8">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="de-DE" />
+        </Measure>
+        <Measure DataMember="BAKIYE_USD" DefaultId="DataItem9">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="chr-Cher-US" />
+        </Measure>
+        <Measure DataMember="BAKIYE_TL" DefaultId="DataItem10">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" DataItemApplyTo="DataItem5">
+          <FormatConditionExpression Expression="[DataItem5] Is Not Null">
+            <AppearanceSettings AppearanceType="PaleRed" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" DataItemApplyTo="DataItem6">
+          <FormatConditionExpression Expression="[DataItem6] Is Not Null">
+            <AppearanceSettings AppearanceType="PaleYellow" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" DataItemApplyTo="DataItem7">
+          <FormatConditionExpression Expression="[DataItem7] Is Not Null">
+            <AppearanceSettings AppearanceType="PaleGreen" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 4" DataItemApplyTo="DataItem8">
+          <FormatConditionExpression Expression="[DataItem8] Is Not Null">
+            <AppearanceSettings AppearanceType="PaleRed" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 5" DataItemApplyTo="DataItem9">
+          <FormatConditionExpression Expression="[DataItem9] Is Not Null">
+            <AppearanceSettings AppearanceType="PaleYellow" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 6" DataItemApplyTo="DataItem10">
+          <FormatConditionExpression Expression="[DataItem10] Is Not Null">
+            <AppearanceSettings AppearanceType="PaleGreen" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 7" DataItemApplyTo="DataItem4">
+          <FormatConditionExpression Expression="[DataItem4] &gt; [DataItem3]">
+            <IconSettings IconType="IndicatorRedCross" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Weight="53.164304418304994">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="92.776923396649892">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="128.21979300885323">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="SIPARIS_EUR" Weight="51.6006484060019">
+          <Measure DefaultId="DataItem5" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="SIPARIS_USD" Weight="57.33405378444656">
+          <Measure DefaultId="DataItem6" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="SIPARIS_TL" Weight="57.68839103869653" WidthType="FitToContent">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="BAKIYE_EUR" Weight="77.291242362525452" WidthType="FitToContent">
+          <Measure DefaultId="DataItem8" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="BAKIYE_USD" Weight="85.132382892057024" WidthType="FitToContent">
+          <Measure DefaultId="DataItem9" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="BAKIYE_TL" Weight="74.490835030549889" WidthType="FitToContent">
+          <Measure DefaultId="DataItem10" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="SIP_FIYATI" Weight="83.452138492871683" WidthType="FitToContent">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="IRS_FIYATI" Weight="63.849287169042761" WidthType="FitToContent">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem4" Name="KRİTİK STOKLAR" ParentContainer="dashboardTabPage4" DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem4] &lt;= [DataItem5]">
+      <DataItems>
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem1" />
+        <Measure DataMember="HAMMADDDE" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KULL1N" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="HAMMADDDE" DefaultId="DataItem4" />
+        <Dimension DataMember="KULL1N" DefaultId="DataItem5" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem4" />
+        <Dimension DefaultId="DataItem5" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="HAMMADDDE DEPOSU">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="KRITIK STOK BAKIYESI">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutTabContainer DashboardItem="tabContainerDashboardItem1" Weight="100">
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage1" Weight="100">
+          <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="7.888040712468193" />
+          <LayoutItem DashboardItem="gridDashboardItem1" Weight="92.1119592875318" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage2" Weight="100">
+          <LayoutItem DashboardItem="gridDashboardItem2" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage3" Weight="100">
+          <LayoutItem DashboardItem="gridDashboardItem3" Weight="100" />
+        </LayoutTabPage>
+        <LayoutTabPage Orientation="Vertical" DashboardItem="dashboardTabPage4" Weight="100">
+          <LayoutItem DashboardItem="gridDashboardItem4" Weight="100" />
+        </LayoutTabPage>
+      </LayoutTabContainer>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Plasiyer Satış Ay Yıl" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from ZZZZ_PLASIYER_SATIS</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="FTGENELTOP" Type="Decimal" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="OrtalamaFiyat" Expression="Sum([GENELTOPLAM]) / Sum([STHAR_GCMIK])&#xD;&#xA;" DataType="Auto" DataMember="CustomSqlQuery" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Ay Seçimi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <ListBox ComponentName="listBoxDashboardItem1" Name="Grup Seçimi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="GRUP_KODU" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ListBox>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_GCMIK" Name="Satılan Adet" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem2" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem3" />
+        <Dimension DataMember="TARIH" DefaultId="DataItem5" />
+        <Measure DataMember="GENELTOPLAM" Name="Ortalama S.Fiyati" SummaryType="Average" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Columns>
+        <Column DefaultId="DataItem5" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem3" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem6" />
+      </Values>
+      <ShowColumnGrandTotals>false</ShowColumnGrandTotals>
+      <ShowColumnTotals>false</ShowColumnTotals>
+    </Pivot>
+    <Pie ComponentName="pieDashboardItem2" Name="20 Stok" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="GRUP_KODU" SummaryType="Count" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem0" TopNEnabled="true" TopNCount="20" TopNMeasure="DataItem0" DefaultId="DataItem2" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutGroup Orientation="Vertical" Weight="11.405835543766578">
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="7.3619631901840492" />
+        <LayoutItem DashboardItem="listBoxDashboardItem1" Weight="92.638036809815958" />
+      </LayoutGroup>
+      <LayoutGroup Weight="88.594164456233415">
+        <LayoutItem DashboardItem="pivotDashboardItem1" Weight="54.266467065868262" />
+        <LayoutItem DashboardItem="pieDashboardItem2" Weight="45.733532934131738" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

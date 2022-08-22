@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="New Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from ZZZ_STOK_HAR_AYRINTI</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="TOPLAM" Type="Decimal" />
+            <Field Name="STHAR_FTIRSIP" Type="String" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="HESAPTIPLERI" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="KOD_1" Type="String" />
+            <Field Name="ID" Type="Guid" />
+            <Field Name="ALIS_FIAT1" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Stok Seçin" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem3] = 'SatisFaturasi'">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="HESAPTIPLERI" DefaultId="DataItem3" />
+        <Dimension DataMember="STHAR_TARIH" Name="Tarih" DateTimeGroupInterval="Month" DefaultId="DataItem4" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem2" />
+        <Measure DataMember="TOPLAM" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_IL" DefaultId="DataItem6" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem3" />
+      </HiddenDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem4" />
+        <Argument DefaultId="DataItem2" />
+        <Argument DefaultId="DataItem6" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple Name="Satılan Miktar" SeriesType="StackedBar">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+            <Simple Name="Tutar" SeriesType="StackedBar">
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" />
+        <LayoutItem DashboardItem="chartDashboardItem1" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

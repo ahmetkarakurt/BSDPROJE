@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="İl Bazında Cari Sayıları" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from ZZ_BANKA_HESAP_HAR</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="BankaAdi" Type="String" />
+            <Field Name="HesapTipi" Type="String" />
+            <Field Name="BankaHesKodu" Type="String" />
+            <Field Name="HesapAdi" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="BELGENO" Type="String" />
+            <Field Name="HareketTuru" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="Borc" Type="Decimal" />
+            <Field Name="Alacak" Type="Decimal" />
+            <Field Name="KurCinsi" Type="String" />
+            <Field Name="Kur" Type="Decimal" />
+            <Field Name="DovizTutari" Type="Decimal" />
+            <Field Name="PlaKodu" Type="String" />
+            <Field Name="PlasiyerAdi" Type="String" />
+            <Field Name="MuhFisNo" Type="String" />
+            <Field Name="Kaydeden" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="ID" Type="Guid" />
+            <Field Name="VADETARIH" Type="DateTime" />
+            <Field Name="CARI_ISIM" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="Borc" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="Alacak" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="VADETARIH" DateTimeGroupInterval="Month" DefaultId="DataItem2" />
+        <Dimension DataMember="VADETARIH" DateTimeGroupInterval="Day" DefaultId="DataItem3" />
+        <Dimension DataMember="BankaAdi" DefaultId="DataItem4" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem5" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+        <Row DefaultId="DataItem5" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pivot>
+    <ListBox ComponentName="listBoxDashboardItem1" Name="List Box 1" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="HesapTipi" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ListBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="listBoxDashboardItem1" Weight="12.931034482758621" />
+      <LayoutItem DashboardItem="pivotDashboardItem1" Weight="87.068965517241381" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

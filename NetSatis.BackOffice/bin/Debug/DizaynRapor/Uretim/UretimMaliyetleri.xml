@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>select * from Bsd_Uretim where YEAR(Tarih)=YEAR(GETDATE())</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="Id" Type="Int32" />
+            <Field Name="Maliyet" Type="Decimal" />
+            <Field Name="Stok_kodu" Type="String" />
+            <Field Name="Stok_Adi" Type="String" />
+            <Field Name="Tarih" Type="DateTime" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Mamül" DataSource="dashboardSqlDataSource1" DataMember="Query" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="Stok_Adi" DefaultId="DataItem0" />
+        <Dimension DataMember="Stok_kodu" DefaultId="DataItem1" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem1" />
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Grid ComponentName="gridDashboardItem1" Name="Aylık Üretim Ortalama" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Dimension DataMember="Tarih" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+        <Measure DataMember="Maliyet" SummaryType="Average" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Ay" Weight="68.6">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Maliyet Ortalama" Weight="81.4">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem2" Name="Günlük Üretim" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="Tarih" DateTimeGroupInterval="Day" DefaultId="DataItem0" />
+        <Measure DataMember="Maliyet" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="Maliyet" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn Name="Gün" Weight="28.643216080402009">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Maliyet Oran" Weight="156.03015075376885" DisplayMode="Bar">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Maliyet Toplam" Weight="40.326633165829143">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="6.4320388349514559" />
+      <LayoutGroup Weight="93.567961165048544">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="42.771883289124666" />
+        <LayoutItem DashboardItem="gridDashboardItem2" Weight="57.228116710875334" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

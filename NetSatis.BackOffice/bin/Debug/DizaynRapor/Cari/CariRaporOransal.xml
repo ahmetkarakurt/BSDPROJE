@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Oransal Cari Rapor" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select* from ZZZ_CARI_EKSTRE</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="BELGE_NO" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="BORC" Type="Decimal" />
+            <Field Name="ALACAK" Type="Decimal" />
+            <Field Name="BAKIYE" Type="Decimal" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="HAREKET_TURU" Type="String" />
+            <Field Name="TIP" Type="String" />
+            <Field Name="ID" Type="Guid" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Cari Seçimi" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" LabelContentType="ArgumentValueAndPercent" ShowPieCaptions="false">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="ALACAK" Name="ALACAK" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="BORC" Name="BORC" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pie>
+    <Card ComponentName="cardDashboardItem1" Name="Cari Hareket" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="BAKIYE" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="ACIKLAMA" DefaultId="DataItem2" />
+        <Dimension DataMember="BAKIYE" DefaultId="DataItem3" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem3" />
+      </HiddenDimensions>
+      <FormatRules>
+        <CardItemDeltaFormatRule Name="Format Rule 1" DeltaValueType="ActualValue" CardId="DataItem0">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleRed" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <CardFormatRuleLayoutElement />
+        </CardItemDeltaFormatRule>
+        <CardItemDeltaFormatRule Name="Format Rule 2" DeltaValueType="ActualValue" CardId="DataItem0">
+          <FormatConditionValue Condition="Less">
+            <AppearanceSettings AppearanceType="PaleGreen" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <CardFormatRuleLayoutElement />
+        </CardItemDeltaFormatRule>
+      </FormatRules>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Card Name="BAKIYE">
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="125" MaxWidth="270" Type="Compact">
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <BottomSubValue1 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <BottomSubValue2 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <Card ComponentName="cardDashboardItem2" Name="Cards 2" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <InteractivityOptions IgnoreMasterFilters="true" />
+      <DataItems>
+        <Measure DataMember="BAKIYE" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="BAKIYE" DefaultId="DataItem1" />
+      </DataItems>
+      <Card Name="GENEL TOPLAM">
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="300" MaxWidth="300" Type="Compact">
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <BottomSubValue1 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <BottomSubValue2 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+      <SparklineArgument DefaultId="DataItem1" />
+    </Card>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="5.6441717791411046" />
+      <LayoutGroup Weight="94.3558282208589">
+        <LayoutGroup Orientation="Vertical" Weight="36.273209549071616">
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="49.934980494148242" />
+          <LayoutItem DashboardItem="cardDashboardItem2" Weight="50.065019505851758" />
+        </LayoutGroup>
+        <LayoutItem DashboardItem="cardDashboardItem1" Weight="63.726790450928384" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

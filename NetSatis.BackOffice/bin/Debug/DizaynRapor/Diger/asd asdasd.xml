@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>select *from BSD_SIPANA</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="FTIRSIP" Type="String" />
+            <Field Name="FATIRS_NO" Type="String" />
+            <Field Name="CARI_KODU" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="TIPI" Type="Byte" />
+            <Field Name="BRUTTUTAR" Type="Decimal" />
+            <Field Name="SAT_ISKT" Type="Decimal" />
+            <Field Name="MFAZ_ISKT" Type="Decimal" />
+            <Field Name="GEN_ISK1T" Type="Decimal" />
+            <Field Name="GEN_ISK2T" Type="Decimal" />
+            <Field Name="GEN_ISK3T" Type="Decimal" />
+            <Field Name="GEN_ISK1O" Type="Decimal" />
+            <Field Name="GEN_ISK2O" Type="Decimal" />
+            <Field Name="GEN_ISK3O" Type="Decimal" />
+            <Field Name="KDV" Type="Decimal" />
+            <Field Name="FAT_ALTM1" Type="Decimal" />
+            <Field Name="FAT_ALTM2" Type="Decimal" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="KOD1" Type="String" />
+            <Field Name="KOD2" Type="String" />
+            <Field Name="ODEMEGUNU" Type="Int16" />
+            <Field Name="ODEMETARIHI" Type="DateTime" />
+            <Field Name="KDV_DAHILMI" Type="String" />
+            <Field Name="FATKALEM_ADEDI" Type="Int16" />
+            <Field Name="SIPARIS_TEST" Type="DateTime" />
+            <Field Name="TOPLAM_MIK" Type="Decimal" />
+            <Field Name="TOPDEPO" Type="Byte" />
+            <Field Name="YEDEK22" Type="String" />
+            <Field Name="CARI_KOD2" Type="String" />
+            <Field Name="YEDEK" Type="String" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="SIRANO" Type="Int32" />
+            <Field Name="KDV_DAHIL_BRUT_TOP" Type="Decimal" />
+            <Field Name="KDV_TENZIL" Type="Decimal" />
+            <Field Name="MALFAZLASIKDVSI" Type="Decimal" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+            <Field Name="YUVARLAMA" Type="Decimal" />
+            <Field Name="SATIS_KOND" Type="String" />
+            <Field Name="DOVIZTIP" Type="Byte" />
+            <Field Name="DOVIZTUT" Type="Decimal" />
+            <Field Name="KS_KODU" Type="String" />
+            <Field Name="BAG_TUTAR" Type="Decimal" />
+            <Field Name="YEDEK2" Type="String" />
+            <Field Name="HIZMET_FAT" Type="String" />
+            <Field Name="VADEBAZT" Type="DateTime" />
+            <Field Name="KAPATILMIS" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="F_YEDEK5" Type="Decimal" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="AMBAR_KBLNO" Type="String" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="FIYATTARIHI" Type="DateTime" />
+            <Field Name="KOSULTARIHI" Type="DateTime" />
+            <Field Name="GENISK1TIP" Type="Int16" />
+            <Field Name="GENISK2TIP" Type="Int16" />
+            <Field Name="GENISK3TIP" Type="Int16" />
+            <Field Name="EXPORTTYPE" Type="Byte" />
+            <Field Name="EXGUMRUKNO" Type="String" />
+            <Field Name="EXGUMTARIH" Type="DateTime" />
+            <Field Name="EXFIILITARIH" Type="DateTime" />
+            <Field Name="EXPORTREFNO" Type="String" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="GELSUBE_KODU" Type="Int16" />
+            <Field Name="GITSUBE_KODU" Type="Int16" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="ISLETME_KODU" Type="Int16" />
+            <Field Name="ODEKOD" Type="String" />
+            <Field Name="BRMALIYET" Type="Decimal" />
+            <Field Name="KOSVADEGUNU" Type="Int16" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="GIB_FATIRS_NO" Type="String" />
+            <Field Name="EXTERNALAPPID" Type="String" />
+            <Field Name="EXTERNALREFID" Type="String" />
+            <Field Name="EBELGE" Type="Int32" />
+            <Field Name="HALFAT" Type="Int32" />
+            <Field Name="FAT_ALTM3" Type="Decimal" />
+            <Field Name="DOVBAZTAR" Type="DateTime" />
+            <Field Name="OTVTEVTUTAR" Type="Decimal" />
+            <Field Name="TOPGIRDEPO" Type="Int16" />
+            <Field Name="BFORM" Type="String" />
+            <Field Name="TEVKIFATIADE" Type="Int32" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="GRUPKODU" Type="String" />
+            <Field Name="ISIM" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="BRUTTUTAR" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem1" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <Pie ComponentName="pieDashboardItem1" Name="Pasta 1" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortByMeasure="DataItem0" TopNEnabled="true" TopNShowOthers="true" TopNCount="20" TopNMeasure="DataItem0" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="pivotDashboardItem1" Weight="39.522546419098141" />
+      <LayoutItem DashboardItem="pieDashboardItem1" Weight="60.477453580901859" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

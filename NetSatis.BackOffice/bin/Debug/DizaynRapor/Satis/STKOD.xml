@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="Data Source 1" ComponentName="dashboardSqlDataSource1" DataProcessingMode="Client">
+      <Connection Name="connection" ConnectionString="Data Source=BASODASRVARSV;Initial Catalog=ALM2022;User ID=sa;Password=BSD**2021" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM TBLSTSABIT</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="Data Source 1">
+          <View Name="Query">
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="ISLETME_KODU" Type="Int16" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="URETICI_KODU" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="KOD_1" Type="String" />
+            <Field Name="KOD_2" Type="String" />
+            <Field Name="KOD_3" Type="String" />
+            <Field Name="KOD_4" Type="String" />
+            <Field Name="KOD_5" Type="String" />
+            <Field Name="SATICI_KODU" Type="String" />
+            <Field Name="OLCU_BR1" Type="String" />
+            <Field Name="OLCU_BR2" Type="String" />
+            <Field Name="PAY_1" Type="Decimal" />
+            <Field Name="PAYDA_1" Type="Decimal" />
+            <Field Name="OLCU_BR3" Type="String" />
+            <Field Name="PAY2" Type="Decimal" />
+            <Field Name="PAYDA2" Type="Decimal" />
+            <Field Name="FIAT_BIRIMI" Type="String" />
+            <Field Name="AZAMI_STOK" Type="Decimal" />
+            <Field Name="ASGARI_STOK" Type="Decimal" />
+            <Field Name="TEMIN_SURESI" Type="Decimal" />
+            <Field Name="KUL_MIK" Type="Decimal" />
+            <Field Name="RISK_SURESI" Type="Int16" />
+            <Field Name="ZAMAN_BIRIMI" Type="String" />
+            <Field Name="SATIS_FIAT1" Type="Decimal" />
+            <Field Name="SATIS_FIAT2" Type="Decimal" />
+            <Field Name="SATIS_FIAT3" Type="Decimal" />
+            <Field Name="SATIS_FIAT4" Type="Decimal" />
+            <Field Name="SAT_DOV_TIP" Type="Byte" />
+            <Field Name="DOV_ALIS_FIAT" Type="Decimal" />
+            <Field Name="DOV_MAL_FIAT" Type="Decimal" />
+            <Field Name="DOV_SATIS_FIAT" Type="Decimal" />
+            <Field Name="MUH_DETAYKODU" Type="Int32" />
+            <Field Name="BIRIM_AGIRLIK" Type="Decimal" />
+            <Field Name="NAKLIYET_TUT" Type="Decimal" />
+            <Field Name="KDV_ORANI" Type="Decimal" />
+            <Field Name="ALIS_DOV_TIP" Type="Byte" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="DOV_TUR" Type="Byte" />
+            <Field Name="URET_OLCU_BR" Type="Byte" />
+            <Field Name="BILESENMI" Type="String" />
+            <Field Name="MAMULMU" Type="String" />
+            <Field Name="FORMUL_TOPLAMI" Type="Decimal" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="MAX_ISKONTO" Type="Decimal" />
+            <Field Name="ECZACI_KARI" Type="Decimal" />
+            <Field Name="MIKTAR" Type="Decimal" />
+            <Field Name="MAL_FAZLASI" Type="Decimal" />
+            <Field Name="KDV_TENZIL_ORAN" Type="Decimal" />
+            <Field Name="KILIT" Type="String" />
+            <Field Name="ONCEKI_KOD" Type="String" />
+            <Field Name="SONRAKI_KOD" Type="String" />
+            <Field Name="BARKOD1" Type="String" />
+            <Field Name="BARKOD2" Type="String" />
+            <Field Name="BARKOD3" Type="String" />
+            <Field Name="ALIS_KDV_KODU" Type="Decimal" />
+            <Field Name="ALIS_FIAT1" Type="Decimal" />
+            <Field Name="ALIS_FIAT2" Type="Decimal" />
+            <Field Name="ALIS_FIAT3" Type="Decimal" />
+            <Field Name="ALIS_FIAT4" Type="Decimal" />
+            <Field Name="LOT_SIZE" Type="Decimal" />
+            <Field Name="MIN_SIP_MIKTAR" Type="Decimal" />
+            <Field Name="SABIT_SIP_ARALIK" Type="Int16" />
+            <Field Name="SIP_POLITIKASI" Type="String" />
+            <Field Name="OZELLIK_KODU1" Type="Byte" />
+            <Field Name="OZELLIK_KODU2" Type="Byte" />
+            <Field Name="OZELLIK_KODU3" Type="Byte" />
+            <Field Name="OZELLIK_KODU4" Type="Byte" />
+            <Field Name="OZELLIK_KODU5" Type="Byte" />
+            <Field Name="OPSIYON_KODU1" Type="Byte" />
+            <Field Name="OPSIYON_KODU2" Type="Byte" />
+            <Field Name="OPSIYON_KODU3" Type="Byte" />
+            <Field Name="OPSIYON_KODU4" Type="Byte" />
+            <Field Name="OPSIYON_KODU5" Type="Byte" />
+            <Field Name="BILESEN_OP_KODU" Type="Byte" />
+            <Field Name="SIP_VER_MAL" Type="Decimal" />
+            <Field Name="ELDE_BUL_MAL" Type="Decimal" />
+            <Field Name="YIL_TAH_KUL_MIK" Type="Decimal" />
+            <Field Name="EKON_SIP_MIKTAR" Type="Decimal" />
+            <Field Name="ESKI_RECETE" Type="String" />
+            <Field Name="OTOMATIK_URETIM" Type="String" />
+            <Field Name="ALFKOD" Type="String" />
+            <Field Name="SAFKOD" Type="String" />
+            <Field Name="KODTURU" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="C_YEDEK5" Type="String" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="GIRIS_SERI" Type="String" />
+            <Field Name="CIKIS_SERI" Type="String" />
+            <Field Name="SERI_BAK" Type="String" />
+            <Field Name="SERI_MIK" Type="String" />
+            <Field Name="SERI_GIR_OT" Type="String" />
+            <Field Name="SERI_CIK_OT" Type="String" />
+            <Field Name="SERI_BASLANGIC" Type="String" />
+            <Field Name="FIYATKODU" Type="String" />
+            <Field Name="FIYATSIRASI" Type="Int32" />
+            <Field Name="PLANLANACAK" Type="String" />
+            <Field Name="LOT_SIZECUSTOMER" Type="Decimal" />
+            <Field Name="MIN_SIP_MIKTARCUSTOMER" Type="Decimal" />
+            <Field Name="GUMRUKTARIFEKODU" Type="String" />
+            <Field Name="ABCKODU" Type="String" />
+            <Field Name="PERFORMANSKODU" Type="String" />
+            <Field Name="SATICISIPKILIT" Type="String" />
+            <Field Name="MUSTERISIPKILIT" Type="String" />
+            <Field Name="SATINALMAKILIT" Type="String" />
+            <Field Name="SATISKILIT" Type="String" />
+            <Field Name="EN" Type="Decimal" />
+            <Field Name="BOY" Type="Decimal" />
+            <Field Name="GENISLIK" Type="Decimal" />
+            <Field Name="SIPLIMITVAR" Type="String" />
+            <Field Name="SONSTOKKODU" Type="String" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="FIKTIF_MAM" Type="String" />
+            <Field Name="YAPILANDIR" Type="String" />
+            <Field Name="SBOMVARMI" Type="String" />
+            <Field Name="BAGLISTOKKOD" Type="String" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="ALISTALTEKKILIT" Type="String" />
+            <Field Name="SATISTALTEKKILIT" Type="String" />
+            <Field Name="S_YEDEK3" Type="String" />
+            <Field Name="STOKMEVZUAT" Type="Int16" />
+            <Field Name="OTVTEVKIFAT" Type="String" />
+            <Field Name="SERIBARKOD" Type="String" />
+            <Field Name="ATIK_URUN" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Kılavuz 1" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem1" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="0.5" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

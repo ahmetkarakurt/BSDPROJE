@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Plasiyer Satış Karşılaştırma " />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="nwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT * FROM HIKMETOGLU2022.DBO.ZZZZ_PLASIYER_SATIS</Sql>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Ortalama" Expression="Sum([GENELTOPLAM]) / Sum([STHAR_GCMIK])&#xD;&#xA;" DataType="Decimal" DataMember="CustomSqlQuery" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ListBox ComponentName="listBoxDashboardItem1" Name="Plasiyer Seçimi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ListBox>
+    <ListBox ComponentName="listBoxDashboardItem2" Name="Tarih Seçimi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ListBox>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Plasiyer Karşılaştırma" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="STHAR_GCMIK" Name="Satılan" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="GENELTOPLAM" Name="Toplam" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem2" />
+        <Dimension DataMember="GRUP_KODU" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem3" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem4" />
+        <Measure DataMember="Ortalama" DefaultId="DataItem5">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Columns>
+        <Column DefaultId="DataItem2" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem5" />
+      </Values>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical" Weight="0.31273549359457425">
+        <LayoutItem DashboardItem="listBoxDashboardItem1" />
+        <LayoutItem DashboardItem="listBoxDashboardItem2" />
+      </LayoutGroup>
+      <LayoutItem DashboardItem="pivotDashboardItem1" Weight="1.6872645064054257" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

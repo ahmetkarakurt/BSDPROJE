@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="SelectQuery" Name="ZZZ_BANK_BAKIYE">
+        <Tables>
+          <Table Name="ZZZ_BANK_BAKIYE" X="30" Y="30" Width="125" Height="242" />
+        </Tables>
+        <Columns>
+          <Column Table="ZZZ_BANK_BAKIYE" Name="NETHESKODU" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="ACIKLAMA" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="DOVIZTIPI" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="BANKAHESNO" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="HESBORCTOPDOV" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="HESALACTOPDOV" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="BAKIYE" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="HESAPTIPI" />
+          <Column Table="ZZZ_BANK_BAKIYE" Name="HESAPTIPLERI" />
+        </Columns>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="ZZZ_BANK_BAKIYE">
+            <Field Name="NETHESKODU" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="DOVIZTIPI" Type="Byte" />
+            <Field Name="BANKAHESNO" Type="String" />
+            <Field Name="HESBORCTOPDOV" Type="Decimal" />
+            <Field Name="HESALACTOPDOV" Type="Decimal" />
+            <Field Name="BAKIYE" Type="Decimal" />
+            <Field Name="HESAPTIPI" Type="Byte" />
+            <Field Name="HESAPTIPLERI" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" DataSource="dashboardSqlDataSource1" DataMember="ZZZ_BANK_BAKIYE">
+      <DataItems>
+        <Dimension DataMember="BANKAHESNO" DefaultId="DataItem0" />
+        <Measure DataMember="BAKIYE" DefaultId="DataItem1" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem0" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+      </Values>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="pivotDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Çek Senet İşlemleri " />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="nwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from ZZZ_CEKSEN_SONISLEM</Sql>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="TIPI" SummaryType="Count" DefaultId="DataItem0" />
+        <Dimension DataMember="TIPI" DefaultId="DataItem1" />
+        <Dimension DataMember="VEREN_CARI_ISIM" DefaultId="DataItem2" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Pie ComponentName="pieDashboardItem2" Name="Pies 2" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" />
+    <Pie ComponentName="pieDashboardItem3" Name="Pies 3" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <DataItems>
+        <Measure DataMember="DURUM" SummaryType="Count" DefaultId="DataItem0" />
+        <Dimension DataMember="DURUM" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Pie ComponentName="pieDashboardItem4" Name="Pies 4" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="YERI" SummaryType="Count" DefaultId="DataItem0" />
+        <Dimension DataMember="YERI" DefaultId="DataItem1" />
+        <Dimension DataMember="VEREN_CARI_ISIM" DefaultId="DataItem2" />
+        <Dimension DataMember="TUTAR" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Dimension>
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+        <Argument DefaultId="DataItem2" />
+        <Argument DefaultId="DataItem4" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutItem DashboardItem="pieDashboardItem1" />
+        <LayoutGroup>
+          <LayoutItem DashboardItem="pieDashboardItem3" />
+          <LayoutItem DashboardItem="pieDashboardItem4" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

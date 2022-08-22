@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Uretilenurunler">
+        <Sql>SELECT   ISNULL(SUM(SH.STHAR_GCMIK),  0 )  URETIMMIKTARI, ST.STOK_ADI,ST.STOK_KODU,SH.STHAR_TARIH
+FROM TBLSTHAR SH WITH (NOLOCK) 
+INNER JOIN TBLSTSABIT ST ON ST.STOK_KODU=SH.STOK_KODU
+INNER JOIN TBLESNSTMAS ES ON (ES.STOKKODU = SH.STOK_KODU AND  ISNULL(ES.YAPKOD,  '' ) = ISNULL(SH.YAPKOD,  '' ) )
+LEFT OUTER JOIN ESNYAPMAS ON (ESNYAPMAS.YAPKOD = SH.YAPKOD)
+WHERE STHAR_HTUR = 'C' 
+AND STHAR_GCKOD = 'G' 
+AND STHAR_BGTIP = 'U' 
+AND ES.MAMULMU = 'E' 
+AND ES.BILESENMI = 'H' 
+AND (SH.SUBE_KODU = 0)
+--AND SH.STHAR_TARIH BETWEEN '07/03/2022' AND '08/02/2022'
+
+GROUP BY ST.STOK_ADI,STHAR_HTUR ,STHAR_GCKOD,SH.STHAR_TARIH,ST.STOK_KODU
+ORDER BY URETIMMIKTARI DESC
+</Sql>
+      </Query>
+      <Query Type="CustomSqlQuery" Name="Hammade Tüketim">
+        <Parameter Name="Hammadde" Type="DevExpress.DataAccess.Expression">(System.Int16)(?Hammadde)</Parameter>
+        <Sql>SELECT ISNULL(SUM(SH.STHAR_GCMIK),  0 )  URETIMMIKTARI, ST.STOK_ADI,ST.STOK_KODU,SH.STHAR_TARIH
+FROM TBLSTHAR SH WITH (NOLOCK) 
+INNER JOIN TBLSTSABIT ST ON ST.STOK_KODU=SH.STOK_KODU
+INNER JOIN TBLESNSTMAS ES ON (ES.STOKKODU = SH.STOK_KODU AND  ISNULL(ES.YAPKOD,  '' ) = ISNULL(SH.YAPKOD,  '' ) )
+LEFT OUTER JOIN ESNYAPMAS ON (ESNYAPMAS.YAPKOD = SH.YAPKOD)
+WHERE STHAR_HTUR = 'C' 
+AND STHAR_GCKOD = 'C' 
+AND STHAR_BGTIP = 'V' 
+AND ES.MAMULMU = 'H' 
+AND ES.BILESENMI = 'E' 
+AND (SH.SUBE_KODU = 0)
+and ST.STOK_KODU NOT LIKE '720%'
+--AND SH.STHAR_TARIH BETWEEN '07/03/2022' AND '08/02/2022'
+
+GROUP BY ST.STOK_ADI,STHAR_HTUR ,STHAR_GCKOD,SH.STHAR_TARIH,ST.STOK_KODU
+ORDER BY URETIMMIKTARI DESC</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Uretilenurunler">
+            <Field Name="URETIMMIKTARI" Type="Decimal" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+          </View>
+          <View Name="Hammade Tüketim">
+            <Field Name="URETIMMIKTARI" Type="Decimal" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="En çok Üretilen 15 Ürün" DataSource="dashboardSqlDataSource1" DataMember="Uretilenurunler">
+      <InteractivityOptions TargetDimensions="Points" />
+      <DataItems>
+        <Measure DataMember="URETIMMIKTARI" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem0" TopNEnabled="true" TopNShowOthers="true" TopNCount="15" TopNMeasure="DataItem0" DefaultId="DataItem1" />
+      </DataItems>
+      <FormatRules>
+        <ChartItemFormatRule Name="FormatRule 1" DataItem="DataItem0" ShowInLegend="false" SeriesId="DataItem0">
+          <FormatConditionRangeSet ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <AppearanceSettings AppearanceType="Red" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="20" />
+                  <AppearanceSettings AppearanceType="Orange" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="40" />
+                  <AppearanceSettings AppearanceType="Yellow" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="60" />
+                  <AppearanceSettings AppearanceType="Green" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="80" />
+                  <AppearanceSettings AppearanceType="Blue" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+          </FormatConditionRangeSet>
+        </ChartItemFormatRule>
+      </FormatRules>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Bölme 1">
+          <Series>
+            <Simple Name="Üretim Miktarı">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+      <ChartLegend IsInsidePosition="true" InsidePosition="TopLeftVertical" OutsidePosition="BottomRightVertical" />
+    </Chart>
+    <Chart ComponentName="chartDashboardItem2" Name="En çok Tüketilen 30 Hammadde" DataSource="dashboardSqlDataSource1" DataMember="Hammade Tüketim">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="URETIMMIKTARI" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem0" TopNEnabled="true" TopNShowOthers="true" TopNCount="30" TopNMeasure="DataItem0" DefaultId="DataItem1" />
+      </DataItems>
+      <FormatRules>
+        <ChartItemFormatRule Name="FormatRule 1" DataItem="DataItem0" ShowInLegend="false" SeriesId="DataItem0">
+          <FormatConditionRangeSet ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <AppearanceSettings AppearanceType="Red" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="20" />
+                  <AppearanceSettings AppearanceType="Orange" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="40" />
+                  <AppearanceSettings AppearanceType="Yellow" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="60" />
+                  <AppearanceSettings AppearanceType="Green" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="80" />
+                  <AppearanceSettings AppearanceType="Blue" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+          </FormatConditionRangeSet>
+        </ChartItemFormatRule>
+      </FormatRules>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Bölme 1">
+          <Series>
+            <Simple Name="Tüketim Miktarı">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="chartDashboardItem1" Weight="37.53315649867374" />
+      <LayoutItem DashboardItem="chartDashboardItem2" Weight="31.23342175066313" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

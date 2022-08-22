@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT        REPLACE(REPLACE(REPLACE(dbo.TBLCASABIT.CARI_ISIM,'Þ','Ş'),'Ý','İ'),'Ð','Ğ') AS CARI_ISIM, dbo.TBLCASABIT.CARI_KOD , TRA.SBORC, TRA.SALACAK, TRA.SDBORC, TRA.SDALACAK, KUR.SIRA, KUR.ISIM AS KURISIM, 
+                         CASE WHEN CARI_TIP = 'A' THEN 'ALICI' WHEN CARI_TIP = 'S' THEN 'SATICI' WHEN CARI_TIP = 'T' THEN 'TOPTANCI' WHEN CARI_TIP = 'M' THEN 'MUSTAHSIL' WHEN CARI_TIP = 'V' THEN 'AVUKAT' ELSE 'DIGER'
+                          END AS CARI_TIP
+FROM            dbo.TBLCASABIT LEFT OUTER JOIN
+                             (SELECT        CARI_KOD, DOVIZ_TURU, SUM(CASE WHEN BORC &gt; 0 THEN BORC ELSE 0 END) AS SBORC, SUM(CASE WHEN ALACAK &gt; 0 THEN ALACAK ELSE 0 END) AS SALACAK, 
+                                                         SUM(CASE WHEN BORC &gt; 0 THEN DOVIZ_TUTAR ELSE 0 END) AS SDBORC, SUM(CASE WHEN ALACAK &gt; 0 THEN DOVIZ_TUTAR ELSE 0 END) AS SDALACAK
+                               FROM            dbo.TBLCAHAR
+                               WHERE        (DOVIZ_TURU BETWEEN 0 AND 20) AND (HAREKET_TURU BETWEEN 'A' AND 'L')
+                               GROUP BY CARI_KOD, DOVIZ_TURU) AS TRA ON dbo.TBLCASABIT.CARI_KOD = TRA.CARI_KOD LEFT OUTER JOIN
+                         NETSIS.dbo.KUR AS KUR ON KUR.SIRA = TRA.DOVIZ_TURU
+WHERE        (dbo.TBLCASABIT.CM_BORCT + dbo.TBLCASABIT.CM_ALACT &lt;&gt; 0)
+</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="SBORC" Type="Decimal" />
+            <Field Name="SALACAK" Type="Decimal" />
+            <Field Name="SDBORC" Type="Decimal" />
+            <Field Name="SDALACAK" Type="Decimal" />
+            <Field Name="SIRA" Type="Int32" />
+            <Field Name="KURISIM" Type="String" />
+            <Field Name="CARI_TIP" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Hesaplanan alan 1" Expression="[CARI_KOD]+' '+[CARI_ISIM]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="TL Bakiye" Expression="Iif(IsNull([SIRA]),[SBORC]-[SALACAK] ,0 )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="USD Bakiye" Expression="Iif([SIRA]==1,[SDBORC]-[SDALACAK] ,0 )&#xA;" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="EURO Bakiye" Expression="Iif([SIRA]==2,[SDBORC]-[SDALACAK] ,0 )&#xA;&#xA;" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Toplam Bakiye" Expression="[SBORC]-[SALACAK]" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Dövizli Bakiye" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="CARI_KOD" DefaultId="DataItem0" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem1" />
+        <Dimension DataMember="CARI_TIP" DefaultId="DataItem2" />
+        <Measure DataMember="TL Bakiye" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="USD Bakiye" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="chr-Cher-US" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="EURO Bakiye" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="de-DE" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="Toplam Bakiye" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+      </DataItems>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" ApplyToRow="true" DataItem="DataItem6" DataItemApplyTo="DataItem6">
+          <FormatConditionValue Condition="Less">
+            <AppearanceSettings AppearanceType="PaleRed" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItem="DataItem6" DataItemApplyTo="DataItem6">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleGreen" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Name="Cari Kod" Weight="31.15">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Cari isim" Weight="60.55">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Cari Tipi" Weight="22.4">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="TL Bakiye" Weight="45.85">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="USD Bakiye" Weight="171.15">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="EURO Bakiye " Weight="118.65">
+          <Measure DefaultId="DataItem5" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Genel Toplam" Weight="75.25">
+          <Measure DefaultId="DataItem6" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Cari Seçimi" DataSource="dashboardSqlDataSource1" DataMember="Query" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem0" />
+        <Dimension DataMember="CARI_KOD" DefaultId="DataItem1" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="6.4320388349514559" />
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="93.567961165048544" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

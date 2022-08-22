@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Visible="false" Text="Muhasebe Detay" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT        MF.AY_KODU, MF.FISNO, MF.SIRA, MF.HES_KOD, MF.TARIH, MF.BA, MF.ACIKLAMA, MF.TUTAR, MF.MIKTAR, MF.REF_KOD, MF.ACIKLAMA2, MF.DOVIZTIP, MF.DOVIZTUT, MF.FIRMADOVTIP, MF.FIRMADOVTUT, 
+                         MF.UPDATEKODU, MF.EVRAKTARIHI, MF.HESAPISMI, MF.YONTEM, MF.ENTEGREFKEY, MF.YEDEK1, MF.YEDEK2, MF.YEDEK3, MF.YEDEK4, MF.YEDEK5, MF.YEDEK6, MF.YEDEK7, MF.YEDEK8, MF.YEDEK9, MF.YEDEK10, 
+                         MF.YEDEK11, MF.PROJE_KODU, MF.SUBE_KODU, MF.SUBELI, MF.HARKONTROL, MF.KAYITYAPANKUL, MF.KAYITTARIHI, MF.DUZELTMEYAPANKUL, MF.DUZELTMETARIHI, MF.BFORMCARIKODU, MF.BFORMBELGENO, 
+                         MF.GUID, MF.ISLEMSIRANO, MF.KAYITSEKLI, MF.MGECDK, MF.KULL_ID, MF.ISLEMTIPI, MF.EDEFTER_SIRA, KUR.ISIM AS CLC_FXNAME, FIRMAKUR.ISIM AS CLC_COMPANYFXNAME, MP.HS_ADI AS CLC_ACCOUNTNAME, 
+                         PR.PROJE_ACIKLAMA AS CLC_PROJECTDESC, MR.GRUP_ISIM AS CLC_REFDESC, MFE.BELGE_TIPI, MFE.BELGE_NO, MFE.S_YEDEK1, (CASE BA WHEN '1' THEN 'B' WHEN '2' THEN 'A' ELSE '' END) AS DURUM, 
+                         (CASE KAYITSEKLI WHEN 'T' THEN 'Ters' ELSE 'Düz' END) AS KAYITDURUM
+FROM            dbo.TBLMUHFIS AS MF WITH (NOLOCK) LEFT OUTER JOIN
+                         NETSIS.dbo.KUR AS KUR WITH (NOLOCK) ON MF.DOVIZTIP = KUR.SIRA LEFT OUTER JOIN
+                         NETSIS.dbo.KUR AS FIRMAKUR WITH (NOLOCK) ON MF.FIRMADOVTIP = FIRMAKUR.SIRA LEFT OUTER JOIN
+                         dbo.TBLMUPLAN AS MP WITH (NOLOCK) ON MF.HES_KOD = MP.HESAP_KODU LEFT OUTER JOIN
+                         dbo.TBLPROJE AS PR WITH (NOLOCK) ON MF.PROJE_KODU = PR.PROJE_KODU LEFT OUTER JOIN
+                         dbo.TBLMUHAREF AS MR WITH (NOLOCK) ON MF.REF_KOD = MR.GRUP_KOD LEFT OUTER JOIN
+                         dbo.TBLMUHFISEK AS MFE WITH (NOLOCK) ON MF.AY_KODU = MFE.MUHAY_KODU AND MF.FISNO = MFE.MUHFISNO AND MF.SIRA = MFE.MUHSIRA</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="AY_KODU" Type="Byte" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="SIRA" Type="Int32" />
+            <Field Name="HES_KOD" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="BA" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="TUTAR" Type="Decimal" />
+            <Field Name="MIKTAR" Type="Decimal" />
+            <Field Name="REF_KOD" Type="String" />
+            <Field Name="ACIKLAMA2" Type="String" />
+            <Field Name="DOVIZTIP" Type="Byte" />
+            <Field Name="DOVIZTUT" Type="Decimal" />
+            <Field Name="FIRMADOVTIP" Type="Byte" />
+            <Field Name="FIRMADOVTUT" Type="Decimal" />
+            <Field Name="UPDATEKODU" Type="String" />
+            <Field Name="EVRAKTARIHI" Type="DateTime" />
+            <Field Name="HESAPISMI" Type="String" />
+            <Field Name="YONTEM" Type="String" />
+            <Field Name="ENTEGREFKEY" Type="String" />
+            <Field Name="YEDEK1" Type="String" />
+            <Field Name="YEDEK2" Type="String" />
+            <Field Name="YEDEK3" Type="Decimal" />
+            <Field Name="YEDEK4" Type="Decimal" />
+            <Field Name="YEDEK5" Type="Int16" />
+            <Field Name="YEDEK6" Type="Int16" />
+            <Field Name="YEDEK7" Type="Int32" />
+            <Field Name="YEDEK8" Type="String" />
+            <Field Name="YEDEK9" Type="String" />
+            <Field Name="YEDEK10" Type="Byte" />
+            <Field Name="YEDEK11" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="SUBELI" Type="String" />
+            <Field Name="HARKONTROL" Type="Int16" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="BFORMCARIKODU" Type="String" />
+            <Field Name="BFORMBELGENO" Type="String" />
+            <Field Name="GUID" Type="String" />
+            <Field Name="ISLEMSIRANO" Type="Int32" />
+            <Field Name="KAYITSEKLI" Type="String" />
+            <Field Name="MGECDK" Type="String" />
+            <Field Name="KULL_ID" Type="Int16" />
+            <Field Name="ISLEMTIPI" Type="String" />
+            <Field Name="EDEFTER_SIRA" Type="Int32" />
+            <Field Name="CLC_FXNAME" Type="String" />
+            <Field Name="CLC_COMPANYFXNAME" Type="String" />
+            <Field Name="CLC_ACCOUNTNAME" Type="String" />
+            <Field Name="CLC_PROJECTDESC" Type="String" />
+            <Field Name="CLC_REFDESC" Type="String" />
+            <Field Name="BELGE_TIPI" Type="String" />
+            <Field Name="BELGE_NO" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="DURUM" Type="String" />
+            <Field Name="KAYITDURUM" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="TUTAR" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CLC_ACCOUNTNAME" DefaultId="DataItem1" />
+        <Dimension DataMember="AY_KODU" DefaultId="DataItem2" />
+      </DataItems>
+      <Columns>
+        <Column DefaultId="DataItem2" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Ay" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <ListBox ComponentName="listBoxDashboardItem1" Name="Muhasebe Kodu" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowAllValue="false" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="HES_KOD" DefaultId="DataItem0" />
+        <Dimension DataMember="CLC_ACCOUNTNAME" DefaultId="DataItem1" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </FilterDimensions>
+    </ListBox>
+    <ComboBox ComponentName="comboBoxDashboardItem2" Name="Belke Tipi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="BELGE_TIPI" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutGroup Weight="0.31617908344108253">
+          <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="1.8978696571073142" />
+          <LayoutItem DashboardItem="comboBoxDashboardItem2" Weight="0.8613998503636322" />
+        </LayoutGroup>
+        <LayoutGroup Weight="1.6838209165589175">
+          <LayoutItem DashboardItem="listBoxDashboardItem1" Weight="0.53071389042612038" />
+          <LayoutItem DashboardItem="pivotDashboardItem1" Weight="1.4692861095738796" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

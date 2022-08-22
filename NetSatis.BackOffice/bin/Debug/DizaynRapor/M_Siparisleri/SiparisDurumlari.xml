@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM BSD_SIPARIS_TESLIM_STOK</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="GRUPKODU" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="FTIRSIP" Type="String" />
+            <Field Name="FATIRS_NO" Type="String" />
+            <Field Name="CARI_KODU" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="TIPI" Type="Byte" />
+            <Field Name="BRUTTUTAR" Type="Decimal" />
+            <Field Name="ODEMEGUNU" Type="Int16" />
+            <Field Name="ODEMETARIHI" Type="DateTime" />
+            <Field Name="SIPARIS_TEST" Type="DateTime" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="URETICI_KODU" Type="String" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="TESLIM_MIK" Type="Decimal" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_SIPNUM" Type="String" />
+            <Field Name="TESLIM_TARIHI" Type="DateTime" />
+            <Field Name="INCKEYNO" Type="Int32" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="HAR_STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_HTUR" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Calculated Field 1" Expression="[STHAR_GCMIK]-[TESLIM_MIK]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="TERMİN_GUN" Expression="DateDiffDay(GetDate([TARIH]),GetDate([SIPARIS_TEST]) )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="TERM_TESLIM" Expression="DateDiffDay([SIPARIS_TEST],[TESLIM_TARIHI] )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="TERMIN_KALAN_GUN" Expression="Iif([STHAR_GCMIK]=[TESLIM_MIK],0 ,DateDiffDay(GetDate(LocalDateTimeNow()),[SIPARIS_TEST] ) )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="DURUMU" Expression="Iif([TIPI]=1,'KAPALI' ,'ACIK' )&#xA;" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Calculated Field 2" Expression="Iif([TIPI]=1,'KAPALI' ,'ACIK' )" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" ShowCaption="false" DataSource="dashboardSqlDataSource1" DataMember="Query" FilterString="StartsWith([DataItem1], '6')">
+      <DataItems>
+        <Dimension DataMember="FATIRS_NO" SortOrder="Descending" DefaultId="DataItem0" />
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem1" />
+        <Dimension DataMember="FISNO" DefaultId="DataItem2" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem3" />
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="TESLIM_MIK" DefaultId="DataItem5">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="TESLIM_MIK" DefaultId="DataItem6" />
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem7" />
+        <Dimension DataMember="SIPARIS_TEST" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem8" />
+        <Dimension DataMember="TESLIM_TARIHI" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem9" />
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem10" />
+        <Measure DataMember="TERMİN_GUN" SummaryType="Max" DefaultId="DataItem11" />
+        <Measure DataMember="TERM_TESLIM" DefaultId="DataItem12" />
+        <Dimension DataMember="TERMIN_KALAN_GUN" SortOrder="Descending" DefaultId="DataItem13" />
+        <Measure DataMember="DURUMU" SummaryType="Count" DefaultId="DataItem15" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem1" />
+      </HiddenDimensions>
+      <HiddenMeasures>
+        <Measure DefaultId="DataItem6" />
+        <Measure DefaultId="DataItem15" />
+      </HiddenMeasures>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" DataItem="DataItem6" DataItemApplyTo="DataItem5">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="PaleRed" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItemApplyTo="DataItem5">
+          <FormatConditionExpression Expression="[DataItem5] &lt; [DataItem4]">
+            <AppearanceSettings AppearanceType="FontBold" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" DataItemApplyTo="DataItem4">
+          <FormatConditionExpression Expression="[DataItem4] = [DataItem5]">
+            <AppearanceSettings AppearanceType="PaleGreen" />
+          </FormatConditionExpression>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Weight="87.098738341274341">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="75.685800213797009">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="42.648347739520538" FixedWidth="23.813957270420826">
+          <Dimension DefaultId="DataItem7" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="TARIH" Weight="51.057881096609087" FixedWidth="16.153523463152588">
+          <Dimension DefaultId="DataItem10" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="TERM_TARIHI" Weight="60.0680954077754" FixedWidth="13.988618256750694">
+          <Dimension DefaultId="DataItem8" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="TERMIN_GUN" Weight="46.853114418064813" FixedWidth="12.656368898964914">
+          <Measure DefaultId="DataItem11" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="TSLM_TAR" Weight="56.46400968330888">
+          <Dimension DefaultId="DataItem9" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="TERM_TESLIM" Weight="64.272862086319677" FixedWidth="12.489837729241691">
+          <Measure DefaultId="DataItem12" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Weight="81.0919288004968" FixedWidth="17.65230399066159">
+          <Dimension DefaultId="DataItem13" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="MIK" Weight="40.245623923209521">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="TESLIM_MIK" Weight="60.0680954077754">
+          <Measure DefaultId="DataItem5" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Weight="229.46012445770202">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions AllowGridCellMerge="true" ColumnWidthMode="Manual" />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="92.982456140350877" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

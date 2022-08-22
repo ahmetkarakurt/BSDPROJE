@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT        dbo.TBLSTHAR.STOK_KODU, dbo.TBLSTSABIT.STOK_ADI, dbo.TBLSTHAR.DEPO_KODU, SUM(CASE WHEN STHAR_GCKOD = 'G' THEN STHAR_GCMIK ELSE STHAR_GCMIK * - 1 END) AS TOPLAM, 
+                         dbo.TBLSTSABIT.ALIS_FIAT1, dbo.TBLSTSABIT.ALIS_DOV_TIP, dbo.TBLSTSABIT.DOV_ALIS_FIAT, dbo.BSD_SON_GIRIS_FIYATLARI.SON_GIR_FIYAT, dbo.BSD_SON_GIRIS_FIYATLARI.SON_GIR_DOV, 
+                         dbo.BSD_SON_GIRIS_FIYATLARI.STHAR_DOVTIP, dbo.TBLSTSABITEK.SON_SATAL_FIAT, dbo.TBLSTSABIT.GRUP_KODU
+FROM            dbo.TBLSTHAR LEFT OUTER JOIN
+                         dbo.TBLSTSABITEK ON dbo.TBLSTHAR.STOK_KODU = dbo.TBLSTSABITEK.STOK_KODU LEFT OUTER JOIN
+                         dbo.BSD_SON_GIRIS_FIYATLARI ON dbo.TBLSTHAR.STOK_KODU = dbo.BSD_SON_GIRIS_FIYATLARI.STOK_KODU LEFT OUTER JOIN
+                         dbo.TBLSTSABIT ON dbo.TBLSTHAR.STOK_KODU = dbo.TBLSTSABIT.STOK_KODU
+GROUP BY dbo.TBLSTHAR.STOK_KODU, dbo.TBLSTHAR.DEPO_KODU, dbo.TBLSTSABIT.STOK_ADI, dbo.TBLSTSABIT.ALIS_FIAT1, dbo.TBLSTSABIT.DOV_ALIS_FIAT, dbo.TBLSTSABIT.ALIS_DOV_TIP, 
+                         dbo.BSD_SON_GIRIS_FIYATLARI.SON_GIR_FIYAT, dbo.BSD_SON_GIRIS_FIYATLARI.SON_GIR_DOV, dbo.BSD_SON_GIRIS_FIYATLARI.STHAR_DOVTIP, dbo.TBLSTSABITEK.SON_SATAL_FIAT, 
+                         dbo.TBLSTSABIT.GRUP_KODU
+HAVING        (dbo.TBLSTHAR.STOK_KODU NOT LIKE '600-%')
+and  (dbo.TBLSTHAR.STOK_KODU NOT LIKE '720-%')
+and (dbo.TBLSTHAR.STOK_KODU NOT LIKE '253-%')
+
+</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="TOPLAM" Type="Decimal" />
+            <Field Name="ALIS_FIAT1" Type="Decimal" />
+            <Field Name="ALIS_DOV_TIP" Type="Byte" />
+            <Field Name="DOV_ALIS_FIAT" Type="Decimal" />
+            <Field Name="SON_GIR_FIYAT" Type="Decimal" />
+            <Field Name="SON_GIR_DOV" Type="Decimal" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="SON_SATAL_FIAT" Type="Decimal" />
+            <Field Name="GRUP_KODU" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="DOLAR ALIS" Expression="Iif([STHAR_DOVTIP] ='1', [SON_GIR_DOV],0)" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="EURO ALIS" Expression="Iif([STHAR_DOVTIP] ='2', [SON_GIR_DOV],0)&#xA;" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="DOLAR_ALIS_FIYAT" Expression="Iif([DOV_ALIS_FIAT] ='1', [SON_GIR_DOV],0)&#xA;" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="GENEL TOPLAM" Expression="[TOPLAM]*[ALIS_FIAT1]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="SON_GIR_TOPLAM" Expression="[TOPLAM]*[SON_GIR_FIYAT]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Hesaplanan alan 1" Expression="'STOK FİYATI'" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="FARK" Expression="[ALIS_FIAT1]-[SON_GIR_FIYAT]" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="SON_SATIN" Expression="[TOPLAM] * [SON_SATAL_FIAT]" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="0" Type="System.Decimal" />
+  </Parameters>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="STOK" DataSource="dashboardSqlDataSource1" DataMember="Query" FilterString="[DataItem3] &gt; ?0">
+      <DataItems>
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem1" />
+        <Dimension DataMember="DEPO_KODU" DefaultId="DataItem2" />
+        <Dimension DataMember="TOPLAM" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Dimension>
+        <Measure DataMember="GENEL TOPLAM" Name="STOK_GENEL TOPLAM" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="DOLAR ALIS" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="chr-Cher-US" />
+        </Dimension>
+        <Dimension DataMember="EURO ALIS" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="de-DE" />
+        </Dimension>
+        <Measure DataMember="ALIS_FIAT1" Name="STOK KART ALIS FIYATI" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SON_GIR_FIYAT" Name="SON GİRİŞ FİYATI" DefaultId="DataItem8">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="FARK" DefaultId="DataItem9">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Dimension>
+        <Dimension DataMember="GRUP_KODU" DefaultId="DataItem11" />
+      </DataItems>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" ApplyToRow="true" DataItem="DataItem6" DataItemApplyTo="DataItem6">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleRed" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItem="DataItem5" DataItemApplyTo="DataItem5">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleYellow" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Weight="71.239199176510226">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="90.442809389308636">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="54.513474152460006">
+          <Dimension DefaultId="DataItem11" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="45.221404694654318">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="79.911797337128874">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="60.088715827143417">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Weight="53.894002855272959">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="58.230301935582276">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="79.911797337128874">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Weight="47.07981858621546">
+          <Measure DefaultId="DataItem8" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="FARK" Weight="65.194120942905869" WidthType="FitToContent">
+          <Dimension DefaultId="DataItem9" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" ColumnWidthMode="Manual" />
+    </Grid>
+    <Card ComponentName="cardDashboardItem1" Name="STOK KARTI FIYATI" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="GENEL TOPLAM" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="Hesaplanan alan 1" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Card Name="TOPLAM">
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <Card ComponentName="cardDashboardItem3" Name="SON GİRİŞ FİYATI" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="SON_SATIN" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="Hesaplanan alan 1" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Card Name="GENEL TOPALAM">
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="GRUP KODU" DataSource="dashboardSqlDataSource1" DataMember="Query" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="GRUP_KODU" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutGroup Orientation="Vertical" Weight="75.910931174089072">
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="7.3619631901840492" />
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="92.638036809815958" />
+      </LayoutGroup>
+      <LayoutGroup Orientation="Vertical" Weight="24.089068825910932">
+        <LayoutItem DashboardItem="cardDashboardItem1" Weight="32.883435582822088" />
+        <LayoutItem DashboardItem="cardDashboardItem3" Weight="32.515337423312886" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

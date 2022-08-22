@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Stok Alis" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT 
+(SELECT REPLACE(REPLACE(REPLACE(STOK_ADI,'Ý','İ'),'Þ','Ş'),'Ð','Ğ') FROM TBLSTSABIT WHERE STOK_KODU=STHAR.STOK_KODU) AS STOK_ADI,
+(SELECT  REPLACE(REPLACE(REPLACE(CARI_ISIM,'Ý','İ'),'Þ','Ş'),'Ð','Ğ') FROM TBLCASABIT WHERE CARI_KOD=STHAR.STHAR_ACIKLAMA) AS CARI_ISIM, STHAR_BF*STHAR_GCMIK AS GENEL_TOPLAM,
+* FROM TBLSTHAR STHAR WHERE STHAR_FTIRSIP='2' AND STHAR_HTUR='J'</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="GENEL_TOPLAM" Type="Decimal" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_GCMIK2" Type="Decimal" />
+            <Field Name="CEVRIM" Type="Decimal" />
+            <Field Name="STHAR_GCKOD" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_IAF" Type="Decimal" />
+            <Field Name="STHAR_KDV" Type="Decimal" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="STHAR_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_SATISK" Type="Decimal" />
+            <Field Name="STHAR_MALFISK" Type="Decimal" />
+            <Field Name="STHAR_FTIRSIP" Type="String" />
+            <Field Name="STHAR_SATISK2" Type="Decimal" />
+            <Field Name="LISTE_FIAT" Type="Byte" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="PROMASYON_KODU" Type="Byte" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_ODEGUN" Type="Int16" />
+            <Field Name="STRA_SATISK3" Type="Decimal" />
+            <Field Name="STRA_SATISK4" Type="Decimal" />
+            <Field Name="STRA_SATISK5" Type="Decimal" />
+            <Field Name="STRA_SATISK6" Type="Decimal" />
+            <Field Name="STHAR_BGTIP" Type="String" />
+            <Field Name="STHAR_KOD1" Type="String" />
+            <Field Name="STHAR_KOD2" Type="String" />
+            <Field Name="STHAR_SIPNUM" Type="String" />
+            <Field Name="STHAR_CARIKOD" Type="String" />
+            <Field Name="STHAR_SIP_TURU" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="EKALAN_NEDEN" Type="String" />
+            <Field Name="EKALAN" Type="String" />
+            <Field Name="EKALAN1" Type="String" />
+            <Field Name="REDMIK" Type="Decimal" />
+            <Field Name="REDNEDEN" Type="Byte" />
+            <Field Name="SIRA" Type="Int16" />
+            <Field Name="STRA_SIPKONT" Type="Int16" />
+            <Field Name="AMBAR_KABULNO" Type="String" />
+            <Field Name="FIRMA_DOVTIP" Type="Byte" />
+            <Field Name="FIRMA_DOVTUT" Type="Decimal" />
+            <Field Name="FIRMA_DOVMAL" Type="Decimal" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="IRSALIYE_NO" Type="String" />
+            <Field Name="IRSALIYE_TARIH" Type="DateTime" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="ECZA_FAT_TIP" Type="Byte" />
+            <Field Name="STHAR_TESTAR" Type="DateTime" />
+            <Field Name="OLCUBR" Type="Byte" />
+            <Field Name="INCKEYNO" Type="Int32" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="LISTE_NO" Type="String" />
+            <Field Name="BAGLANTI_NO" Type="Int32" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="MUH_KODU" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="F_YEDEK5" Type="Decimal" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="FIYATTARIHI" Type="DateTime" />
+            <Field Name="KOSULTARIHI" Type="DateTime" />
+            <Field Name="SATISK1TIP" Type="Int16" />
+            <Field Name="SATISK2TIP" Type="Int16" />
+            <Field Name="SATISK3TIP" Type="Int16" />
+            <Field Name="SATISK4TIP" Type="Int16" />
+            <Field Name="SATISK5TIP" Type="Int16" />
+            <Field Name="SATISK6TIP" Type="Int16" />
+            <Field Name="EXPORTTYPE" Type="Byte" />
+            <Field Name="EXPORTMIK" Type="Decimal" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="KKMALF" Type="Decimal" />
+            <Field Name="STRA_IRSKONT" Type="Int16" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="MAMYAPKOD" Type="String" />
+            <Field Name="OTVFIYAT" Type="Decimal" />
+            <Field Name="IRS_INCKEYNO" Type="Int32" />
+            <Field Name="YEDEK11" Type="String" />
+            <Field Name="YEDEK12" Type="String" />
+            <Field Name="YEDEK13" Type="Int32" />
+            <Field Name="YEDEK14" Type="Int32" />
+            <Field Name="YEDEK15" Type="Double" />
+            <Field Name="YEDEK16" Type="Double" />
+            <Field Name="YEDEK17" Type="DateTime" />
+            <Field Name="YEDEK18" Type="DateTime" />
+            <Field Name="YEDEK19" Type="String" />
+            <Field Name="YEDEK20" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem1" Name="Ortalama" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Measure DataMember="GENEL_TOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortOrder="Descending" SortByMeasure="DataItem0" TopNEnabled="true" TopNCount="25" TopNMeasure="DataItem0" DefaultId="DataItem2" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Liste" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="GENEL_TOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_GCMIK" Name="Adet" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem2" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem3" />
+        <Measure DataMember="STHAR_BF" Name="En Düşük" SummaryType="Min" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_BF" Name="En Yüksek" SummaryType="Max" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_BF" Name="Ortalama" SummaryType="Average" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem3" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem4" />
+        <Value DefaultId="DataItem5" />
+        <Value DefaultId="DataItem6" />
+      </Values>
+    </Pivot>
+    <DateFilter ComponentName="dateFilterDashboardItem1" Name="Tarih" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <InteractivityOptions IgnoreMasterFilters="false" />
+      <DataItems>
+        <Dimension DataMember="STHAR_TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+      </DataItems>
+      <Dimension DefaultId="DataItem0" />
+    </DateFilter>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Stok" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem1" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </FilterDimensions>
+    </ComboBox>
+    <ComboBox ComponentName="comboBoxDashboardItem2" Name="Cari" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem0" />
+        <Dimension DataMember="STHAR_ACIKLAMA" DefaultId="DataItem1" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical">
+      <LayoutGroup Weight="0.42538464990079178">
+        <LayoutItem DashboardItem="dateFilterDashboardItem1" Weight="0.53509924086155736" />
+        <LayoutItem DashboardItem="comboBoxDashboardItem2" Weight="0.93345087666513349" />
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="0.93345087666513349" />
+      </LayoutGroup>
+      <LayoutGroup Weight="1.6177808177251072">
+        <LayoutItem DashboardItem="pivotDashboardItem1" Weight="1.043165467625899" />
+        <LayoutItem DashboardItem="pieDashboardItem1" Weight="0.956834532374101" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

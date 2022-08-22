@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Visible="false" Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT        TOP (100) PERCENT dbo.TBLSTOKURM.MAMUL_KODU, dbo.TBLSTOKURM.HAM_KODU, dbo.TBLSTOKURM.MIKTAR, dbo.TBLSTOKURM.STOK_MALIYET, TBLSTSABIT_1.STOK_ADI, 
+                         dbo.TBLSTSABIT.STOK_ADI AS MAMUL_ADI, TBLSTSABIT_1.GRUP_KODU, TBLSTSABIT_1.OLCU_BR1
+FROM            dbo.TBLSTOKURM LEFT OUTER JOIN
+                         dbo.TBLSTSABIT ON dbo.TBLSTOKURM.MAMUL_KODU = dbo.TBLSTSABIT.STOK_KODU LEFT OUTER JOIN
+                         dbo.TBLSTSABIT AS TBLSTSABIT_1 ON dbo.TBLSTOKURM.HAM_KODU = TBLSTSABIT_1.STOK_KODU
+WHERE        (dbo.TBLSTOKURM.GEC_FLAG = 0) AND (dbo.TBLSTOKURM.GEC_SON_DURUM &lt;&gt; 'K') AND (ISNULL(dbo.TBLSTOKURM.MAMYAPKOD, '') = '')
+ORDER BY dbo.TBLSTOKURM.INCKEYNO</Sql>
+      </Query>
+      <Query Type="CustomSqlQuery" Name="Query_1">
+        <Sql>SELECT STOK_KODU AS HAM_KODU,* FROM TBLSTHAR </Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="MAMUL_KODU" Type="String" />
+            <Field Name="HAM_KODU" Type="String" />
+            <Field Name="MIKTAR" Type="Decimal" />
+            <Field Name="STOK_MALIYET" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="MAMUL_ADI" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="OLCU_BR1" Type="String" />
+          </View>
+          <View Name="Query_1">
+            <Field Name="HAM_KODU" Type="String" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_GCMIK2" Type="Decimal" />
+            <Field Name="CEVRIM" Type="Decimal" />
+            <Field Name="STHAR_GCKOD" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_IAF" Type="Decimal" />
+            <Field Name="STHAR_KDV" Type="Decimal" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="STHAR_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_SATISK" Type="Decimal" />
+            <Field Name="STHAR_MALFISK" Type="Decimal" />
+            <Field Name="STHAR_FTIRSIP" Type="String" />
+            <Field Name="STHAR_SATISK2" Type="Decimal" />
+            <Field Name="LISTE_FIAT" Type="Byte" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="PROMASYON_KODU" Type="Byte" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_ODEGUN" Type="Int16" />
+            <Field Name="STRA_SATISK3" Type="Decimal" />
+            <Field Name="STRA_SATISK4" Type="Decimal" />
+            <Field Name="STRA_SATISK5" Type="Decimal" />
+            <Field Name="STRA_SATISK6" Type="Decimal" />
+            <Field Name="STHAR_BGTIP" Type="String" />
+            <Field Name="STHAR_KOD1" Type="String" />
+            <Field Name="STHAR_KOD2" Type="String" />
+            <Field Name="STHAR_SIPNUM" Type="String" />
+            <Field Name="STHAR_CARIKOD" Type="String" />
+            <Field Name="STHAR_SIP_TURU" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="EKALAN_NEDEN" Type="String" />
+            <Field Name="EKALAN" Type="String" />
+            <Field Name="EKALAN1" Type="String" />
+            <Field Name="REDMIK" Type="Decimal" />
+            <Field Name="REDNEDEN" Type="Byte" />
+            <Field Name="SIRA" Type="Int16" />
+            <Field Name="STRA_SIPKONT" Type="Int16" />
+            <Field Name="AMBAR_KABULNO" Type="String" />
+            <Field Name="FIRMA_DOVTIP" Type="Byte" />
+            <Field Name="FIRMA_DOVTUT" Type="Decimal" />
+            <Field Name="FIRMA_DOVMAL" Type="Decimal" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="IRSALIYE_NO" Type="String" />
+            <Field Name="IRSALIYE_TARIH" Type="DateTime" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="ECZA_FAT_TIP" Type="Byte" />
+            <Field Name="STHAR_TESTAR" Type="DateTime" />
+            <Field Name="OLCUBR" Type="Byte" />
+            <Field Name="INCKEYNO" Type="Int32" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="LISTE_NO" Type="String" />
+            <Field Name="BAGLANTI_NO" Type="Int32" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="MUH_KODU" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="F_YEDEK5" Type="Decimal" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="FIYATTARIHI" Type="DateTime" />
+            <Field Name="KOSULTARIHI" Type="DateTime" />
+            <Field Name="SATISK1TIP" Type="Int16" />
+            <Field Name="SATISK2TIP" Type="Int16" />
+            <Field Name="SATISK3TIP" Type="Int16" />
+            <Field Name="SATISK4TIP" Type="Int16" />
+            <Field Name="SATISK5TIP" Type="Int16" />
+            <Field Name="SATISK6TIP" Type="Int16" />
+            <Field Name="EXPORTTYPE" Type="Byte" />
+            <Field Name="EXPORTMIK" Type="Decimal" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="KKMALF" Type="Decimal" />
+            <Field Name="STRA_IRSKONT" Type="Int16" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="MAMYAPKOD" Type="String" />
+            <Field Name="OTVFIYAT" Type="Decimal" />
+            <Field Name="IRS_INCKEYNO" Type="Int32" />
+            <Field Name="YEDEK11" Type="String" />
+            <Field Name="YEDEK12" Type="String" />
+            <Field Name="YEDEK13" Type="Int32" />
+            <Field Name="YEDEK14" Type="Int32" />
+            <Field Name="YEDEK15" Type="Double" />
+            <Field Name="YEDEK16" Type="Double" />
+            <Field Name="YEDEK17" Type="DateTime" />
+            <Field Name="YEDEK18" Type="DateTime" />
+            <Field Name="YEDEK19" Type="String" />
+            <Field Name="YEDEK20" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Uretilen Tutar" Expression="[STHAR_GCMIK]*[STHAR_NF]" DataType="Auto" DataMember="Query_1" />
+        <CalculatedField Name="Hesaplanan alan 1" Expression="Iif([STHAR_HTUR]='C','URETIM' ,[STHAR_HTUR]='A','DEVIR',[STHAR_HTUR]='J','ALIS','diger' )" DataType="Auto" DataMember="Query_1" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Üretimde Kullanılan Stoklar" DataSource="dashboardSqlDataSource1" DataMember="Query" IsMasterFilterCrossDataSource="true">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem0" />
+        <Measure DataMember="MIKTAR" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="HAM_KODU" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem2" />
+        <Dimension DataMember="MAMUL_KODU" DefaultId="DataItem3" />
+        <Dimension DataMember="OLCU_BR1" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem4" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem3" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Weight="64.717741935483872">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="117.94354838709677">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="32.056451612903224">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="85.282258064516128">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem2" Name="Ham. içeren Mamül" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="MAMUL_KODU" SortOrder="Descending" SortByMeasure="DataItem2" DefaultId="DataItem0" />
+        <Dimension DataMember="MAMUL_ADI" SortOrder="Descending" SortByMeasure="DataItem2" DefaultId="DataItem1" />
+        <Measure DataMember="MIKTAR" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="KULLANILAN">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem3" Name="Üretimde Kullanılan Ham." DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem5] = 'C'">
+      <DataItems>
+        <Dimension DataMember="HAM_KODU" DefaultId="DataItem0" />
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="INCKEYNO" SummaryType="Count" DefaultId="DataItem2" />
+        <Measure DataMember="Uretilen Tutar" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="STHAR_HTUR" DefaultId="DataItem5" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem5" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Weight="35.006648936170215">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Kullanılan Miktar" Weight="44.5811170212766">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Üretilen Mamül Sayısı" Weight="145.4122340425532">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Toplam Tutar">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" AllowGridCellMerge="true" ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem4" Name="Ham. Hareketi" DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem5] &lt;&gt; 'B'">
+      <DataItems>
+        <Dimension DataMember="HAM_KODU" SortByMeasure="DataItem3" DefaultId="DataItem0" />
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="INCKEYNO" SummaryType="Count" DefaultId="DataItem2" />
+        <Measure DataMember="Uretilen Tutar" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STHAR_BF" SortByMeasure="DataItem3" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Dimension>
+        <Dimension DataMember="STHAR_HTUR" DefaultId="DataItem5" />
+        <Dimension DataMember="Hesaplanan alan 1" SortByMeasure="DataItem3" DefaultId="DataItem6" />
+        <Dimension DataMember="STHAR_TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem7" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem5" />
+        <Dimension DefaultId="DataItem7" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Weight="52.754982415005856">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Kullanılan/Alınan Toplam" Weight="73.8569753810082">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Üretilen Mamül Sayısı/Alınan" Weight="98.65181711606094">
+          <Measure DefaultId="DataItem2" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="Birim Fiyatı" Weight="74.912075029308312">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Türü" Weight="74.912075029308312">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Toplam Tutar" Weight="74.912075029308312">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem5" Name="Ham. Kullanılan Araçlar" DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem5] = 'C'">
+      <DataItems>
+        <Dimension DataMember="HAM_KODU" DefaultId="DataItem0" />
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STHAR_ACIKLAMA" DefaultId="DataItem2" />
+        <Measure DataMember="Uretilen Tutar" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STHAR_HTUR" DefaultId="DataItem5" />
+        <Measure DataMember="STHAR_ACIKLAMA" SummaryType="Count" DefaultId="DataItem4" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem5" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Weight="34.909456535883919">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Kullanılan Miktar" Weight="44.335009800572578">
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="Kullanılan M. Fiyatı" Weight="45.73138806200793">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="Kullanılan Araç" Weight="49.222333715596328">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Kullanılan Araç Sayısı" Weight="54.109657630620077">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions EnableBandedRows="true" AllowGridCellMerge="true" ColumnWidthMode="Manual" />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutGroup Orientation="Vertical" Weight="44.694960212201593">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="49.941520467836256" />
+        <LayoutItem DashboardItem="gridDashboardItem5" Weight="50.058479532163744" />
+      </LayoutGroup>
+      <LayoutGroup Orientation="Vertical" Weight="55.305039787798407">
+        <LayoutItem DashboardItem="gridDashboardItem2" Weight="40.584795321637429" />
+        <LayoutItem DashboardItem="gridDashboardItem3" Weight="16.959064327485379" />
+        <LayoutItem DashboardItem="gridDashboardItem4" Weight="42.456140350877192" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Tarih Bazlı Rapor" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="nwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT * FROM ZZZ_FATURASB</Sql>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <DateFilter ComponentName="dateFilterDashboardItem1" Name="Tarih Giriniz" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="MonthYear" DefaultId="DataItem0" />
+      </DataItems>
+      <Dimension DefaultId="DataItem0" />
+    </DateFilter>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Satış Raporu" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem10] = '1' And [DataItem6] Between(1, 2)">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Measure DataMember="BRUTTUTAR" Name="Bürüt Tutar" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KDV" Name="KDV" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SAT_ISKT" Name="Satır İSkontosu" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="GENEL_ISKONTO" Name="Genel İskonto" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TIPI" DefaultId="DataItem6" />
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="None" DefaultId="DataItem7" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem8" />
+        <Dimension DataMember="FATIRS_NO" DefaultId="DataItem9" />
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem10" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem6" />
+        <Dimension DefaultId="DataItem10" />
+      </HiddenDimensions>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem7" />
+        <Row DefaultId="DataItem8" />
+        <Row DefaultId="DataItem9" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem5" />
+        <Value DefaultId="DataItem4" />
+        <Value DefaultId="DataItem3" />
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Alış Raporu" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem10] = '2' And [DataItem6] = 4">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Measure DataMember="BRUTTUTAR" Name="Bürüt Tutar" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="KDV" Name="KDV" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="SAT_ISKT" Name="Satır İSkontosu" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="GENEL_ISKONTO" Name="Genel İskonto" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TIPI" DefaultId="DataItem6" />
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="None" DefaultId="DataItem7" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem8" />
+        <Dimension DataMember="FATIRS_NO" DefaultId="DataItem9" />
+        <Dimension DataMember="FTIRSIP" DefaultId="DataItem10" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem6" />
+        <Dimension DefaultId="DataItem10" />
+      </HiddenDimensions>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem7" />
+        <Row DefaultId="DataItem8" />
+        <Row DefaultId="DataItem9" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem2" />
+        <Value DefaultId="DataItem5" />
+        <Value DefaultId="DataItem4" />
+        <Value DefaultId="DataItem3" />
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pivot>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutItem DashboardItem="dateFilterDashboardItem1" />
+        <LayoutGroup>
+          <LayoutItem DashboardItem="pivotDashboardItem1" />
+          <LayoutItem DashboardItem="pivotDashboardItem2" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

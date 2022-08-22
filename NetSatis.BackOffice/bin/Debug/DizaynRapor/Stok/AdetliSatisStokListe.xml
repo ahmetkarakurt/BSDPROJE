@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Adetli Stok Listesi " />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT * FROM ZZZ_STOK_HAR_AYRINTI</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="TOPLAM" Type="Decimal" />
+            <Field Name="STHAR_FTIRSIP" Type="String" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="HESAPTIPLERI" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="KOD_1" Type="String" />
+            <Field Name="ID" Type="Guid" />
+            <Field Name="ALIS_FIAT1" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="İADE LİSTESİ" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem0] = 'AlisFaturasi' And ([DataItem5] = 'L')">
+      <DataItems>
+        <Dimension DataMember="HESAPTIPLERI" DefaultId="DataItem0" />
+        <Measure DataMember="TOPLAM" Name="Toplam Tutar" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem3" DefaultId="DataItem2" />
+        <Measure DataMember="STHAR_GCMIK" Name="Toplam Satış" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" SortOrder="Descending" SortByMeasure="DataItem3" DefaultId="DataItem4" />
+        <Dimension DataMember="STHAR_HTUR" DefaultId="DataItem5" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem5" />
+      </HiddenDimensions>
+      <FormatRules>
+        <PivotItemFormatRule Name="Format Rule 1" ApplyToRow="true" DataItem="DataItem1">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleRed" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+      </FormatRules>
+      <Rows>
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem4" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem3" />
+      </Values>
+    </Pivot>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Cari Seçimi" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem1" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </FilterDimensions>
+    </ComboBox>
+    <Pivot ComponentName="pivotDashboardItem2" Name="SATIŞ LİSTESİ" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" FilterString="[DataItem0] = 'SatisFaturasi' And [DataItem8] In('J', 'I')">
+      <DataItems>
+        <Dimension DataMember="HESAPTIPLERI" DefaultId="DataItem0" />
+        <Measure DataMember="TOPLAM" Name="Toplam Tutar" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem3" TopNEnabled="true" TopNCount="250" TopNMeasure="DataItem3" DefaultId="DataItem2" />
+        <Measure DataMember="STHAR_GCMIK" Name="Toplam Satış" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_BF" Name="Düşük Satis" SummaryType="Min" DefaultId="DataItem5">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_BF" Name="Yüksek Satis" SummaryType="Max" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="STHAR_BF" Name="Ortalama Satis" SummaryType="Average" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STHAR_HTUR" DefaultId="DataItem8" />
+        <Measure DataMember="ALIS_FIAT1" Name="Alış Fiyatı" SummaryType="Average" DefaultId="DataItem4">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem8" />
+      </HiddenDimensions>
+      <FormatRules>
+        <PivotItemFormatRule Name="Format Rule 1" ApplyToRow="true" DataItem="DataItem1">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleGreen" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+      </FormatRules>
+      <Rows>
+        <Row DefaultId="DataItem2" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem3" />
+        <Value DefaultId="DataItem5" />
+        <Value DefaultId="DataItem6" />
+        <Value DefaultId="DataItem7" />
+        <Value DefaultId="DataItem4" />
+      </Values>
+    </Pivot>
+    <DateFilter ComponentName="dateFilterDashboardItem1" Name="Date Filter 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <InteractivityOptions IgnoreMasterFilters="false" />
+      <DataItems>
+        <Dimension DataMember="STHAR_TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem1" />
+      </DataItems>
+      <Dimension DefaultId="DataItem1" />
+    </DateFilter>
+    <ComboBox ComponentName="comboBoxDashboardItem3" Name="Ay Seçimi" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowAllValue="false">
+      <DataItems>
+        <Dimension DataMember="STHAR_TARIH" SortOrder="Descending" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutGroup Weight="5.889570552147239">
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="39.389920424403186" />
+        <LayoutItem DashboardItem="comboBoxDashboardItem3" Weight="19.297082228116711" />
+        <LayoutItem DashboardItem="dateFilterDashboardItem1" Weight="41.312997347480106" />
+      </LayoutGroup>
+      <LayoutGroup Weight="94.110429447852766">
+        <LayoutItem DashboardItem="pivotDashboardItem2" Weight="63.92572944297082" />
+        <LayoutItem DashboardItem="pivotDashboardItem1" Weight="36.07427055702918" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

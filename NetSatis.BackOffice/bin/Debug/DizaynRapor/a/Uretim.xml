@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Uretim" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from Bsd_Uretim</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="Id" Type="Int32" />
+            <Field Name="Maliyet" Type="Decimal" />
+            <Field Name="Stok_kodu" Type="String" />
+            <Field Name="Stok_Adi" Type="String" />
+            <Field Name="Tarih" Type="DateTime" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+    <SqlDataSource Name="CustomSqlQuery 1" ComponentName="sqlDataSource2">
+      <Connection Name="nwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="StokSatis">
+        <Sql>SELECT 
+(SELECT  REPLACE(REPLACE(REPLACE(STOK_ADI,'Ý','I'),'Þ','S'),'Ð','G') FROM TBLSTSABIT WHERE STOK_KODU=ST.STOK_KODU) AS STOK_ADI,
+* FROM TBLSTHAR ST
+ WHERE STOK_KODU LIKE '600%' AND STHAR_GCKOD='C'</Sql>
+      </Query>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Üretim" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="Tarih" DateTimeGroupInterval="DayMonthYear" TopNEnabled="true" TopNCount="30" TopNMode="Bottom" TopNMeasure="DataItem2" DefaultId="DataItem0" />
+        <Measure DataMember="Maliyet" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem0" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple Name="Üretim Maliyeti" SeriesType="StackedLine">
+              <Value DefaultId="DataItem2" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Üretilen ürünler" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="Stok_Adi" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Pie ComponentName="pieDashboardItem1" Name="ürün" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <InteractivityOptions IgnoreMasterFilters="true" />
+      <DataItems>
+        <Measure DataMember="Maliyet" SummaryType="Average" FilterString="[DataItem0] = #2021-04-20#" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="Stok_Adi" SortOrder="Descending" SortByMeasure="DataItem2" DefaultId="DataItem1" />
+        <Dimension DataMember="Tarih" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </HiddenDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pie>
+    <Pie ComponentName="pieDashboardItem2" Name="Satıs" ShowCaption="false" DataSource="sqlDataSource2" DataMember="StokSatis" ShowPieCaptions="false">
+      <DataItems>
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" />
+        <LayoutGroup>
+          <LayoutItem DashboardItem="chartDashboardItem1" />
+          <LayoutItem DashboardItem="pieDashboardItem1" />
+          <LayoutItem DashboardItem="pieDashboardItem2" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

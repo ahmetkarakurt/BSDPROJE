@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Visible="false" Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource Name="SQL Data Source 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>select * from TBLCARIPLASIYER</Sql>
+      </Query>
+      <Query Type="CustomSqlQuery" Name="Query_1">
+        <Sql>SELECT * FROM BSD_SIPANA
+WHERE 1=1
+ AND  (SUBE_KODU = 0) 
+ AND ( (FTIRSIP  = '6')
+ AND 
+(TARIH  BETWEEN '01/01/2022' AND '12/31/2022')
+ )
+
+
+</Sql>
+      </Query>
+      <Query Type="CustomSqlQuery" Name="Query_2">
+        <Sql>SELECT * FROM BSD_SIPATRA</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Query">
+            <Field Name="ISLETME_KODU" Type="Int16" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="ISIM" Type="String" />
+            <Field Name="GRUPKODU" Type="String" />
+            <Field Name="GSMNO" Type="String" />
+            <Field Name="PPCSIFRE" Type="String" />
+            <Field Name="PPCTIP" Type="Int32" />
+            <Field Name="ACIKLAMA1" Type="String" />
+            <Field Name="ACIKLAMA2" Type="String" />
+            <Field Name="ACIKLAMA3" Type="String" />
+            <Field Name="KASAKODU" Type="String" />
+            <Field Name="YAZICITIPI" Type="Int32" />
+            <Field Name="YENICARIGIRISYAPACAKMI" Type="String" />
+            <Field Name="PENETRASYONTAKIPYAPACAKMI" Type="String" />
+            <Field Name="ROUTEDISICARIYUKLESINMI" Type="String" />
+            <Field Name="CALISMATIPI" Type="String" />
+            <Field Name="KILOMETRETAKIBIYAPACAKMI" Type="String" />
+            <Field Name="ADRES" Type="String" />
+            <Field Name="IL" Type="String" />
+            <Field Name="ILCE" Type="String" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="C_YEDEK1" Type="String" />
+            <Field Name="C_YEDEK2" Type="String" />
+            <Field Name="C_YEDEK3" Type="String" />
+            <Field Name="L_YEDEK1" Type="Int32" />
+            <Field Name="L_YEDEK2" Type="Int32" />
+            <Field Name="F_YEDEK1" Type="Decimal" />
+            <Field Name="F_YEDEK2" Type="Decimal" />
+            <Field Name="D_YEDEK1" Type="DateTime" />
+            <Field Name="D_YEDEK2" Type="DateTime" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="TAHSILATYAPABILSIN" Type="String" />
+            <Field Name="TAHSILATNO" Type="String" />
+            <Field Name="IRSALIYENO" Type="String" />
+            <Field Name="CEKSENETNO" Type="String" />
+            <Field Name="IADEALABILSIN" Type="String" />
+            <Field Name="KREDIKASAKOD" Type="String" />
+            <Field Name="SIPARISNO" Type="String" />
+          </View>
+          <View Name="Query_1">
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="FTIRSIP" Type="String" />
+            <Field Name="FATIRS_NO" Type="String" />
+            <Field Name="CARI_KODU" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="TIPI" Type="Byte" />
+            <Field Name="BRUTTUTAR" Type="Decimal" />
+            <Field Name="SAT_ISKT" Type="Decimal" />
+            <Field Name="MFAZ_ISKT" Type="Decimal" />
+            <Field Name="GEN_ISK1T" Type="Decimal" />
+            <Field Name="GEN_ISK2T" Type="Decimal" />
+            <Field Name="GEN_ISK3T" Type="Decimal" />
+            <Field Name="GEN_ISK1O" Type="Decimal" />
+            <Field Name="GEN_ISK2O" Type="Decimal" />
+            <Field Name="GEN_ISK3O" Type="Decimal" />
+            <Field Name="KDV" Type="Decimal" />
+            <Field Name="FAT_ALTM1" Type="Decimal" />
+            <Field Name="FAT_ALTM2" Type="Decimal" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="KOD1" Type="String" />
+            <Field Name="KOD2" Type="String" />
+            <Field Name="ODEMEGUNU" Type="Int16" />
+            <Field Name="ODEMETARIHI" Type="DateTime" />
+            <Field Name="KDV_DAHILMI" Type="String" />
+            <Field Name="FATKALEM_ADEDI" Type="Int16" />
+            <Field Name="SIPARIS_TEST" Type="DateTime" />
+            <Field Name="TOPLAM_MIK" Type="Decimal" />
+            <Field Name="TOPDEPO" Type="Byte" />
+            <Field Name="YEDEK22" Type="String" />
+            <Field Name="CARI_KOD2" Type="String" />
+            <Field Name="YEDEK" Type="String" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="SIRANO" Type="Int32" />
+            <Field Name="KDV_DAHIL_BRUT_TOP" Type="Decimal" />
+            <Field Name="KDV_TENZIL" Type="Decimal" />
+            <Field Name="MALFAZLASIKDVSI" Type="Decimal" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+            <Field Name="YUVARLAMA" Type="Decimal" />
+            <Field Name="SATIS_KOND" Type="String" />
+            <Field Name="DOVIZTIP" Type="Byte" />
+            <Field Name="DOVIZTUT" Type="Decimal" />
+            <Field Name="KS_KODU" Type="String" />
+            <Field Name="BAG_TUTAR" Type="Decimal" />
+            <Field Name="YEDEK2" Type="String" />
+            <Field Name="HIZMET_FAT" Type="String" />
+            <Field Name="VADEBAZT" Type="DateTime" />
+            <Field Name="KAPATILMIS" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="F_YEDEK5" Type="Decimal" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="AMBAR_KBLNO" Type="String" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="FIYATTARIHI" Type="DateTime" />
+            <Field Name="KOSULTARIHI" Type="DateTime" />
+            <Field Name="GENISK1TIP" Type="Int16" />
+            <Field Name="GENISK2TIP" Type="Int16" />
+            <Field Name="GENISK3TIP" Type="Int16" />
+            <Field Name="EXPORTTYPE" Type="Byte" />
+            <Field Name="EXGUMRUKNO" Type="String" />
+            <Field Name="EXGUMTARIH" Type="DateTime" />
+            <Field Name="EXFIILITARIH" Type="DateTime" />
+            <Field Name="EXPORTREFNO" Type="String" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="GELSUBE_KODU" Type="Int16" />
+            <Field Name="GITSUBE_KODU" Type="Int16" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="ISLETME_KODU" Type="Int16" />
+            <Field Name="ODEKOD" Type="String" />
+            <Field Name="BRMALIYET" Type="Decimal" />
+            <Field Name="KOSVADEGUNU" Type="Int16" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="GIB_FATIRS_NO" Type="String" />
+            <Field Name="EXTERNALAPPID" Type="String" />
+            <Field Name="EXTERNALREFID" Type="String" />
+            <Field Name="EBELGE" Type="Int32" />
+            <Field Name="HALFAT" Type="Int32" />
+            <Field Name="FAT_ALTM3" Type="Decimal" />
+            <Field Name="DOVBAZTAR" Type="DateTime" />
+            <Field Name="OTVTEVTUTAR" Type="Decimal" />
+            <Field Name="TOPGIRDEPO" Type="Int16" />
+            <Field Name="BFORM" Type="String" />
+            <Field Name="TEVKIFATIADE" Type="Int32" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="GRUPKODU" Type="String" />
+            <Field Name="ISIM" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="TESLI_TARIH" Type="DateTime" />
+          </View>
+          <View Name="Query_2">
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="FISNO" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+            <Field Name="STHAR_GCMIK2" Type="Decimal" />
+            <Field Name="CEVRIM" Type="Decimal" />
+            <Field Name="STHAR_GCKOD" Type="String" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+            <Field Name="STHAR_NF" Type="Decimal" />
+            <Field Name="STHAR_BF" Type="Decimal" />
+            <Field Name="STHAR_IAF" Type="Decimal" />
+            <Field Name="STHAR_KDV" Type="Decimal" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="STHAR_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_SATISK" Type="Decimal" />
+            <Field Name="STHAR_MALFISK" Type="Decimal" />
+            <Field Name="STHAR_FTIRSIP" Type="String" />
+            <Field Name="STHAR_SATISK2" Type="Decimal" />
+            <Field Name="LISTE_FIAT" Type="Byte" />
+            <Field Name="STHAR_HTUR" Type="String" />
+            <Field Name="STHAR_DOVTIP" Type="Byte" />
+            <Field Name="PROMASYON_KODU" Type="Byte" />
+            <Field Name="STHAR_DOVFIAT" Type="Decimal" />
+            <Field Name="STHAR_ODEGUN" Type="Int16" />
+            <Field Name="STRA_SATISK3" Type="Decimal" />
+            <Field Name="STRA_SATISK4" Type="Decimal" />
+            <Field Name="STRA_SATISK5" Type="Decimal" />
+            <Field Name="STRA_SATISK6" Type="Decimal" />
+            <Field Name="STHAR_BGTIP" Type="String" />
+            <Field Name="STHAR_KOD1" Type="String" />
+            <Field Name="STHAR_KOD2" Type="String" />
+            <Field Name="STHAR_SIPNUM" Type="String" />
+            <Field Name="STHAR_CARIKOD" Type="String" />
+            <Field Name="STHAR_SIP_TURU" Type="String" />
+            <Field Name="PLASIYER_KODU" Type="String" />
+            <Field Name="EKALAN_NEDEN" Type="String" />
+            <Field Name="EKALAN" Type="String" />
+            <Field Name="EKALAN1" Type="String" />
+            <Field Name="REDMIK" Type="Decimal" />
+            <Field Name="REDNEDEN" Type="Byte" />
+            <Field Name="SIRA" Type="Int16" />
+            <Field Name="STRA_SIPKONT" Type="Int16" />
+            <Field Name="AMBAR_KABULNO" Type="String" />
+            <Field Name="FIRMA_DOVTIP" Type="Byte" />
+            <Field Name="FIRMA_DOVTUT" Type="Decimal" />
+            <Field Name="FIRMA_DOVMAL" Type="Decimal" />
+            <Field Name="UPDATE_KODU" Type="String" />
+            <Field Name="IRSALIYE_NO" Type="String" />
+            <Field Name="IRSALIYE_TARIH" Type="DateTime" />
+            <Field Name="KOSULKODU" Type="String" />
+            <Field Name="ECZA_FAT_TIP" Type="Byte" />
+            <Field Name="STHAR_TESTAR" Type="DateTime" />
+            <Field Name="OLCUBR" Type="Byte" />
+            <Field Name="INCKEYNO" Type="Int32" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="LISTE_NO" Type="String" />
+            <Field Name="BAGLANTI_NO" Type="Int32" />
+            <Field Name="SUBE_KODU" Type="Int16" />
+            <Field Name="MUH_KODU" Type="String" />
+            <Field Name="S_YEDEK1" Type="String" />
+            <Field Name="S_YEDEK2" Type="String" />
+            <Field Name="F_YEDEK3" Type="Decimal" />
+            <Field Name="F_YEDEK4" Type="Decimal" />
+            <Field Name="F_YEDEK5" Type="Decimal" />
+            <Field Name="C_YEDEK6" Type="String" />
+            <Field Name="B_YEDEK7" Type="Byte" />
+            <Field Name="I_YEDEK8" Type="Int16" />
+            <Field Name="L_YEDEK9" Type="Int32" />
+            <Field Name="D_YEDEK10" Type="DateTime" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="FIYATTARIHI" Type="DateTime" />
+            <Field Name="KOSULTARIHI" Type="DateTime" />
+            <Field Name="SATISK1TIP" Type="Int16" />
+            <Field Name="SATISK2TIP" Type="Int16" />
+            <Field Name="SATISK3TIP" Type="Int16" />
+            <Field Name="SATISK4TIP" Type="Int16" />
+            <Field Name="SATISK5TIP" Type="Int16" />
+            <Field Name="SATISK6TIP" Type="Int16" />
+            <Field Name="EXPORTTYPE" Type="Byte" />
+            <Field Name="EXPORTMIK" Type="Decimal" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="KKMALF" Type="Decimal" />
+            <Field Name="STRA_IRSKONT" Type="Int16" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="MAMYAPKOD" Type="String" />
+            <Field Name="OTVFIYAT" Type="Decimal" />
+            <Field Name="IRS_INCKEYNO" Type="Int32" />
+            <Field Name="YEDEK11" Type="String" />
+            <Field Name="YEDEK12" Type="String" />
+            <Field Name="YEDEK13" Type="Int32" />
+            <Field Name="YEDEK14" Type="Int32" />
+            <Field Name="YEDEK15" Type="Double" />
+            <Field Name="YEDEK16" Type="Double" />
+            <Field Name="YEDEK17" Type="DateTime" />
+            <Field Name="YEDEK18" Type="DateTime" />
+            <Field Name="YEDEK19" Type="String" />
+            <Field Name="YEDEK20" Type="String" />
+            <Field Name="FATIRS_NO" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="KALAN" Expression="[STHAR_GCMIK]-[FIRMA_DOVTUT]" DataType="Auto" DataMember="Query_2" />
+        <CalculatedField Name="Calculated Field 1" Expression="DateDiffDay([TARIH],[SIPARIS_TEST])" DataType="Auto" DataMember="Query_1" />
+        <CalculatedField Name="Calculated Field 2" Expression="DateDiffDay( GetDate(LocalDateTimeNow()),[SIPARIS_TEST])" DataType="Auto" DataMember="Query_1" />
+        <CalculatedField Name="Calculated Field 3" Expression="DateDiffDay( [SIPARIS_TEST],[TESLI_TARIH])" DataType="Auto" DataMember="Query_1" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Card ComponentName="cardDashboardItem1" Name="Cards 1" ShowCaption="false" DataSource="dashboardSqlDataSource1" DataMember="Query" FilterString="StartsWith([DataItem0], 'S')" IsMasterFilterCrossDataSource="true" ContentArrangementMode="FixedRowCount" ContentLineCount="1">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Dimension DataMember="GRUPKODU" DefaultId="DataItem0" />
+        <Measure DataMember="GRUPKODU" SummaryType="Count" DefaultId="DataItem2" />
+        <Dimension DataMember="PLASIYER_ACIKLAMA" SortOrder="Descending" DefaultId="DataItem1" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </HiddenDimensions>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem2" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <Grid ComponentName="gridDashboardItem1" Name="FATURALAR" DataSource="dashboardSqlDataSource1" DataMember="Query_1" IsMasterFilterCrossDataSource="true">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Dimension DataMember="PLASIYER_KODU" DefaultId="DataItem0" />
+        <Dimension DataMember="TIPI" DefaultId="DataItem1" />
+        <Measure DataMember="TIPI" DefaultId="DataItem2" />
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem3" />
+        <Dimension DataMember="SIPARIS_TEST" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem4" />
+        <Dimension DataMember="FATIRS_NO" DefaultId="DataItem5" />
+        <Measure DataMember="DOVIZTIP" DefaultId="DataItem6" />
+        <Measure DataMember="DOVIZTUT" DefaultId="DataItem7">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+        <Dimension DefaultId="DataItem1" />
+      </HiddenDimensions>
+      <HiddenMeasures>
+        <Measure DefaultId="DataItem2" />
+      </HiddenMeasures>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" ApplyToRow="true" DataItem="DataItem2" DataItemApplyTo="DataItem3">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Green" />
+            <Value1 Type="System.Int32" Value="6" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItem="DataItem2" DataItemApplyTo="DataItem3">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Green" />
+            <Value1 Type="System.Int32" Value="2" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" ApplyToRow="true" DataItem="DataItem2" DataItemApplyTo="DataItem3">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Red" />
+            <Value1 Type="System.Int32" Value="1" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Name="TARIH" Weight="62.231759656652358">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="SIPARIS_TEST" Weight="59.012875536480685">
+          <Dimension DefaultId="DataItem4" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="85.836909871244629">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="DOVIZTIP" Weight="41.309012875536482">
+          <Measure DefaultId="DataItem6" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="DOVIZTUT" Weight="126.60944206008584">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem2" Name="Kalemler" DataSource="dashboardSqlDataSource1" DataMember="Query_2" IsMasterFilterCrossDataSource="true">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Dimension DataMember="FATIRS_NO" DefaultId="DataItem0" />
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem1" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem2" />
+        <Measure DataMember="KALAN" DefaultId="DataItem3">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" />
+        </Measure>
+        <Measure DataMember="STHAR_GCMIK" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" />
+        </Measure>
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </HiddenDimensions>
+      <GridColumns>
+        <GridDimensionColumn Weight="34.57508731082654">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="183.35273573923166">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="ADET" Weight="49.941792782305008">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="KALAN" Weight="32.130384167636784">
+          <Measure DefaultId="DataItem3" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem3" Name="AÇIK MÜŞTERİ  SİPARİŞLERİ" DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem8] In (2, 6)">
+      <InteractivityOptions IgnoreMasterFilters="true" />
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+        <Dimension DataMember="SIPARIS_TEST" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem1" />
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem2" />
+        <Measure DataMember="TIPI" DefaultId="DataItem3" />
+        <Measure DataMember="DOVIZTIP" SummaryType="Average" DefaultId="DataItem4" />
+        <Measure DataMember="DOVIZTUT" DefaultId="DataItem5">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="FATIRS_NO" DefaultId="DataItem6" />
+        <Measure DataMember="GENELTOPLAM" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TIPI" DefaultId="DataItem8" />
+        <Measure DataMember="Calculated Field 1" DefaultId="DataItem9" />
+        <Dimension DataMember="Calculated Field 2" SortOrder="Descending" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem10" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem8" />
+      </HiddenDimensions>
+      <HiddenMeasures>
+        <Measure DefaultId="DataItem3" />
+      </HiddenMeasures>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" ApplyToRow="true" DataItem="DataItem10" DataItemApplyTo="DataItem10">
+          <FormatConditionValue Condition="Less">
+            <AppearanceSettings AppearanceType="Red" />
+            <Value1 Type="System.Int32" Value="0" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItem="DataItem10" DataItemApplyTo="DataItem10">
+          <FormatConditionValue Condition="Between">
+            <AppearanceSettings AppearanceType="Yellow" />
+            <Value1 Type="System.Int32" Value="0" />
+            <Value2 Type="System.Int32" Value="15" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" ApplyToRow="true" DataItem="DataItem10" DataItemApplyTo="DataItem10">
+          <FormatConditionValue Condition="Between">
+            <AppearanceSettings AppearanceType="PaleGreen" />
+            <Value1 Type="System.Int32" Value="16" />
+            <Value2 Type="System.Int32" Value="25" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 4" ApplyToRow="true" DataItem="DataItem10" DataItemApplyTo="DataItem10">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="Green" />
+            <Value1 Type="System.Int32" Value="26" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Name="TARIH" Weight="77.100008501714484">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="SIPARIS TESLİM" Weight="72.34074871765803">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="GÜN" Weight="31.411114574772565">
+          <Measure DefaultId="DataItem9" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="KALAN GÜN" Weight="35.218522402017726">
+          <Dimension DefaultId="DataItem10" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="PLASIYER" Weight="150.39260917618378">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="100.89630742199672">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="DOVIZTIP" Weight="36.170374358829015">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="DOVIZTUT" Weight="74.244452631280609">
+          <Measure DefaultId="DataItem5" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="GENELTOPLAM" Weight="98.040751551562849">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Grid ComponentName="gridDashboardItem4" Name="KAPALI MÜŞTERİ SİPARİŞLERİ" DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem8] = 1">
+      <InteractivityOptions IgnoreMasterFilters="true" />
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+        <Dimension DataMember="SIPARIS_TEST" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem1" />
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem2" />
+        <Measure DataMember="TIPI" DefaultId="DataItem3" />
+        <Measure DataMember="DOVIZTIP" SummaryType="Average" DefaultId="DataItem4" />
+        <Measure DataMember="DOVIZTUT" DefaultId="DataItem5">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="FATIRS_NO" DefaultId="DataItem6" />
+        <Measure DataMember="GENELTOPLAM" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TIPI" DefaultId="DataItem8" />
+        <Dimension DataMember="FISNO" DefaultId="DataItem9" />
+        <Measure DataMember="Calculated Field 3" DefaultId="DataItem10" />
+        <Dimension DataMember="TESLI_TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem11" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem8" />
+      </HiddenDimensions>
+      <HiddenMeasures>
+        <Measure DefaultId="DataItem3" />
+      </HiddenMeasures>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" Enabled="false" ApplyToRow="true" DataItem="DataItem3" DataItemApplyTo="DataItem0">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Green" />
+            <Value1 Type="System.Int32" Value="6" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItem="DataItem3" DataItemApplyTo="DataItem0">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Green" />
+            <Value1 Type="System.Int32" Value="2" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" ApplyToRow="true" DataItem="DataItem3" DataItemApplyTo="DataItem0">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Red" />
+            <Value1 Type="System.Int32" Value="1" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Name="TARIH" Weight="54.845800247004938" FixedWidth="11.15758837145591" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="SIPARIS TESLİM" Weight="84.243387034038207" FixedWidth="12.156775389795246">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="77.763126492958335">
+          <Dimension DefaultId="DataItem11" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="50.762040905125588">
+          <Measure DefaultId="DataItem10" />
+        </GridMeasureColumn>
+        <GridDimensionColumn Name="PLASIYER" Weight="106.92429892781772" FixedWidth="15.154336444813252">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="119.88482000997745" FixedWidth="17.152710481491923">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="78.843169916471652" FixedWidth="18.318428669554478">
+          <Dimension DefaultId="DataItem9" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="DOVIZTIP" Weight="29.161172434859381">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="DOVIZTUT" Weight="74.522996222418413">
+          <Measure DefaultId="DataItem5" />
+        </GridMeasureColumn>
+        <GridMeasureColumn Name="GENELTOPLAM" Weight="97.203908116197937">
+          <Measure DefaultId="DataItem7" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutItem DashboardItem="cardDashboardItem1" Weight="20.116959064327485" />
+      <LayoutGroup Weight="38.12865497076023">
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="49.966101694915253" />
+        <LayoutItem DashboardItem="gridDashboardItem2" Weight="50.033898305084747" />
+      </LayoutGroup>
+      <LayoutGroup Weight="41.754385964912281">
+        <LayoutItem DashboardItem="gridDashboardItem3" Weight="49.966101694915253" />
+        <LayoutItem DashboardItem="gridDashboardItem4" Weight="50.033898305084747" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

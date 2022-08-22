@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Cari Bakiye  Hareket Listesi" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select* from ZZZ_CARI_EKSTRE</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="CARI_KOD" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="BELGE_NO" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="VADE_TARIHI" Type="DateTime" />
+            <Field Name="BORC" Type="Decimal" />
+            <Field Name="ALACAK" Type="Decimal" />
+            <Field Name="BAKIYE" Type="Decimal" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="HAREKET_TURU" Type="String" />
+            <Field Name="TIP" Type="String" />
+            <Field Name="ID" Type="Guid" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Pivot 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="BORC" Name="BORÇ" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="ALACAK" Name="ALACAK" DefaultId="DataItem1">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Measure DataMember="BAKIYE" Name="BAKİYE" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem4" />
+        <Dimension DataMember="CARI_KOD" DefaultId="DataItem5" />
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem3" />
+        <Dimension DataMember="BELGE_NO" DefaultId="DataItem6" />
+        <Dimension DataMember="TIP" DefaultId="DataItem7" />
+      </DataItems>
+      <FormatRules>
+        <PivotItemFormatRule Name="Format Rule 1" ApplyToRow="true" DataItem="DataItem2" DataItemApplyTo="DataItem2">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="PaleRed" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+        <PivotItemFormatRule Name="Format Rule 2" ApplyToRow="true" DataItem="DataItem2" DataItemApplyTo="DataItem2">
+          <FormatConditionValue Condition="Less">
+            <AppearanceSettings AppearanceType="PaleYellow" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+      </FormatRules>
+      <Rows>
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+        <Row DefaultId="DataItem7" />
+        <Row DefaultId="DataItem6" />
+        <Row DefaultId="DataItem5" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem2" />
+      </Values>
+      <AutoExpandColumnGroups>true</AutoExpandColumnGroups>
+      <RowTotalsPosition>Top</RowTotalsPosition>
+    </Pivot>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Cari Seçimi" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true">
+      <DataItems>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical">
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" />
+        <LayoutItem DashboardItem="pivotDashboardItem1" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

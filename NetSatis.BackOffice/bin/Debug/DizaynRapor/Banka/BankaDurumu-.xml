@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="BANKA DURUMLARI" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>SELECT * FROM ZZZ_BANK_BAKIYE</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="NETHESKODU" Type="String" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="DOVIZTIPI" Type="Byte" />
+            <Field Name="BANKAHESNO" Type="String" />
+            <Field Name="HESBORCTOPDOV" Type="Decimal" />
+            <Field Name="HESALACTOPDOV" Type="Decimal" />
+            <Field Name="BAKIYE" Type="Decimal" />
+            <Field Name="HESAPTIPI" Type="Byte" />
+            <Field Name="HESAPTIPLERI" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Döviz Tipi" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="DOVIZTIPI" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Card ComponentName="cardDashboardItem1" Name="Cards 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ContentArrangementMode="FixedColumnCount">
+      <DataItems>
+        <Measure DataMember="BAKIYE" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="tr-TR" />
+        </Measure>
+        <Dimension DataMember="ACIKLAMA" SortOrder="Descending" SortByMeasure="DataItem0" DefaultId="DataItem1" />
+        <Dimension DataMember="NETHESKODU" DefaultId="DataItem2" />
+      </DataItems>
+      <FormatRules>
+        <CardItemDeltaFormatRule Name="Format Rule 1" DeltaValueType="ActualValue" CardId="DataItem0">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="Green" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <CardFormatRuleLayoutElement />
+        </CardItemDeltaFormatRule>
+        <CardItemDeltaFormatRule Name="Format Rule 2" DeltaValueType="ActualValue" CardId="DataItem0">
+          <FormatConditionValue Condition="Less">
+            <AppearanceSettings AppearanceType="PaleRed" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <CardFormatRuleLayoutElement />
+        </CardItemDeltaFormatRule>
+      </FormatRules>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="100" Type="Lightweight">
+          <MainValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <DeltaIndicator Visible="false" />
+          <Sparkline Visible="false" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <Card ComponentName="cardDashboardItem2" Name="Cards 2" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="BAKIYE" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="chr-Cher-US" />
+        </Measure>
+        <Dimension DataMember="HESAPTIPLERI" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ShowPieCaptions="false">
+      <InteractivityOptions IgnoreMasterFilters="true" />
+      <DataItems>
+        <Measure DataMember="BAKIYE" DefaultId="DataItem0">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="HESAPTIPLERI" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <ComboBox ComponentName="comboBoxDashboardItem2" Name="Banka Seçimi" ShowCaption="false" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="HESAPTIPLERI" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutGroup Weight="5.6441717791411046">
+        <LayoutItem DashboardItem="comboBoxDashboardItem2" Weight="50" />
+        <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="50" />
+      </LayoutGroup>
+      <LayoutGroup Weight="94.3558282208589">
+        <LayoutItem DashboardItem="cardDashboardItem1" Weight="68.567639257294431" />
+        <LayoutGroup Orientation="Vertical" Weight="31.432360742705569">
+          <LayoutItem DashboardItem="cardDashboardItem2" Weight="52.665799739921979" />
+          <LayoutItem DashboardItem="pieDashboardItem1" Weight="47.334200260078021" />
+        </LayoutGroup>
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MrAdvice.Weaver/2.9.7": {
+        "dependencies": {
+          "MrAdvice": "2.9.7",
+          "StitcherBoy": "2.0.2"
+        },
+        "runtime": {
+          "MrAdvice.Weaver.dll": {}
+        }
+      },
+      "StitcherBoy/2.0.2": {
+        "runtime": {
+          "lib/net6.0/StitcherBoy.dll": {
+            "assemblyVersion": "2.0.2.0",
+            "fileVersion": "2.0.2.0"
+          },
+          "lib/net6.0/dnlib.dll": {
+            "assemblyVersion": "3.3.2.0",
+            "fileVersion": "3.3.2.0"
+          }
+        }
+      },
+      "MrAdvice/2.9.7": {
+        "runtime": {
+          "MrAdvice.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MrAdvice.Weaver/2.9.7": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StitcherBoy/2.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NwUTTyTqdri0ULeql5pXx5IQVJTYWpF80l/IyUg/j36ikwD6Pj10ZzOWEUTJsMYriAvgwVBKCJiWMm3V6Ozkpg==",
+      "path": "stitcherboy/2.0.2",
+      "hashPath": "stitcherboy.2.0.2.nupkg.sha512"
+    },
+    "MrAdvice/2.9.7": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

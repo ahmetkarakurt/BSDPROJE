@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Visible="false" Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>SELECT * FROM BSD_VW_ISEMIRLERI</Sql>
+      </Query>
+      <Query Type="CustomSqlQuery" Name="Query_1">
+        <Sql>SELECT        dbo.TBLESNSTMAS.STOKKODU, dbo.TBLSTSABIT.STOK_ADI, SUM(dbo.TBLSTHAR.STHAR_GCMIK) AS Expr1, dbo.TBLSTHAR.STHAR_TARIH
+FROM            dbo.TBLESNSTMAS LEFT OUTER JOIN
+                         dbo.TBLSTHAR ON dbo.TBLESNSTMAS.STOKKODU = dbo.TBLSTHAR.STOK_KODU LEFT OUTER JOIN
+                         dbo.TBLSTSABIT ON dbo.TBLESNSTMAS.STOKKODU = dbo.TBLSTSABIT.STOK_KODU
+WHERE        (dbo.TBLESNSTMAS.MAMULMU = 'E') AND (dbo.TBLESNSTMAS.YAPKOD IS NULL) AND (dbo.TBLSTHAR.STHAR_GCKOD = 'G') AND (dbo.TBLSTHAR.STHAR_HTUR = 'C')
+GROUP BY dbo.TBLESNSTMAS.STOKKODU, dbo.TBLSTSABIT.STOK_ADI, dbo.TBLSTHAR.STHAR_TARIH</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="ISEMRI" Type="String" />
+            <Field Name="KT_URUNSASENO" Type="String" />
+            <Field Name="KT_SIPARISNO" Type="String" />
+            <Field Name="ISEMRINO" Type="String" />
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="STOK_KODU" Type="String" />
+            <Field Name="MIKTAR" Type="Decimal" />
+            <Field Name="ACIKLAMA" Type="String" />
+            <Field Name="TESLIM_TARIHI" Type="DateTime" />
+            <Field Name="SIPARIS_NO" Type="String" />
+            <Field Name="KAPALI" Type="String" />
+            <Field Name="YEDEK1" Type="String" />
+            <Field Name="YEDEK2" Type="String" />
+            <Field Name="YEDEK3" Type="String" />
+            <Field Name="YEDEK4" Type="String" />
+            <Field Name="YEDEK5" Type="Decimal" />
+            <Field Name="PROJE_KODU" Type="String" />
+            <Field Name="REVNO" Type="String" />
+            <Field Name="ONCELIK" Type="Int32" />
+            <Field Name="REFISEMRINO" Type="String" />
+            <Field Name="KAYITYAPANKUL" Type="String" />
+            <Field Name="KAYITTARIHI" Type="DateTime" />
+            <Field Name="DUZELTMEYAPANKUL" Type="String" />
+            <Field Name="DUZELTMETARIHI" Type="DateTime" />
+            <Field Name="YAPKOD" Type="String" />
+            <Field Name="SIPKONT" Type="Int16" />
+            <Field Name="TEPEMAM" Type="String" />
+            <Field Name="TEPEYAPKOD" Type="String" />
+            <Field Name="TEPETARIH" Type="DateTime" />
+            <Field Name="CALISMAZAMANI" Type="DateTime" />
+            <Field Name="TEPESIPNO" Type="String" />
+            <Field Name="TEPESIPKONT" Type="Int16" />
+            <Field Name="ONAYTIPI" Type="String" />
+            <Field Name="ONAYNUM" Type="Int32" />
+            <Field Name="SUBEKODU" Type="Int16" />
+            <Field Name="REWORK" Type="String" />
+            <Field Name="DEPO_KODU" Type="Int16" />
+            <Field Name="SERINO" Type="String" />
+            <Field Name="FASONCARI" Type="String" />
+            <Field Name="CIKIS_DEPO_KODU" Type="Int16" />
+            <Field Name="ASORTIKOD" Type="String" />
+            <Field Name="ISEMRI_SIRA" Type="Int32" />
+            <Field Name="USK_STATUS" Type="String" />
+            <Field Name="REZERVASYON_STATUS" Type="String" />
+            <Field Name="SIRA_ONCELIK" Type="Int32" />
+            <Field Name="USTISEMRI_ID" Type="Int32" />
+            <Field Name="BASLAYABILECEGI_TARIH" Type="DateTime" />
+            <Field Name="SERINO2" Type="String" />
+            <Field Name="HAT_KODU" Type="String" />
+          </View>
+          <View Name="Query_1">
+            <Field Name="STOKKODU" Type="String" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="Expr1" Type="Decimal" />
+            <Field Name="STHAR_TARIH" Type="DateTime" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Hesaplanan alan 1" Expression="Iif([USK_STATUS]='B','Uretime Başlandı',[USK_STATUS]='Y','Yeni',[USK_STATUS]='T','Üretim Tamamlandı',[USK_STATUS]='D','Uretim Durduruldu',[USK_STATUS]='I','İptal Edildi','Diğer' )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Tarih/TeslimTarihi_G" Expression="DateDiffDay([TARIH],[TESLIM_TARIHI] )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="Teslime Kalan Gün" Expression="DateDiffDay([TESLIM_TARIHI], GetDate(LocalDateTimeNow()))" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="İş Emri Listesi" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Dimension DataMember="ISEMRINO" DefaultId="DataItem0" />
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem1" />
+        <Dimension DataMember="STOK_KODU" DefaultId="DataItem2" />
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem3" />
+        <Measure DataMember="MIKTAR" DefaultId="DataItem4">
+          <NumericFormat FormatType="Number" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="ACIKLAMA" DefaultId="DataItem5" />
+        <Dimension DataMember="KT_SIPARISNO" DefaultId="DataItem6" />
+        <Dimension DataMember="KT_URUNSASENO" DefaultId="DataItem7" />
+        <Dimension DataMember="TESLIM_TARIHI" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem8" />
+        <Dimension DataMember="KAPALI" DefaultId="DataItem9" />
+        <Dimension DataMember="Tarih/TeslimTarihi_G" DefaultId="DataItem10" />
+        <Dimension DataMember="Hesaplanan alan 1" DefaultId="DataItem11" />
+        <Dimension DataMember="Teslime Kalan Gün" DefaultId="DataItem12" />
+      </DataItems>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" ApplyToRow="true" DataItem="DataItem11" DataItemApplyTo="DataItem11">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="PaleGreen" />
+            <Value1 Type="System.String" Value="Uretime Başlandı" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" ApplyToRow="true" DataItem="DataItem11" DataItemApplyTo="DataItem11">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Green" />
+            <Value1 Type="System.String" Value="Üretim Tamamlandı" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" ApplyToRow="true" DataItem="DataItem11" DataItemApplyTo="DataItem11">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="PaleYellow" />
+            <Value1 Type="System.String" Value="Uretim Durduruldu" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 4" ApplyToRow="true" DataItem="DataItem11" DataItemApplyTo="DataItem11">
+          <FormatConditionValue>
+            <AppearanceSettings AppearanceType="Red" />
+            <Value1 Type="System.String" Value="İptal Edildi" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 5" DataItem="DataItem11" DataItemApplyTo="DataItem11">
+          <FormatConditionValue>
+            <IconSettings IconType="IndicatorCircledGreenCheck" />
+            <Value1 Type="System.String" Value="Yeni" />
+          </FormatConditionValue>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 6" DataItem="DataItem12" DataItemApplyTo="DataItem12">
+          <FormatConditionRangeSet ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <AppearanceSettings AppearanceType="Red" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="20" />
+                  <AppearanceSettings AppearanceType="Orange" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="40" />
+                  <AppearanceSettings AppearanceType="Yellow" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="60" />
+                  <AppearanceSettings AppearanceType="Green" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="80" />
+                  <AppearanceSettings AppearanceType="Blue" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+          </FormatConditionRangeSet>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Name="İs Emri" Weight="15.461116888647501" FixedWidth="17.152710481491923" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Sipariş No" Weight="16.714734661290954" FixedWidth="18.818022178724149" WidthType="FixedWidth">
+          <Dimension DefaultId="DataItem6" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Şase No" Weight="40.052075637969885">
+          <Dimension DefaultId="DataItem7" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Tarih" Weight="25.028206251218261" WidthType="FitToContent">
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Teslim T." Weight="24.031245382781933">
+          <Dimension DefaultId="DataItem8" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="19.224996306225545">
+          <Dimension DefaultId="DataItem10" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Weight="22.108745752159379">
+          <Dimension DefaultId="DataItem12" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Ürün" Weight="20.186246121536822" WidthType="FitToContent">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Ürun Adı" Weight="59.917905154402959">
+          <Dimension DefaultId="DataItem3" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Açıklama" Weight="82.347067511666083">
+          <Dimension DefaultId="DataItem5" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Durumu" Weight="13.137080809254124">
+          <Dimension DefaultId="DataItem9" />
+        </GridDimensionColumn>
+        <GridDimensionColumn Name="Son Ü. Durumu" Weight="16.982080070499233" WidthType="FitToContent">
+          <Dimension DefaultId="DataItem11" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Name="Miktar" Weight="11.855414388839087">
+          <Measure DefaultId="DataItem4" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+    <Card ComponentName="cardDashboardItem1" Name="Üretilen Ürün Toplamı" DataSource="dashboardSqlDataSource1" DataMember="Query_1" FilterString="[DataItem3] Like '600%'" ContentArrangementMode="FixedColumnCount" ContentLineCount="1">
+      <InteractivityOptions IsDrillDownEnabled="true" />
+      <DataItems>
+        <Dimension DataMember="STOKKODU" DefaultId="DataItem3" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" SortByMeasure="DataItem2" DefaultId="DataItem1" />
+        <Measure DataMember="Expr1" DefaultId="DataItem2">
+          <NumericFormat FormatType="Number" Precision="0" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="STHAR_TARIH" DateTimeGroupInterval="DayMonthYear" DefaultId="DataItem0" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem3" />
+      </HiddenDimensions>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Card Name="Toplam">
+        <ActualValue DefaultId="DataItem2" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="100" MaxWidth="150" Type="Lightweight">
+          <MainValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <DeltaIndicator Visible="false" />
+          <Sparkline Visible="false" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="gridDashboardItem1" Weight="85.742705570291776" />
+      <LayoutItem DashboardItem="cardDashboardItem1" Weight="14.257294429708223" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

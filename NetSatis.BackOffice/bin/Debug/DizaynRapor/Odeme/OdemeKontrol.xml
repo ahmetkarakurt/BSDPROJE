@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="tr-TR">
+  <Title Visible="false" Text="Kontrol paneli" />
+  <DataSources>
+    <SqlDataSource Name="SQL veri kaynağı 1" ComponentName="dashboardSqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="Query">
+        <Sql>select * from BSD_ODEME_PLANI where  YEAR(VADETRH)=YEAR(GETDATE()) </Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL veri kaynağı 1">
+          <View Name="Query">
+            <Field Name="VADETRH" Type="DateTime" />
+            <Field Name="OdemeTuru" Type="String" />
+            <Field Name="SC_NO" Type="String" />
+            <Field Name="VEREN_CARI" Type="String" />
+            <Field Name="VEREN_CARI_ISIM" Type="String" />
+            <Field Name="VERILEN_CARI" Type="String" />
+            <Field Name="VERILEN_CARI_ISIM" Type="String" />
+            <Field Name="TUTAR" Type="Decimal" />
+            <Field Name="KURISIM" Type="String" />
+            <Field Name="BANKA_YER" Type="String" />
+            <Field Name="TIPI" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="USD" Expression="Iif([KURISIM]='USD', [TUTAR] ,0 )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="EURO" Expression="Iif([KURISIM]='EURO', [TUTAR] ,0 )" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="TL" Expression="Iif([KURISIM]='TL', [TUTAR] ,0 )&#xA;" DataType="Auto" DataMember="Query" />
+        <CalculatedField Name="carısım_tıpı" Expression="[VEREN_CARI_ISIM] +' - '+ [TIPI]" DataType="Auto" DataMember="Query" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Ödemeler" DataSource="dashboardSqlDataSource1" DataMember="Query">
+      <DataItems>
+        <Measure DataMember="TL" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="VADETRH" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Dimension DataMember="BANKA_YER" DefaultId="DataItem3" />
+        <Dimension DataMember="VERILEN_CARI_ISIM" DefaultId="DataItem4" />
+        <Dimension DataMember="OdemeTuru" DefaultId="DataItem2" />
+        <Measure DataMember="USD" DefaultId="DataItem6">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="chr-Cher-US" />
+        </Measure>
+        <Measure DataMember="EURO" DefaultId="DataItem7">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="de-DE" />
+        </Measure>
+        <Dimension DataMember="TIPI" DefaultId="DataItem5" />
+      </DataItems>
+      <Rows>
+        <Row DefaultId="DataItem1" />
+        <Row DefaultId="DataItem2" />
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+        <Row DefaultId="DataItem5" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem6" />
+        <Value DefaultId="DataItem7" />
+      </Values>
+    </Pivot>
+    <Card ComponentName="cardDashboardItem1" Name="Ödemeler" DataSource="dashboardSqlDataSource1" DataMember="Query" IsMasterFilterCrossDataSource="true">
+      <InteractivityOptions MasterFilterMode="Single" />
+      <DataItems>
+        <Measure DataMember="TL" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" />
+        </Measure>
+        <Dimension DataMember="VADETRH" DateTimeGroupInterval="Month" DefaultId="DataItem1" />
+        <Measure DataMember="EURO" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="de-DE" />
+        </Measure>
+        <Measure DataMember="USD" DefaultId="DataItem3">
+          <NumericFormat FormatType="Currency" Precision="3" Unit="Ones" IncludeGroupSeparator="true" CurrencyCultureName="chr-Cher-US" />
+        </Measure>
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem0" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="270" MaxWidth="270" Type="Centered">
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <BottomSubValue1 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <BottomSubValue2 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+      <Card>
+        <ActualValue DefaultId="DataItem2" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="270" MaxWidth="270" Type="Centered">
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <BottomSubValue1 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <BottomSubValue2 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+      <Card>
+        <ActualValue DefaultId="DataItem3" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate MinWidth="270" MaxWidth="270" Type="Centered">
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <BottomSubValue1 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <BottomSubValue2 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+  </Items>
+  <ColorScheme>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" PaletteIndex="1">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="OdemeTuru" />
+          <Value Type="System.String" Value="DBS" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" PaletteIndex="2">
+      <MeasureKey>
+        <Definition DataMember="EURO" />
+      </MeasureKey>
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="OdemeTuru" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardSqlDataSource1" DataMember="Query" PaletteIndex="5">
+      <MeasureKey>
+        <Definition DataMember="OdemeTuru" SummaryType="CountDistinct" />
+      </MeasureKey>
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="OdemeTuru" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+  </ColorScheme>
+  <LayoutTree>
+    <LayoutGroup Weight="100">
+      <LayoutItem DashboardItem="cardDashboardItem1" Weight="29.774535809018566" />
+      <LayoutItem DashboardItem="pivotDashboardItem1" Weight="70.225464190981427" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

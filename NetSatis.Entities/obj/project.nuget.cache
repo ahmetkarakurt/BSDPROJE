@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "a32R4q+1IMMIIG+ID+QcBItGTy7QODl+LWcFmU6fG7XaMiFWoPXhHkdWo6+xX/MXg7I0GVJPD+V+uSw3UPRmog==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\BSD-YAZILIM\\Desktop\\NetSatis-master\\NetSatis-master\\NetSatis.Entities\\BSDPROJE.Entities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\bogus\\29.0.1\\bogus.29.0.1.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\commonservicelocator\\1.3.0\\commonservicelocator.1.3.0.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\fluentvalidation\\8.6.2\\fluentvalidation.8.6.2.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\ini-parser\\2.5.2\\ini-parser.2.5.2.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\mradvice\\2.9.7\\mradvice.2.9.7.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\system.componentmodel.primitives\\4.3.0\\system.componentmodel.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\system.linq.dynamic\\1.0.7\\system.linq.dynamic.1.0.7.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\unity\\4.0.1\\unity.4.0.1.nupkg.sha512",
+    "C:\\Users\\BSD-YAZILIM\\.nuget\\packages\\unity.interception\\4.0.1\\unity.interception.4.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

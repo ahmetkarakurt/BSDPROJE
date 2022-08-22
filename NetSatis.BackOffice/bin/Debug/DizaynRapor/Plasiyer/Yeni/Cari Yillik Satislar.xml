@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Visible="false" Text="Grup Kodlu Satış" />
+  <DataSources>
+    <SqlDataSource Name="CustomSqlQuery" ComponentName="sqlDataSource1">
+      <Connection Name="eenwindConnection" FromAppConfig="true" />
+      <Query Type="CustomSqlQuery" Name="CustomSqlQuery">
+        <Sql>select * from BSD_Eski_Satislar
+union all 
+select * from ZZZZ_PLASIYER_SATIS</Sql>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="CustomSqlQuery">
+          <View Name="CustomSqlQuery">
+            <Field Name="TARIH" Type="DateTime" />
+            <Field Name="FTGENELTOP" Type="Decimal" />
+            <Field Name="GENELTOPLAM" Type="Decimal" />
+            <Field Name="STOK_ADI" Type="String" />
+            <Field Name="GRUP_KODU" Type="String" />
+            <Field Name="CARI_ISIM" Type="String" />
+            <Field Name="CARI_IL" Type="String" />
+            <Field Name="PLASIYER_ACIKLAMA" Type="String" />
+            <Field Name="STHAR_GCMIK" Type="Decimal" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+      <CalculatedFields>
+        <CalculatedField Name="Ortalama" Expression="Sum([GENELTOPLAM]) / Sum([STHAR_GCMIK])&#xD;&#xA;" DataType="Decimal" DataMember="CustomSqlQuery" />
+      </CalculatedFields>
+    </SqlDataSource>
+  </DataSources>
+  <Items>
+    <ComboBox ComponentName="comboBoxDashboardItem1" Name="Plasiyer" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="PLASIYER_ACIKLAMA" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <Pivot ComponentName="pivotDashboardItem2" Name="Plasiyer Listesi" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Measure DataMember="GENELTOPLAM" Name="Genel Toplam" DefaultId="DataItem0">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="STHAR_GCMIK" Name="Satış Mik" DefaultId="DataItem1">
+          <NumericFormat FormatType="Number" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Measure DataMember="GENELTOPLAM" Name="Ortalama" SummaryType="Average" DefaultId="DataItem2">
+          <NumericFormat FormatType="Currency" Unit="Ones" IncludeGroupSeparator="true" CustomFormatString="" />
+        </Measure>
+        <Dimension DataMember="CARI_ISIM" DefaultId="DataItem3" />
+        <Dimension DataMember="STOK_ADI" SortOrder="Descending" DefaultId="DataItem4" />
+        <Dimension DataMember="TARIH" DefaultId="DataItem5" />
+      </DataItems>
+      <FormatRules>
+        <PivotItemFormatRule Name="FormatRule 1" DataItem="DataItem0" DataItemApplyTo="DataItem0">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="Yellow" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+        <PivotItemFormatRule Name="FormatRule 2" DataItem="DataItem2" DataItemApplyTo="DataItem2">
+          <FormatConditionValue Condition="Greater">
+            <AppearanceSettings AppearanceType="Red" />
+            <Value1 Type="System.Decimal" Value="0" />
+          </FormatConditionValue>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+        <PivotItemFormatRule Name="FormatRule 3" DataItemApplyTo="DataItem1">
+          <FormatConditionExpression Expression="[DataItem4] Is Not Null">
+            <AppearanceSettings AppearanceType="PaleYellow" />
+          </FormatConditionExpression>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+        <PivotItemFormatRule Name="FormatRule 4" DataItemApplyTo="DataItem2">
+          <FormatConditionExpression Expression="[DataItem4] Is Not Null">
+            <AppearanceSettings AppearanceType="Orange" />
+          </FormatConditionExpression>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+      </FormatRules>
+      <Columns>
+        <Column DefaultId="DataItem5" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem3" />
+        <Row DefaultId="DataItem4" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem1" />
+        <Value DefaultId="DataItem0" />
+        <Value DefaultId="DataItem2" />
+      </Values>
+    </Pivot>
+    <ComboBox ComponentName="comboBoxDashboardItem2" Name="Aylar" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="TARIH" DateTimeGroupInterval="Month" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <TreeView ComponentName="treeViewDashboardItem1" Name="Aylar" DataSource="sqlDataSource1" DataMember="CustomSqlQuery">
+      <DataItems>
+        <Dimension DataMember="TARIH" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </TreeView>
+    <ComboBox ComponentName="comboBoxDashboardItem3" Name="Stok" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+    <ComboBox ComponentName="comboBoxDashboardItem4" Name="Cari" DataSource="sqlDataSource1" DataMember="CustomSqlQuery" EnableSearch="true" ComboBoxType="Checked">
+      <DataItems>
+        <Dimension DataMember="STOK_ADI" DefaultId="DataItem0" />
+      </DataItems>
+      <FilterDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </FilterDimensions>
+    </ComboBox>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutGroup Weight="6.1342592592592595">
+        <LayoutItem DashboardItem="comboBoxDashboardItem4" Weight="50" />
+        <LayoutItem DashboardItem="comboBoxDashboardItem3" Weight="50" />
+      </LayoutGroup>
+      <LayoutItem DashboardItem="pivotDashboardItem2" Weight="81.597222222222229" />
+      <LayoutGroup Weight="12.268518518518519">
+        <LayoutGroup Orientation="Vertical" Weight="50">
+          <LayoutItem DashboardItem="comboBoxDashboardItem2" Weight="50" />
+          <LayoutItem DashboardItem="comboBoxDashboardItem1" Weight="50" />
+        </LayoutGroup>
+        <LayoutItem DashboardItem="treeViewDashboardItem1" Weight="50" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
